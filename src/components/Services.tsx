@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -54,15 +55,16 @@ const Services = () => {
         
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div 
+            <Link 
+              to="/booking" 
               key={index}
               className={`rounded-lg p-8 transition-all duration-300 hover:shadow-xl ${
                 service.highlight 
                   ? "border-2 border-gold bg-white shadow-lg" 
                   : "border border-gray-200 bg-white shadow"
-              }`}
+              } group cursor-pointer`}
             >
-              <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-gold transition-colors">{service.title}</h3>
               <p className="text-gray-700 mb-6">{service.description}</p>
               <ul className="space-y-3">
                 {service.features.map((feature, idx) => (
@@ -79,12 +81,17 @@ const Services = () => {
                   </span>
                 </div>
               )}
-            </div>
+              <div className="mt-6 text-center">
+                <span className="inline-block text-gold font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Book This Service →
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
         
         <div className="text-center mt-12">
-          <a href="#contact" className="btn-gold">Schedule a Service</a>
+          <Link to="/booking" className="btn-gold">Schedule a Service</Link>
         </div>
       </div>
     </section>
