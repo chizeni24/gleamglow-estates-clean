@@ -7,6 +7,7 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import OurStory from "@/components/OurStory";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <About />
+      <OurStory />
       <Services />
       <Testimonials />
       <Contact />
