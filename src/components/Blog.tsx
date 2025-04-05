@@ -1,7 +1,15 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination";
 
 interface BlogPost {
   id: string;
@@ -36,12 +44,38 @@ const blogPosts: BlogPost[] = [
     date: "March 15, 2025",
     image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     author: "Sophia Williams"
+  },
+  {
+    id: "4",
+    title: "Luxury Home Maintenance: Seasonal Guide",
+    excerpt: "Keep your luxury home in pristine condition year-round with our comprehensive seasonal maintenance guide.",
+    date: "March 5, 2025",
+    image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    author: "James Anderson"
+  },
+  {
+    id: "5",
+    title: "The Science Behind Professional Cleaning Techniques",
+    excerpt: "Explore the science and methodology behind professional cleaning techniques that deliver superior results.",
+    date: "February 28, 2025",
+    image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    author: "Emma Johnson"
+  },
+  {
+    id: "6",
+    title: "Designing Easy-to-Clean Home Spaces",
+    excerpt: "Learn architectural and design principles that make your home easier to clean and maintain over time.",
+    date: "February 20, 2025",
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    author: "Michael Thompson"
   }
 ];
 
+const POSTS_PER_PAGE = 3;
+
 const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:translate-y-[-5px]">
+    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:translate-y-[-5px] mb-6">
       <div className="relative h-48">
         <img
           src={post.image}
@@ -69,6 +103,23 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
 };
 
 const Blog = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  
+  // Calculate current posts to display
+  const indexOfLastPost = currentPage * POSTS_PER_PAGE;
+  const indexOfFirstPost = indexOfLastPost - POSTS_PER_PAGE;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+  
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top of blog section
+    const blogSection = document.getElementById("blog");
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <section className="py-16 bg-gray-100" id="blog">
       <div className="container-custom">
@@ -77,10 +128,45 @@ const Blog = () => {
           Dive into our collection of articles where we share expert cleaning tips, industry insights, and home maintenance advice.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+          {currentPosts.map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
+        </div>
+        
+        {/* Pagination Controls */}
+        <div className="mt-10">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious 
+                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  className={`${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
+                  aria-disabled={currentPage === 1}
+                />
+              </PaginationItem>
+              
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    onClick={() => handlePageChange(index + 1)}
+                    isActive={currentPage === index + 1}
+                    className={`cursor-pointer ${currentPage === index + 1 ? 'bg-gold text-white border-gold hover:bg-gold-dark' : 'hover:text-gold'}`}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              
+              <PaginationItem>
+                <PaginationNext 
+                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  className={`${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
+                  aria-disabled={currentPage === totalPages}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         </div>
         
         <div className="mt-12 text-center">
