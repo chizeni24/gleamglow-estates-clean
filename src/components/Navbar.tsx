@@ -74,6 +74,7 @@ const Navbar = () => {
           {renderNavLink("Testimonials", "#testimonials")}
           {renderNavLink("Contact", "#contact")}
           {renderNavLink("Book Now", "booking", false)}
+          <Link to="/responsive" className="text-gray-800 hover:text-gold transition-colors">Responsive Demo</Link>
         </div>
         
         {/* Mobile Menu Button */}
@@ -92,6 +93,13 @@ const Navbar = () => {
             {renderNavLink("Testimonials", "#testimonials")}
             {renderNavLink("Contact", "#contact")}
             {renderNavLink("Book Now", "booking", false)}
+            <Link 
+              to="/responsive" 
+              className="text-gray-800 hover:text-gold transition-colors"
+              onClick={toggleMenu}
+            >
+              Responsive Demo
+            </Link>
           </div>
         </div>
       )}
