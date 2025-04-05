@@ -9,6 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import OurStory from "@/components/OurStory";
+import Blog from "@/components/Blog";
 
 const Index = () => {
   const location = useLocation();
@@ -37,6 +38,7 @@ const Index = () => {
       <About />
       <OurStory />
       <Services />
+      <Blog />
       <Testimonials />
       <Contact />
       <Footer />

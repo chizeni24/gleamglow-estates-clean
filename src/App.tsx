@@ -24,6 +24,8 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/responsive" element={<ResponsiveDemo />} />
+            <Route path="/blog" element={<NotFound />} /> {/* Placeholder for future blog page */}
+            <Route path="/blog/:id" element={<NotFound />} /> {/* Placeholder for future blog detail page */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

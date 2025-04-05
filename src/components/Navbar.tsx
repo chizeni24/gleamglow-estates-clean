@@ -60,7 +60,7 @@ const Navbar = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white shadow-md py-2"
-          : "bg-transparent py-4"
+          : "bg-white/90 backdrop-blur-md py-4 shadow-lg"
       )}
     >
       <div className="container-custom flex justify-between items-center">
@@ -73,7 +73,7 @@ const Navbar = () => {
           {renderNavLink("Services", "#services")}
           {renderNavLink("Testimonials", "#testimonials")}
           {renderNavLink("Contact", "#contact")}
-          {renderNavLink("Book Now", "booking", false)}
+          <Link to="/booking" className="text-white bg-gold hover:bg-gold-dark transition-colors px-4 py-2 rounded-md">Book Now</Link>
           <Link to="/responsive" className="text-gray-800 hover:text-gold transition-colors">Responsive Demo</Link>
         </div>
         
@@ -92,7 +92,13 @@ const Navbar = () => {
             {renderNavLink("Services", "#services")}
             {renderNavLink("Testimonials", "#testimonials")}
             {renderNavLink("Contact", "#contact")}
-            {renderNavLink("Book Now", "booking", false)}
+            <Link 
+              to="/booking" 
+              className="text-white bg-gold hover:bg-gold-dark transition-colors px-4 py-2 rounded-md w-full text-center"
+              onClick={toggleMenu}
+            >
+              Book Now
+            </Link>
             <Link 
               to="/responsive" 
               className="text-gray-800 hover:text-gold transition-colors"

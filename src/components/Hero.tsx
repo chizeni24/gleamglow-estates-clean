@@ -10,10 +10,10 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{ 
-        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" 
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" 
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40"></div>
       
       <div className="container-custom relative z-10 text-center">
         <div className="max-w-3xl mx-auto">
@@ -23,7 +23,7 @@ const Hero = () => {
                 <Logo size="large" />
               </Link>
             </div>
-            <div className="inline-block px-4 py-1 bg-gold/10 backdrop-blur-sm rounded-full">
+            <div className="inline-block px-4 py-1 bg-gold/20 backdrop-blur-sm rounded-full">
               <span className="text-gold-light text-sm font-medium">Transforming Luxury Spaces Since 2010</span>
             </div>
           </div>
@@ -39,7 +39,7 @@ const Hero = () => {
               <span className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
             <a href="#services" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300 px-8 py-3 rounded-md font-medium">
-              Explore Our Story
+              Explore Our Services
             </a>
           </div>
         </div>
