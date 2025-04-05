@@ -1,11 +1,10 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Logo from "@/components/Logo";
 import { useToast } from "@/components/ui/use-toast";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 type Step = {
   id: string;
@@ -16,9 +15,13 @@ type Step = {
 
 const BookingPage = () => {
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const serviceParam = searchParams.get('service');
+  
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    service: "",
+    service: serviceParam || "",
     date: "",
     time: "",
     name: "",
@@ -28,6 +31,17 @@ const BookingPage = () => {
     notes: "",
   });
 
+  // Update the form if service param changes
+  useEffect(() => {
+    if (serviceParam) {
+      setFormData(prev => ({ ...prev, service: serviceParam }));
+      // If we have a service param and we're on step 0, let's go to step 1
+      if (currentStep === 0) {
+        setCurrentStep(1);
+      }
+    }
+  }, [serviceParam, currentStep]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -36,6 +50,8 @@ const BookingPage = () => {
   const handleServiceSelect = (service: string) => {
     setFormData((prev) => ({ ...prev, service }));
     nextStep();
+    // Update URL query parameter
+    navigate(`/booking?service=${encodeURIComponent(service)}`);
   };
 
   const nextStep = () => {
@@ -82,6 +98,7 @@ const BookingPage = () => {
     }
   ];
 
+  
   const steps: Step[] = [
     {
       id: "service",

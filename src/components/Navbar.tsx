@@ -3,10 +3,13 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Logo from "./Logo";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +30,30 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const renderNavLink = (text: string, to: string, isAnchor: boolean = true) => {
+    if (isHomePage && isAnchor) {
+      return (
+        <a 
+          href={to} 
+          className="text-gray-800 hover:text-gold transition-colors" 
+          onClick={isMenuOpen ? toggleMenu : undefined}
+        >
+          {text}
+        </a>
+      );
+    } else {
+      return (
+        <Link 
+          to={`/${isAnchor ? to.substring(1) : to}`} 
+          className="text-gray-800 hover:text-gold transition-colors"
+          onClick={isMenuOpen ? toggleMenu : undefined}
+        >
+          {text}
+        </Link>
+      );
+    }
+  };
+
   return (
     <nav
       className={cn(
@@ -41,11 +68,12 @@ const Navbar = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
-          <a href="#home" className="text-gray-800 hover:text-gold transition-colors">Home</a>
-          <a href="#about" className="text-gray-800 hover:text-gold transition-colors">About</a>
-          <a href="#services" className="text-gray-800 hover:text-gold transition-colors">Services</a>
-          <a href="#testimonials" className="text-gray-800 hover:text-gold transition-colors">Testimonials</a>
-          <a href="#contact" className="text-gray-800 hover:text-gold transition-colors">Contact</a>
+          {renderNavLink("Home", isHomePage ? "#home" : "/")}
+          {renderNavLink("About", "#about")}
+          {renderNavLink("Services", "#services")}
+          {renderNavLink("Testimonials", "#testimonials")}
+          {renderNavLink("Contact", "#contact")}
+          {renderNavLink("Book Now", "booking", false)}
         </div>
         
         {/* Mobile Menu Button */}
@@ -58,11 +86,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-md animate-fade-in">
           <div className="flex flex-col p-4 space-y-4">
-            <a href="#home" className="text-gray-800 hover:text-gold transition-colors py-2" onClick={toggleMenu}>Home</a>
-            <a href="#about" className="text-gray-800 hover:text-gold transition-colors py-2" onClick={toggleMenu}>About</a>
-            <a href="#services" className="text-gray-800 hover:text-gold transition-colors py-2" onClick={toggleMenu}>Services</a>
-            <a href="#testimonials" className="text-gray-800 hover:text-gold transition-colors py-2" onClick={toggleMenu}>Testimonials</a>
-            <a href="#contact" className="text-gray-800 hover:text-gold transition-colors py-2" onClick={toggleMenu}>Contact</a>
+            {renderNavLink("Home", isHomePage ? "#home" : "/")}
+            {renderNavLink("About", "#about")}
+            {renderNavLink("Services", "#services")}
+            {renderNavLink("Testimonials", "#testimonials")}
+            {renderNavLink("Contact", "#contact")}
+            {renderNavLink("Book Now", "booking", false)}
           </div>
         </div>
       )}

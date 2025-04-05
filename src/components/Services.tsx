@@ -56,7 +56,7 @@ const Services = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Link 
-              to="/booking" 
+              to={`/booking?service=${encodeURIComponent(service.title)}`}
               key={index}
               className={`rounded-lg p-8 transition-all duration-300 hover:shadow-xl ${
                 service.highlight 
@@ -82,7 +82,7 @@ const Services = () => {
                 </div>
               )}
               <div className="mt-6 text-center">
-                <span className="inline-block text-gold font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="inline-block text-gold font-medium group-hover:opacity-100 transition-opacity duration-300">
                   Book This Service →
                 </span>
               </div>

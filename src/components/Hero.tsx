@@ -1,6 +1,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -8,7 +9,7 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{ 
-        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" 
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')" 
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30"></div>
@@ -25,10 +26,10 @@ const Hero = () => {
             At GleamGlow, we don't just clean spaces—we transform environments. Every surface tells a story of meticulous care and attention to detail.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#contact" className="btn-gold relative overflow-hidden group">
+            <Link to="/booking" className="btn-gold relative overflow-hidden group">
               <span className="relative z-10">Book a Consultation</span>
               <span className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </a>
+            </Link>
             <a href="#services" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300 px-8 py-3 rounded-md font-medium">
               Explore Our Story
             </a>
