@@ -91,12 +91,48 @@
     @apply border-border;
   }
 
+  html {
+    @apply scroll-smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans text-base;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
+    @apply font-playfair font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+  
+  h6 {
+    @apply text-base md:text-lg;
+  }
+  
+  p {
+    @apply leading-relaxed;
+  }
+  
+  a {
+    @apply transition-colors duration-200;
   }
 }
 
@@ -119,5 +155,35 @@
   
   .gold-gradient {
     @apply bg-gradient-to-r from-gold-light via-gold to-gold-dark;
+  }
+  
+  .interactive-element {
+    @apply transition-all duration-200 hover:shadow-md hover:shadow-gold/20;
+  }
+  
+  .hover-gold {
+    @apply transition-colors duration-300 hover:text-gold;
+  }
+  
+  .clickable-card {
+    @apply cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .gold-highlight {
+    @apply border-l-4 border-gold pl-4;
+  }
+  
+  .gold-border-hover {
+    @apply border border-transparent hover:border-gold transition-colors duration-300;
+  }
+}
+
+/* For users with reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

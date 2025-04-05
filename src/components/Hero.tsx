@@ -2,6 +2,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Hero = () => {
   return (
@@ -16,8 +17,15 @@ const Hero = () => {
       
       <div className="container-custom relative z-10 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-3 inline-block px-4 py-1 bg-gold/10 backdrop-blur-sm rounded-full">
-            <span className="text-gold-light text-sm font-medium">Transforming Luxury Spaces Since 2010</span>
+          <div className="mb-6">
+            <div className="flex justify-center mb-3 transform hover:scale-110 transition-transform duration-300">
+              <Link to="/" className="block">
+                <Logo size="large" />
+              </Link>
+            </div>
+            <div className="inline-block px-4 py-1 bg-gold/10 backdrop-blur-sm rounded-full">
+              <span className="text-gold-light text-sm font-medium">Transforming Luxury Spaces Since 2010</span>
+            </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
             Where Brilliance <span className="text-gold-light">Meets Precision</span>
