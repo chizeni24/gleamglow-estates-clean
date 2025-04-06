@@ -94,8 +94,29 @@
   html {
     @apply scroll-smooth;
   }
+  
+  /* Full-width gold border at the top of the page */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--gold-light));
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+  
+  body:hover::before {
+    height: 5px;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
 
   body {
+    --gold: #C5A028;
+    --gold-light: #D4AF37;
+    --gold-dark: #AA8C2C;
     @apply bg-background text-foreground font-sans text-base;
   }
 
