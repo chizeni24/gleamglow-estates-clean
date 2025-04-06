@@ -1,10 +1,10 @@
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { GoldButton } from "@/components/ui/gold-button";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -150,12 +150,15 @@ const Contact = () => {
                 />
               </div>
               
-              <Button 
+              <GoldButton 
                 type="submit" 
-                className="w-full bg-gold hover:bg-gold-dark text-white transition-colors"
+                variant="solid"
+                size="md"
+                showShine={true}
+                className="w-full"
               >
                 Send Message
-              </Button>
+              </GoldButton>
             </form>
           </div>
         </div>
