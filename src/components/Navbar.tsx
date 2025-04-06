@@ -74,7 +74,6 @@ const Navbar = () => {
           {renderNavLink("Testimonials", "#testimonials")}
           {renderNavLink("Contact", "#contact")}
           <Link to="/booking" className="text-white bg-gold hover:bg-gold-dark transition-colors px-4 py-2 rounded-md">Book Now</Link>
-          <Link to="/responsive" className="text-gray-800 hover:text-gold transition-colors">Responsive Demo</Link>
         </div>
         
         {/* Mobile Menu Button */}
@@ -98,13 +97,6 @@ const Navbar = () => {
               onClick={toggleMenu}
             >
               Book Now
-            </Link>
-            <Link 
-              to="/responsive" 
-              className="text-gray-800 hover:text-gold transition-colors"
-              onClick={toggleMenu}
-            >
-              Responsive Demo
             </Link>
           </div>
         </div>

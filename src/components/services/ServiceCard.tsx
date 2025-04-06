@@ -21,11 +21,14 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     <Link 
       to={`/booking?service=${encodeURIComponent(service.title)}`}
       key={index}
-      className={`rounded-lg p-8 transition-all duration-300 ${
+      className={cn(
+        "rounded-lg p-8 transition-all duration-300",
         service.highlight 
           ? "border-2 border-gold bg-white shadow-lg" 
-          : "border border-gray-200 bg-white shadow"
-      } group cursor-pointer`}
+          : "border border-gray-200 bg-white shadow",
+        isHovered && !service.highlight && "border-gold",
+        "group cursor-pointer"
+      )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
