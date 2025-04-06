@@ -12,13 +12,13 @@ const testimonials = [
   {
     name: "Jonathan W.",
     role: "Interior Designer",
-    content: "I recommend GleamGlow to all my clients. They understand how to care for high-end finishes and materials, which is essential for preserving the integrity of luxury interiors.",
+    content: "I recommend GleamGlow to all my clients. They understand how to care for high-end finishes and materials, which is essential for preserving the integrity of premium interiors.",
     rating: 5
   },
   {
     name: "Sophia R.",
     role: "Estate Manager",
-    content: "The GleamGlow team is professional, trustworthy, and thorough. They've maintained our property to the highest standards, which allows me to focus on other aspects of estate management.",
+    content: "The GleamGlow team is professional, trustworthy, and thorough. They've maintained our property to the highest standards, which allows me to focus on other aspects of home management.",
     rating: 5
   }
 ];

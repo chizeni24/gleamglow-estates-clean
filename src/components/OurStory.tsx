@@ -6,22 +6,22 @@ const OurStory = () => {
     {
       year: "2010",
       title: "A Vision Born",
-      description: "Founded with a simple belief: luxury spaces deserve cleaning that honors their design and craftsmanship."
+      description: "Founded with a simple belief: exceptional spaces deserve cleaning that honors their design and craftsmanship."
     },
     {
       year: "2015",
       title: "The GleamGlow Method",
-      description: "Developed our signature five-step cleaning approach that became the gold standard in luxury home care."
+      description: "Developed our signature five-step cleaning approach that became the gold standard in premium home care."
     },
     {
       year: "2018",
-      title: "Eco-Luxury Innovation",
-      description: "Pioneered the use of premium eco-friendly cleaning solutions formulated specifically for high-end materials."
+      title: "Eco-Premium Innovation",
+      description: "Pioneered the use of high-quality eco-friendly cleaning solutions formulated specifically for premium materials."
     },
     {
       year: "Today",
-      title: "Custodians of Luxury",
-      description: "Trusted by homeowners who understand that true luxury includes how a space is maintained and cared for."
+      title: "Custodians of Excellence",
+      description: "Trusted by homeowners who understand that true quality includes how a space is maintained and cared for."
     }
   ];
 
@@ -31,7 +31,7 @@ const OurStory = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Story</h2>
           <p className="text-gray-700">
-            The journey that transformed the art of luxury home cleaning.
+            The journey that transformed the art of exceptional home cleaning.
           </p>
         </div>
         

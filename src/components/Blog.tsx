@@ -39,16 +39,16 @@ const blogPosts: BlogPost[] = [
   },
   {
     id: "3",
-    title: "The Ultimate Spring Cleaning Checklist for Luxury Homes",
-    excerpt: "Follow this comprehensive guide to give your luxury home a thorough spring cleaning that will leave it pristine and refreshed.",
+    title: "The Ultimate Spring Cleaning Checklist for Your Home",
+    excerpt: "Follow this comprehensive guide to give your home a thorough spring cleaning that will leave it pristine and refreshed.",
     date: "March 15, 2025",
     image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     author: "Sophia Williams"
   },
   {
     id: "4",
-    title: "Luxury Home Maintenance: Seasonal Guide",
-    excerpt: "Keep your luxury home in pristine condition year-round with our comprehensive seasonal maintenance guide.",
+    title: "Home Maintenance: Seasonal Guide",
+    excerpt: "Keep your home in pristine condition year-round with our comprehensive seasonal maintenance guide.",
     date: "March 5, 2025",
     image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     author: "James Anderson"
@@ -95,7 +95,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
           to={`/blog/${post.id}`} 
           className="text-gold hover:text-gold-dark flex items-center gap-1 font-medium"
         >
-          Read More <ArrowRight size={16} />
+          Continue Reading <ArrowRight size={16} />
         </Link>
       </div>
     </div>
@@ -135,7 +135,7 @@ const Blog = () => {
         </div>
         
         {/* Pagination Controls */}
-        <div className="mt-10">
+        <div className="mt-10 flex justify-center">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
@@ -174,7 +174,7 @@ const Blog = () => {
             to="/blog" 
             className="bg-white text-gold hover:bg-gold hover:text-white border border-gold transition-colors duration-300 px-8 py-3 rounded-md font-medium inline-flex items-center gap-2"
           >
-            View All Articles
+            Explore All Articles
             <ArrowRight size={18} />
           </Link>
         </div>

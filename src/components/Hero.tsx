@@ -19,7 +19,7 @@ const Hero = () => {
               </Link>
             </div>
             <div className="inline-block px-4 py-1 bg-gold/20 backdrop-blur-sm rounded-full">
-              <span className="text-gold text-sm font-medium">Transforming Luxury Spaces Since 2010</span>
+              <span className="text-gold text-sm font-medium">Transforming Premium Spaces Since 2010</span>
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
@@ -30,11 +30,11 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link to="/booking" className="btn-gold relative overflow-hidden group">
-              <span className="relative z-10">Book a Consultation</span>
+              <span className="relative z-10">Start Your Journey</span>
               <span className="absolute inset-0 bg-gradient-to-r from-gold-dark via-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Link>
             <a href="#services" className="border-2 border-gold text-gold hover:bg-gold hover:text-white transition-colors duration-300 px-8 py-3 rounded-md font-medium">
-              Explore Our Services
+              Discover Our Services
             </a>
           </div>
         </div>

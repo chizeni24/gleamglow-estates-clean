@@ -62,7 +62,7 @@ const serviceAreas = [
 const blogPosts = [
   {
     title: "5 Essential Tips for Maintaining Marble Countertops",
-    excerpt: "Learn how to keep your luxury marble surfaces pristine with these expert tips.",
+    excerpt: "Learn how to keep your premium marble surfaces pristine with these expert tips.",
     category: "Maintenance",
     featured: true,
     image: "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
@@ -82,7 +82,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "Seasonal Deep Cleaning Checklist for Luxury Homes",
+    title: "Seasonal Deep Cleaning Checklist for Quality Homes",
     excerpt: "Stay ahead of maintenance with our comprehensive seasonal cleaning guide.",
     category: "Guides",
     featured: false,
@@ -131,7 +131,7 @@ const ServiceCard = ({ service, index }) => {
           "inline-block text-gold font-medium transition-all duration-300",
           isHovered ? "opacity-100" : "opacity-80"
         )}>
-          Book This Service 
+          Select This Service 
           <span className={cn(
             "ml-2 transition-transform duration-300",
             isHovered ? "translate-x-1" : "translate-x-0"
@@ -220,7 +220,7 @@ const Services = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Premium Services</h2>
           <p className="text-gray-700 text-lg">
-            We offer a range of specialized cleaning services designed to meet the unique needs of luxury homes. Each service is fully customizable to your specific requirements.
+            We offer a range of specialized cleaning services designed to meet the unique needs of your home. Each service is fully customizable to your specific requirements.
           </p>
         </div>
         
@@ -252,7 +252,7 @@ const Services = () => {
                 {count.toLocaleString()}
               </span>
             </h3>
-            <p className="text-xl text-gray-700">Luxury Homes Served Since 2010</p>
+            <p className="text-xl text-gray-700">Exceptional Homes Served Since 2010</p>
           </div>
         </div>
         
@@ -311,9 +311,9 @@ const Services = () => {
                 <div className="p-4">
                   <h4 className="font-bold text-xl mb-2">{post.title}</h4>
                   <p className="text-gray-600">{post.excerpt}</p>
-                  <a href="#" className="mt-4 inline-block text-gold font-medium hover:underline">
+                  <Link to={`/blog/article-${index+1}`} className="mt-4 inline-block text-gold font-medium hover:underline">
                     Read More →
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}

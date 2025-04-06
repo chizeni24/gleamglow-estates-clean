@@ -52,12 +52,12 @@ const Index = () => {
       <Navbar />
       
       {/* Main content with improved spacing */}
-      <div className="space-y-6 md:space-y-12">
+      <div className="space-y-12 md:space-y-20">
         {sections.map((section) => (
           <div 
             key={section.id} 
             id={section.id}
-            className={`section-container ${activePage === section.id ? 'active-section' : ''}`}
+            className={`section-container mb-8 md:mb-16 ${activePage === section.id ? 'active-section' : ''}`}
           >
             {section.component}
           </div>
