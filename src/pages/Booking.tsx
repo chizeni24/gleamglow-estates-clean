@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -29,6 +30,14 @@ const BookingPage = () => {
     phone: "",
     address: "",
     notes: "",
+    bedrooms: "1",
+    bathrooms: "1",
+    kitchens: "1",
+    livingAreas: "1",
+    squareFootage: "",
+    cleaningFrequency: "one-time",
+    pets: "no",
+    specialRequirements: "",
   });
 
   // Update the form if service param changes
@@ -98,6 +107,7 @@ const BookingPage = () => {
     }
   ];
 
+  const [hoveredService, setHoveredService] = useState<string | null>(null);
   
   const steps: Step[] = [
     {
@@ -110,11 +120,11 @@ const BookingPage = () => {
             <button
               key={index}
               onClick={() => handleServiceSelect(service.title)}
-              className={`text-left rounded-lg p-8 transition-all duration-300 hover:shadow-xl ${
-                service.highlight 
-                  ? "border-2 border-gold bg-white shadow-lg" 
-                  : "border border-gray-200 bg-white shadow"
-              } ${formData.service === service.title ? "ring-2 ring-gold" : ""}`}
+              onMouseEnter={() => setHoveredService(service.title)}
+              onMouseLeave={() => setHoveredService(null)}
+              className={`text-left rounded-lg p-8 transition-all duration-300 hover:shadow-xl border ${
+                hoveredService === service.title ? "border-gold" : "border-gray-200"
+              } bg-white shadow ${formData.service === service.title ? "ring-2 ring-gold" : ""}`}
             >
               <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
               <p className="text-gray-700 mb-6">{service.description}</p>
@@ -172,6 +182,147 @@ const BookingPage = () => {
               <option value="2:00 PM">2:00 PM</option>
               <option value="3:00 PM">3:00 PM</option>
               <option value="4:00 PM">4:00 PM</option>
+            </select>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: "propertyDetails",
+      title: "Property Details",
+      description: "Tell us about your property",
+      fields: (
+        <div className="space-y-6 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="bedrooms" className="block text-lg font-medium text-gray-700 mb-2">
+                Bedrooms
+              </label>
+              <select
+                id="bedrooms"
+                name="bedrooms"
+                value={formData.bedrooms}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+              >
+                <option value="1">1 Bedroom</option>
+                <option value="2">2 Bedrooms</option>
+                <option value="3">3 Bedrooms</option>
+                <option value="4">4 Bedrooms</option>
+                <option value="5">5+ Bedrooms</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="bathrooms" className="block text-lg font-medium text-gray-700 mb-2">
+                Bathrooms
+              </label>
+              <select
+                id="bathrooms"
+                name="bathrooms"
+                value={formData.bathrooms}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+              >
+                <option value="1">1 Bathroom</option>
+                <option value="2">2 Bathrooms</option>
+                <option value="3">3 Bathrooms</option>
+                <option value="4">4 Bathrooms</option>
+                <option value="5">5+ Bathrooms</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="kitchens" className="block text-lg font-medium text-gray-700 mb-2">
+                Kitchens
+              </label>
+              <select
+                id="kitchens"
+                name="kitchens"
+                value={formData.kitchens}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+              >
+                <option value="1">1 Kitchen</option>
+                <option value="2">2 Kitchens</option>
+                <option value="3">3+ Kitchens</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="livingAreas" className="block text-lg font-medium text-gray-700 mb-2">
+                Living Areas
+              </label>
+              <select
+                id="livingAreas"
+                name="livingAreas"
+                value={formData.livingAreas}
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+              >
+                <option value="1">1 Living Area</option>
+                <option value="2">2 Living Areas</option>
+                <option value="3">3 Living Areas</option>
+                <option value="4">4+ Living Areas</option>
+              </select>
+            </div>
+          </div>
+          
+          <div>
+            <label htmlFor="squareFootage" className="block text-lg font-medium text-gray-700 mb-2">
+              Approximate Square Footage
+            </label>
+            <input
+              type="text"
+              id="squareFootage"
+              name="squareFootage"
+              value={formData.squareFootage}
+              onChange={handleInputChange}
+              placeholder="e.g., 1500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="cleaningFrequency" className="block text-lg font-medium text-gray-700 mb-2">
+              Cleaning Frequency
+            </label>
+            <select
+              id="cleaningFrequency"
+              name="cleaningFrequency"
+              value={formData.cleaningFrequency}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            >
+              <option value="one-time">One-time Service</option>
+              <option value="weekly">Weekly</option>
+              <option value="bi-weekly">Bi-weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+          
+          <div>
+            <label htmlFor="pets" className="block text-lg font-medium text-gray-700 mb-2">
+              Do you have pets?
+            </label>
+            <select
+              id="pets"
+              name="pets"
+              value={formData.pets}
+              onChange={handleInputChange}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            >
+              <option value="no">No</option>
+              <option value="dogs">Dogs</option>
+              <option value="cats">Cats</option>
+              <option value="both">Both Dogs and Cats</option>
+              <option value="other">Other Pets</option>
             </select>
           </div>
         </div>
@@ -250,7 +401,7 @@ const BookingPage = () => {
           </div>
           <div>
             <label htmlFor="notes" className="block text-lg font-medium text-gray-700 mb-2">
-              Special Instructions (Optional)
+              Special Instructions
             </label>
             <textarea
               id="notes"
@@ -258,6 +409,21 @@ const BookingPage = () => {
               value={formData.notes}
               onChange={handleInputChange}
               rows={3}
+              placeholder="Tell us about any specific areas that need attention or any other special requirements"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            />
+          </div>
+          <div>
+            <label htmlFor="specialRequirements" className="block text-lg font-medium text-gray-700 mb-2">
+              Additional Services Needed
+            </label>
+            <textarea
+              id="specialRequirements"
+              name="specialRequirements"
+              value={formData.specialRequirements}
+              onChange={handleInputChange}
+              rows={3}
+              placeholder="Any additional services like window cleaning, carpet cleaning, etc."
               className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
             />
           </div>
@@ -280,6 +446,18 @@ const BookingPage = () => {
             <div>
               <p className="text-sm text-gray-500">Date & Time</p>
               <p className="font-medium">{formData.date} at {formData.time}</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Property Size</p>
+              <p className="font-medium">{formData.bedrooms} Bedroom(s), {formData.bathrooms} Bathroom(s)</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Cleaning Frequency</p>
+              <p className="font-medium">
+                {formData.cleaningFrequency === "one-time" ? "One-time Service" :
+                 formData.cleaningFrequency === "weekly" ? "Weekly Service" :
+                 formData.cleaningFrequency === "bi-weekly" ? "Bi-weekly Service" : "Monthly Service"}
+              </p>
             </div>
             <div>
               <p className="text-sm text-gray-500">Name</p>
@@ -305,6 +483,13 @@ const BookingPage = () => {
               <p className="font-medium">{formData.notes}</p>
             </div>
           )}
+          
+          {formData.specialRequirements && (
+            <div>
+              <p className="text-sm text-gray-500">Additional Services</p>
+              <p className="font-medium">{formData.specialRequirements}</p>
+            </div>
+          )}
         </div>
       )
     }
@@ -316,9 +501,9 @@ const BookingPage = () => {
 
       <div className="container-custom py-12 md:py-20">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Premium Clean</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Luxury Clean</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Schedule your luxury cleaning service in a few simple steps
+            Schedule your premium cleaning service in a few simple steps
           </p>
         </div>
 
@@ -395,8 +580,9 @@ const BookingPage = () => {
                     disabled={
                       (currentStep === 0 && !formData.service) ||
                       (currentStep === 1 && (!formData.date || !formData.time)) ||
-                      (currentStep === 2 && (!formData.name || !formData.email || !formData.phone)) ||
-                      (currentStep === 3 && !formData.address)
+                      (currentStep === 2 && !formData.bedrooms) ||
+                      (currentStep === 3 && (!formData.name || !formData.email || !formData.phone)) ||
+                      (currentStep === 4 && !formData.address)
                     }
                     className="flex items-center bg-gold text-white px-6 py-3 rounded-md hover:bg-gold-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >

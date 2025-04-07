@@ -19,14 +19,14 @@ const Hero = () => {
               </Link>
             </div>
             <div className="inline-block px-4 py-1 bg-gold/20 backdrop-blur-sm rounded-full">
-              <span className="text-gold text-sm font-medium">Transforming Premium Spaces Since 2010</span>
+              <span className="text-gold text-sm font-medium">Bringing Luxury To Every Space Since 2010</span>
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-            Where Brilliance <span className="text-gold-light">Meets Precision</span>
+            Experience <span className="text-gold-light">Exquisite Excellence</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
-            At GleamGlow, we don't just clean spaces—we transform environments. Every surface tells a story of meticulous care and attention to detail.
+            At GleamGlow, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link to="/booking" className="btn-gold relative overflow-hidden group">

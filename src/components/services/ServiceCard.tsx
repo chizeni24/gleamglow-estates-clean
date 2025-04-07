@@ -18,15 +18,12 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <Link 
-      to={`/booking?service=${encodeURIComponent(service.title)}`}
+    <div 
       key={index}
       className={cn(
         "rounded-lg p-8 transition-all duration-300",
-        service.highlight 
-          ? "border-2 border-gold bg-white shadow-lg" 
-          : "border border-gray-200 bg-white shadow",
-        isHovered && !service.highlight && "border-gold",
+        "border border-gray-200 bg-white shadow",
+        isHovered && "border-gold",
         "group cursor-pointer"
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -54,7 +51,7 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
         </div>
       )}
       <div className="mt-6 text-center">
-        <div className={cn(
+        <Link to={`/booking?service=${encodeURIComponent(service.title)}`} className={cn(
           "inline-block text-gold font-medium transition-all duration-300",
           isHovered ? "opacity-100" : "opacity-80"
         )}>
@@ -63,9 +60,9 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
             "ml-2 transition-transform duration-300",
             isHovered ? "translate-x-1" : "translate-x-0"
           )}>→</span>
-        </div>
+        </Link>
       </div>
-    </Link>
+    </div>
   );
 };
 
