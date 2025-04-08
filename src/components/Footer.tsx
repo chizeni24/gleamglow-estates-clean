@@ -1,6 +1,7 @@
 
 import React from "react";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -36,21 +37,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-gray-400 hover:text-gold-light transition-colors">Home</a></li>
-              <li><a href="#about" className="text-gray-400 hover:text-gold-light transition-colors">About Us</a></li>
-              <li><a href="#services" className="text-gray-400 hover:text-gold-light transition-colors">Services</a></li>
-              <li><a href="#testimonials" className="text-gray-400 hover:text-gold-light transition-colors">Testimonials</a></li>
-              <li><a href="#contact" className="text-gray-400 hover:text-gold-light transition-colors">Contact</a></li>
+              <li><Link to="/" className="text-gray-400 hover:text-gold-light transition-colors">Home</Link></li>
+              <li><Link to="/#about" className="text-gray-400 hover:text-gold-light transition-colors">About Us</Link></li>
+              <li><Link to="/#services" className="text-gray-400 hover:text-gold-light transition-colors">Services</Link></li>
+              <li><Link to="/#testimonials" className="text-gray-400 hover:text-gold-light transition-colors">Testimonials</Link></li>
+              <li><Link to="/#contact" className="text-gray-400 hover:text-gold-light transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><a href="/booking?service=Signature%20Clean" className="text-gray-400 hover:text-gold-light transition-colors">Signature Clean</a></li>
-              <li><a href="/booking?service=Move-In%2FMove-Out" className="text-gray-400 hover:text-gold-light transition-colors">Move-In/Move-Out</a></li>
-              <li><a href="/booking?service=Special%20Occasions" className="text-gray-400 hover:text-gold-light transition-colors">Special Occasions</a></li>
-              <li><a href="/booking" className="text-gray-400 hover:text-gold-light transition-colors">Book Now</a></li>
+              <li><Link to="/booking?service=Signature%20Clean" className="text-gray-400 hover:text-gold-light transition-colors">Signature Clean</Link></li>
+              <li><Link to="/booking?service=Move-In%2FMove-Out" className="text-gray-400 hover:text-gold-light transition-colors">Move-In/Move-Out</Link></li>
+              <li><Link to="/booking?service=Special%20Occasions" className="text-gray-400 hover:text-gold-light transition-colors">Special Occasions</Link></li>
+              <li><Link to="/booking" className="text-gray-400 hover:text-gold-light transition-colors">Book Now</Link></li>
             </ul>
           </div>
         </div>

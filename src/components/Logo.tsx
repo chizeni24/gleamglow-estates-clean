@@ -27,7 +27,6 @@ const Logo = ({ size = "medium", asLink = true }: LogoProps) => {
           <span className="relative z-10">Glow</span>
           <span className="absolute inset-0 text-white z-0 transform -translate-x-[1px] -translate-y-[1px]"></span>
           <span className="absolute inset-0 text-black z-[-1] transform -translate-x-[2px] -translate-y-[2px]"></span>
-          <span className="absolute inset-0 animate-pulse-gold opacity-40"></span>
         </span>
       </h1>
       <div className={cn(
