@@ -8,12 +8,19 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">About GleamGlow</h2>
-            <p className="text-gray-700 mb-6">
-              Founded with a passion for perfection, GleamGlow specializes in providing exceptional cleaning services for homes that deserve the best. We understand that your residence is more than just a space—it's a reflection of your lifestyle and taste.
-            </p>
-            <p className="text-gray-700 mb-6">
-              Our team of carefully selected cleaning artisans is trained to handle premium interiors with the care and attention they deserve. We use only high-quality, eco-friendly cleaning products that preserve the integrity of your fine surfaces while delivering immaculate results.
-            </p>
+            <div className="text-gray-700 space-y-6">
+              <p className="text-lg">
+                We don't just clean homes. We elevate them.
+              </p>
+              <p>
+                At GleamGlow, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
+              </p>
+              <p className="font-medium">
+                Because your home deserves more than clean.
+                <br />
+                It deserves GleamGlow.
+              </p>
+            </div>
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div className="text-center p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
                 <h3 className="text-gold font-bold text-xl mb-2">10+</h3>

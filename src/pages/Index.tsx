@@ -10,6 +10,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import OurStory from "@/components/OurStory";
 import Blog from "@/components/Blog";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   const location = useLocation();
@@ -42,6 +43,7 @@ const Index = () => {
     { id: "about", component: <About /> },
     { id: "our-story", component: <OurStory /> },
     { id: "services", component: <Services /> },
+    { id: "faq", component: <FAQ /> },
     { id: "blog", component: <Blog /> },
     { id: "testimonials", component: <Testimonials /> },
     { id: "contact", component: <Contact /> }

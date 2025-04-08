@@ -71,6 +71,7 @@ const Navbar = () => {
           {renderNavLink("Home", isHomePage ? "#home" : "/")}
           {renderNavLink("About", "#about")}
           {renderNavLink("Services", "#services")}
+          {renderNavLink("FAQ", "#faq")}
           {renderNavLink("Testimonials", "#testimonials")}
           {renderNavLink("Contact", "#contact")}
           <Link to="/booking" className="text-white bg-gold hover:bg-gold-dark transition-colors px-4 py-2 rounded-md">Book Now</Link>
@@ -89,6 +90,7 @@ const Navbar = () => {
             {renderNavLink("Home", isHomePage ? "#home" : "/")}
             {renderNavLink("About", "#about")}
             {renderNavLink("Services", "#services")}
+            {renderNavLink("FAQ", "#faq")}
             {renderNavLink("Testimonials", "#testimonials")}
             {renderNavLink("Contact", "#contact")}
             <Link 

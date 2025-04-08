@@ -70,7 +70,7 @@ const OurStory = () => {
           <p className="font-playfair italic text-lg text-gray-700 max-w-2xl mx-auto">
             "We believe that the spaces we inhabit shape our experiences. At GleamGlow, we don't just clean—we preserve the beauty and intention behind every design choice."
           </p>
-          <p className="mt-4 text-gold font-medium">— Elena Richardson, Founder</p>
+          <p className="mt-4 text-gold font-medium">— Kalizen Mcpah, Founder</p>
         </div>
       </div>
     </section>

@@ -18,8 +18,17 @@ const Logo = ({ size = "medium", asLink = true }: LogoProps) => {
   const logoContent = (
     <div className="relative">
       <h1 className={cn("font-playfair font-bold", fontSizes[size])}>
-        <span className="text-gray-900">Gleam</span>
-        <span className="text-gold">Glow</span>
+        <span className="text-gray-900 relative">
+          <span className="relative z-10">Gleam</span>
+          <span className="absolute inset-0 text-white z-0 transform -translate-x-[1px] -translate-y-[1px]"></span>
+          <span className="absolute inset-0 text-black z-[-1] transform -translate-x-[2px] -translate-y-[2px]"></span>
+        </span>
+        <span className="text-gold relative">
+          <span className="relative z-10">Glow</span>
+          <span className="absolute inset-0 text-white z-0 transform -translate-x-[1px] -translate-y-[1px]"></span>
+          <span className="absolute inset-0 text-black z-[-1] transform -translate-x-[2px] -translate-y-[2px]"></span>
+          <span className="absolute inset-0 animate-pulse-gold opacity-40"></span>
+        </span>
       </h1>
       <div className={cn(
         "absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-gold-light via-gold to-transparent",
