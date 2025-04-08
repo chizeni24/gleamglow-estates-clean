@@ -23,9 +23,7 @@ const Hero = () => {
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
-            Where <span className="text-gold-light relative">Excellence Meets Elegance
-              <span className="absolute inset-0 animate-pulse-gold opacity-40"></span>
-            </span>
+            Where <span className="text-gold-light">Excellence Meets Elegance</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
             At GleamGlow, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.

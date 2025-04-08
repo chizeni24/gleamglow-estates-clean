@@ -21,10 +21,7 @@ const Logo = ({ size = "medium", asLink = true }: LogoProps) => {
         <span className="relative">
           {/* White fill with black outline for "Gleam" */}
           <span className="relative z-10 text-white">Gleam</span>
-          <span className="absolute inset-0 text-transparent z-0 transform translate-x-[0.5px] translate-y-[0.5px] stroke-black stroke-[1px]">Gleam</span>
-          <span className="absolute inset-0 text-transparent z-0 transform -translate-x-[0.5px] -translate-y-[0.5px] stroke-black stroke-[1px]">Gleam</span>
-          <span className="absolute inset-0 text-transparent z-0 transform translate-x-[0.5px] -translate-y-[0.5px] stroke-black stroke-[1px]">Gleam</span>
-          <span className="absolute inset-0 text-transparent z-0 transform -translate-x-[0.5px] translate-y-[0.5px] stroke-black stroke-[1px]">Gleam</span>
+          <span className="absolute inset-0 text-transparent z-0 stroke-black stroke-[1.5px]">Gleam</span>
         </span>
         <span className="text-gold relative">
           <span className="relative z-10">Glow</span>
