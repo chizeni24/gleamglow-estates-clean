@@ -18,10 +18,10 @@ const Logo = ({ size = "medium", asLink = true }: LogoProps) => {
   const logoContent = (
     <div className="relative">
       <h1 className={cn("font-playfair font-bold", fontSizes[size])}>
-        <span className="text-gray-900 relative">
-          <span className="relative z-10">Gleam</span>
-          <span className="absolute inset-0 text-white z-0 transform -translate-x-[1px] -translate-y-[1px]"></span>
-          <span className="absolute inset-0 text-black z-[-1] transform -translate-x-[2px] -translate-y-[2px]"></span>
+        <span className="relative">
+          <span className="relative z-10 text-transparent bg-clip-text bg-white">Gleam</span>
+          <span className="absolute inset-0 text-transparent z-0 transform -translate-x-[1px] -translate-y-[1px] stroke-black stroke-[1px]">Gleam</span>
+          <span className="absolute inset-0 text-black z-[-1] transform -translate-x-[2px] -translate-y-[2px]">Gleam</span>
         </span>
         <span className="text-gold relative">
           <span className="relative z-10">Glow</span>
