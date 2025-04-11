@@ -75,30 +75,29 @@ const POSTS_PER_PAGE = 3;
 
 const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:translate-y-[-5px] mb-6">
-      <div className="relative h-48">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-500">{post.date}</span>
-          <span className="text-sm text-gold">By {post.author}</span>
+    <Link to={`/blog/${post.id}`} className="block h-full">
+      <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:translate-y-[-5px] mb-6 h-full cursor-pointer">
+        <div className="relative h-48">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">{post.title}</h3>
-        <p className="text-gray-600 mb-4">{post.excerpt}</p>
-        <Link 
-          to={`/blog/${post.id}`} 
-          className="text-gold hover:text-gold-dark flex items-center gap-1 font-medium"
-        >
-          Continue Reading <ArrowRight size={16} />
-        </Link>
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm text-gray-500">{post.date}</span>
+            <span className="text-sm text-gold">By {post.author}</span>
+          </div>
+          <h3 className="text-xl font-bold text-gray-800 mb-2">{post.title}</h3>
+          <p className="text-gray-600 mb-4">{post.excerpt}</p>
+          <div className="text-gold hover:text-gold-dark flex items-center gap-1 font-medium">
+            Continue Reading <ArrowRight size={16} />
+          </div>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

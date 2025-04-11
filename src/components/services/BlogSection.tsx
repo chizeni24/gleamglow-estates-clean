@@ -63,10 +63,11 @@ const BlogSection = ({ blogPosts }: BlogSectionProps) => {
       
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredPosts.map((post, index) => (
-          <div 
+          <Link 
+            to={`/blog/article-${index+1}`}
             key={index}
             className={cn(
-              "rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-2",
+              "rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-2 block",
               post.featured ? "col-span-2 row-span-2 md:col-span-2" : ""
             )}
           >
@@ -83,11 +84,11 @@ const BlogSection = ({ blogPosts }: BlogSectionProps) => {
             <div className="p-4">
               <h4 className="font-bold text-xl mb-2">{post.title}</h4>
               <p className="text-gray-600">{post.excerpt}</p>
-              <Link to={`/blog/article-${index+1}`} className="mt-4 inline-block text-gold font-medium hover:underline">
+              <div className="mt-4 inline-block text-gold font-medium hover:underline">
                 Read More →
-              </Link>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
