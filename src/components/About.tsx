@@ -7,18 +7,20 @@ const About = () => {
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">About GleamGlow</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">
+              About <span className="text-gold">Gleam</span>Glow
+            </h2>
             <div className="text-gray-700 space-y-6">
               <p className="text-lg">
                 We don't just clean homes. We elevate them.
               </p>
               <p>
-                At GleamGlow, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
+                At <span className="text-gold font-medium">GleamGlow</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
               </p>
               <p className="font-medium">
                 Because your home deserves more than clean.
                 <br />
-                It deserves GleamGlow.
+                It deserves <span className="text-gold font-playfair">GleamGlow</span>.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6 mt-8">
