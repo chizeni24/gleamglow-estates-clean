@@ -75,8 +75,8 @@ const POSTS_PER_PAGE = 3;
 
 const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
-    <Link to={`/blog/${post.id}`} className="block h-full">
-      <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:translate-y-[-5px] mb-6 h-full cursor-pointer">
+    <Link to={`/blog/${post.id}`} className="block h-full group">
+      <div className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform group-hover:translate-y-[-5px] group-hover:shadow-xl mb-6 h-full cursor-pointer">
         <div className="relative h-48">
           <img
             src={post.image}
@@ -84,16 +84,17 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
             className="w-full h-full object-cover"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
         <div className="p-6">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-gray-500">{post.date}</span>
             <span className="text-sm text-gold">By {post.author}</span>
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">{post.title}</h3>
+          <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-gold transition-colors">{post.title}</h3>
           <p className="text-gray-600 mb-4">{post.excerpt}</p>
-          <div className="text-gold hover:text-gold-dark flex items-center gap-1 font-medium">
-            Continue Reading <ArrowRight size={16} />
+          <div className="text-gold group-hover:text-gold-dark flex items-center gap-1 font-medium">
+            Continue Reading <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
       </div>
@@ -174,7 +175,7 @@ const Blog = () => {
             className="bg-white text-gold hover:bg-gold hover:text-white border border-gold transition-colors duration-300 px-8 py-3 rounded-md font-medium inline-flex items-center gap-2"
           >
             Explore All Articles
-            <ArrowRight size={18} />
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
