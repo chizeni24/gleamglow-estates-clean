@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,7 +25,8 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				gold: {
-					light: '#D4AF37',
+					lighter: '#EBD27D',
+					light: '#E1C976',
 					DEFAULT: '#C5A028',
 					dark: '#AA8C2C',
 				},
@@ -104,8 +104,8 @@ export default {
 					'50%': { transform: 'translateY(-5px)' },
 				},
 				'glow': {
-					'0%, 100%': { boxShadow: '0 0 5px 0 rgba(212, 175, 55, 0.5)' },
-					'50%': { boxShadow: '0 0 20px 10px rgba(212, 175, 55, 0.3)' },
+					'0%, 100%': { boxShadow: '0 0 5px 0 rgba(235, 210, 125, 0.5)' },
+					'50%': { boxShadow: '0 0 20px 10px rgba(235, 210, 125, 0.3)' },
 				}
 			},
 			animation: {

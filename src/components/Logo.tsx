@@ -22,14 +22,14 @@ const Logo = ({
     <div className="relative">
       <h1 className={cn("font-playfair font-bold", fontSizes[size])}>
         <span className="relative">
-          {/* Gold fill for "Gleam" */}
-          <span className="relative z-10 text-gold">Gleam</span>
+          {/* Lighter gold fill for "Gleam" */}
+          <span className="relative z-10 text-gold-lighter">Gleam</span>
         </span>
         <span className="text-gray-800 relative">
           <span className="relative z-10">Glow</span>
         </span>
       </h1>
-      <div className={cn("absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-gold-light via-gold to-transparent", {
+      <div className={cn("absolute -bottom-1 left-0 w-full h-[2px] bg-gradient-to-r from-gold-lighter via-gold to-transparent", {
         "h-[1px]": size === "small",
         "h-[2px]": size === "medium",
         "h-[3px]": size === "large"

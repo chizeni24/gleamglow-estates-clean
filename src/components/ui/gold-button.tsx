@@ -36,7 +36,7 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
         className={cn(
           "relative overflow-hidden font-medium rounded-md transition-all",
           variant === "solid" && "bg-gold text-white hover:bg-gold-dark",
-          variant === "outline" && "border-2 border-gold text-gold hover:bg-gold hover:text-white",
+          variant === "outline" && "border-2 border-gold-lighter text-gold-lighter hover:bg-gold-lighter hover:text-white",
           size === "sm" && "px-4 py-2 text-sm",
           size === "md" && "px-6 py-3",
           size === "lg" && "px-8 py-4 text-lg",

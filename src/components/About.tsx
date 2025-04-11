@@ -8,28 +8,28 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">
-              About <span className="text-gold">Gleam</span>Glow
+              About <span className="text-gold-lighter">Gleam</span>Glow
             </h2>
             <div className="text-gray-700 space-y-6">
               <p className="text-lg">
                 We don't just clean homes. We elevate them.
               </p>
               <p>
-                At <span className="text-gold font-medium">GleamGlow</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
+                At <span className="text-gold-lighter font-medium">GleamGlow</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
               </p>
               <p className="font-medium">
                 Because your home deserves more than clean.
                 <br />
-                It deserves <span className="text-gold font-playfair">GleamGlow</span>.
+                It deserves <span className="text-gold-lighter font-playfair">GleamGlow</span>.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div className="text-center p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
-                <h3 className="text-gold font-bold text-xl mb-2">10+</h3>
+                <h3 className="text-gold-lighter font-bold text-xl mb-2">10+</h3>
                 <p className="text-gray-600">Years of Excellence</p>
               </div>
               <div className="text-center p-4 border border-gray-200 rounded-lg bg-white shadow-sm">
-                <h3 className="text-gold font-bold text-xl mb-2">500+</h3>
+                <h3 className="text-gold-lighter font-bold text-xl mb-2">500+</h3>
                 <p className="text-gray-600">Happy Homes Served</p>
               </div>
             </div>
