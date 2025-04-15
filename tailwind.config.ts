@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -106,6 +107,13 @@ export default {
 				'glow': {
 					'0%, 100%': { boxShadow: '0 0 5px 0 rgba(235, 210, 125, 0.5)' },
 					'50%': { boxShadow: '0 0 20px 10px rgba(235, 210, 125, 0.3)' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'shimmer': {
+					'100%': { backgroundPosition: '200% center' },
 				}
 			},
 			animation: {
@@ -116,6 +124,12 @@ export default {
 				'shine': 'shine 3s linear infinite',
 				'bounce-sm': 'bounce-sm 2s ease-in-out infinite',
 				'glow': 'glow 2s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'shimmer': 'shimmer 2s linear infinite'
+			},
+			blur: {
+				'4xl': '100px',
+				'5xl': '120px',
 			}
 		}
 	},

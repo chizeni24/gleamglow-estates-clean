@@ -11,6 +11,8 @@ import Footer from "@/components/Footer";
 import OurStory from "@/components/OurStory";
 import Blog from "@/components/Blog";
 import FAQ from "@/components/FAQ";
+import ScrollIndicator from "@/components/ScrollIndicator";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   const location = useLocation();
@@ -51,6 +53,7 @@ const Index = () => {
   
   return (
     <div className="min-h-screen">
+      <ScrollIndicator />
       <Navbar />
       
       {/* Main content with improved spacing */}
@@ -66,6 +69,7 @@ const Index = () => {
         ))}
       </div>
       
+      <BackToTop />
       <Footer />
     </div>
   );

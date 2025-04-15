@@ -197,6 +197,92 @@
   .gold-border-hover {
     @apply border border-transparent hover:border-gold transition-colors duration-300;
   }
+  
+  .animate-fade-in {
+    @apply opacity-0 translate-y-4;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    @apply opacity-0 scale-95;
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-gold {
+    animation: pulseGold 2.5s infinite;
+  }
+  
+  .animate-slide-in-left {
+    @apply opacity-0 -translate-x-10;
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-in-right {
+    @apply opacity-0 translate-x-10;
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+  
+  /* Staggered animation for children */
+  .stagger-children > * {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .stagger-children > *:nth-child(1) { animation: fadeInUp 0.5s 0.1s ease-out forwards; }
+  .stagger-children > *:nth-child(2) { animation: fadeInUp 0.5s 0.2s ease-out forwards; }
+  .stagger-children > *:nth-child(3) { animation: fadeInUp 0.5s 0.3s ease-out forwards; }
+  .stagger-children > *:nth-child(4) { animation: fadeInUp 0.5s 0.4s ease-out forwards; }
+  .stagger-children > *:nth-child(5) { animation: fadeInUp 0.5s 0.5s ease-out forwards; }
+  
+  /* Gold animations */
+  .gold-shimmer {
+    background: linear-gradient(
+      to right,
+      var(--gold-lighter) 0%,
+      var(--gold) 20%,
+      var(--gold-lighter) 40%,
+      var(--gold) 60%,
+      var(--gold-lighter) 80%,
+      var(--gold) 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseGold {
+  0% { box-shadow: 0 0 0 0 rgba(235, 210, 125, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(235, 210, 125, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(235, 210, 125, 0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }
 
 /* For users with reduced motion preference */

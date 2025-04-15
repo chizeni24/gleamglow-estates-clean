@@ -20,6 +20,7 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
     ...props 
   }, ref) => {
     const [isActive, setIsActive] = React.useState(false);
+    const [isHovered, setIsHovered] = React.useState(false);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
       setIsActive(true);
@@ -36,27 +37,50 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
         className={cn(
           "relative overflow-hidden font-medium rounded-md transition-all",
           variant === "solid" && "bg-gold text-white hover:bg-gold-dark",
-          variant === "outline" && "border-2 border-gold-lighter text-gold-lighter hover:bg-gold-lighter hover:text-white",
+          variant === "outline" && "border-2 border-gold-lighter text-gold-lighter hover:bg-gold-lighter/10",
           size === "sm" && "px-4 py-2 text-sm",
           size === "md" && "px-6 py-3",
           size === "lg" && "px-8 py-4 text-lg",
-          showGlow && "animate-glow",
+          showGlow && "shadow-md hover:shadow-lg hover:shadow-gold/20",
           isActive && "scale-95",
           className
         )}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         {...props}
         onClick={handleClick}
       >
         <span className="relative z-10">{children}</span>
+        
         {showShine && (
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_100%] animate-shine"></span>
+          <span 
+            className={cn(
+              "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent bg-[length:200%_100%]",
+              isHovered ? "animate-shine" : ""
+            )}
+          ></span>
         )}
+        
+        {showGlow && (
+          <span className="absolute inset-0 -z-10 bg-gold-lighter/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
+        )}
+        
         <span 
           className={cn(
             "absolute inset-0 bg-white/20 scale-x-0 origin-left",
             isActive ? "scale-x-100 transition-transform duration-500" : ""
           )}
         ></span>
+        
+        {/* Animated border on hover for outline variant */}
+        {variant === "outline" && (
+          <span 
+            className={cn(
+              "absolute inset-0 border-2 border-gold-lighter rounded-md opacity-0",
+              isHovered ? "animate-pulse-gold opacity-100" : ""
+            )}
+          ></span>
+        )}
       </button>
     );
   }
