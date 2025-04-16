@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -106,14 +105,12 @@ const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
   
-  // Calculate current posts to display
   const indexOfLastPost = currentPage * POSTS_PER_PAGE;
   const indexOfFirstPost = indexOfLastPost - POSTS_PER_PAGE;
   const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
   
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    // Scroll to top of blog section
     const blogSection = document.getElementById("blog");
     if (blogSection) {
       blogSection.scrollIntoView({ behavior: 'smooth' });
@@ -134,7 +131,6 @@ const Blog = () => {
           ))}
         </div>
         
-        {/* Pagination Controls */}
         <div className="mt-10 flex justify-center">
           <Pagination>
             <PaginationContent>
@@ -175,7 +171,7 @@ const Blog = () => {
             className="bg-white text-gold hover:bg-gold hover:text-white border border-gold transition-colors duration-300 px-8 py-3 rounded-md font-medium inline-flex items-center gap-2"
           >
             Explore All Articles
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} />
           </Link>
         </div>
       </div>
