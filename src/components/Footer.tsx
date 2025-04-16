@@ -1,13 +1,9 @@
-
 import React from "react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="bg-gray-900 text-white py-12">
+  return <footer className="text-white py-12 bg-slate-700">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
@@ -60,8 +56,6 @@ const Footer = () => {
           <p className="text-gold-light">&copy; {currentYear} GleamGlow Luxury Cleaning. Founded by Kalizen Mcpah.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
