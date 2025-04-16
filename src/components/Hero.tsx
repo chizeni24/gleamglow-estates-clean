@@ -17,7 +17,7 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center bg-white pt-16 md:pt-24"
     >
-      <div className="container-custom relative z-10 text-center">
+      <div className="container-custom relative z-10 text-center pb-20">
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
             <div className="flex justify-center mb-4 transform hover:scale-110 transition-transform duration-300">
@@ -35,7 +35,7 @@ const Hero = () => {
           <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
             At <span className="font-medium">GleamGlow</span>, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 sm:mb-0">
             <GoldButton 
               size="lg" 
               showShine 
@@ -43,6 +43,11 @@ const Hero = () => {
               onClick={() => window.location.href = '/booking'}
             >
               Check Availability
+              <div className="absolute inset-0 pointer-events-none">
+                <span className="absolute h-2 w-2 rounded-full bg-white/70 animate-twinkle" style={{ top: '20%', left: '30%', animationDelay: '0s' }}></span>
+                <span className="absolute h-1 w-1 rounded-full bg-white/70 animate-twinkle" style={{ top: '70%', left: '15%', animationDelay: '0.5s' }}></span>
+                <span className="absolute h-1.5 w-1.5 rounded-full bg-white/70 animate-twinkle" style={{ top: '40%', left: '80%', animationDelay: '1s' }}></span>
+              </div>
             </GoldButton>
             
             <GoldButton 
@@ -74,6 +79,22 @@ const Hero = () => {
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gold-lighter/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold-lighter/5 rounded-full blur-3xl"></div>
+      
+      {/* Sparkle animation elements */}
+      <div className="sparkles-container absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 15 }).map((_, i) => (
+          <div 
+            key={i}
+            className="absolute w-1 h-1 bg-gold-lighter rounded-full animate-twinkle"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 5}s`
+            }}
+          />
+        ))}
+      </div>
     </section>
   );
 };

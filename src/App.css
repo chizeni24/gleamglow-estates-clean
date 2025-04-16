@@ -27,6 +27,39 @@
   color: #888;
 }
 
+/* Better vertical spacing on mobile */
+@media (max-width: 767px) {
+  section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  h1 {
+    font-size: 2.25rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.875rem !important;
+  }
+  
+  .container-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Fix spacing issues on mobile */
+  .space-y-12 {
+    margin-bottom: 2rem;
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 /* Improved responsive text scaling */
 @media (min-width: 1400px) {
   html {
@@ -77,5 +110,36 @@
   /* Slightly reduced text scaling for very large screens */
   h1 {
     font-size: clamp(2.5rem, 2.6vw, 2.75rem);
+  }
+}
+
+/* Focus states for accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  outline: 2px solid #EBD27D;
+  outline-offset: 2px;
+}
+
+/* Enhanced mobile navigation styles */
+@media (max-width: 767px) {
+  nav .container-custom {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Improved container padding on small screens */
+@media (max-width: 640px) {
+  .container-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

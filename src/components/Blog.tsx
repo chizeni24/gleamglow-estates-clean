@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -9,6 +10,7 @@ import {
   PaginationNext, 
   PaginationPrevious 
 } from "@/components/ui/pagination";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface BlogPost {
   id: string;
@@ -86,7 +88,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
           <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
         <div className="p-6">
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center mb-2 flex-wrap gap-2">
             <span className="text-sm text-gray-500">{post.date}</span>
             <span className="text-sm text-gold">By {post.author}</span>
           </div>
@@ -103,6 +105,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
 
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const isMobile = useIsMobile();
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
   
   const indexOfLastPost = currentPage * POSTS_PER_PAGE;
@@ -120,59 +123,87 @@ const Blog = () => {
   return (
     <section className="py-16 bg-gray-100" id="blog">
       <div className="container-custom">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">Our Latest Articles</h2>
-        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-          Dive into our collection of articles where we share expert cleaning tips, industry insights, and home maintenance advice.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {currentPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-        
-        <div className="mt-10 flex justify-center">
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious 
-                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                  className={`${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
-                  aria-disabled={currentPage === 1}
-                />
-              </PaginationItem>
-              
-              {Array.from({ length: totalPages }).map((_, index) => (
-                <PaginationItem key={index}>
-                  <PaginationLink
-                    onClick={() => handlePageChange(index + 1)}
-                    isActive={currentPage === index + 1}
-                    className={`cursor-pointer ${currentPage === index + 1 ? 'bg-gold text-white border-gold hover:bg-gold-dark' : 'hover:text-gold'}`}
-                  >
-                    {index + 1}
-                  </PaginationLink>
+        <div className="relative">
+          {/* Subtle gold sparkle animation in the background */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div 
+                key={i}
+                className="absolute w-1 h-1 bg-gold-lighter rounded-full animate-float"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  opacity: 0.6,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${4 + Math.random() * 4}s`
+                }}
+              />
+            ))}
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">Our Latest Articles</h2>
+          <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
+            Dive into our collection of articles where we share expert cleaning tips, industry insights, and home maintenance advice.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            {currentPosts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+          
+          <div className="mt-10 flex justify-center">
+            <Pagination>
+              <PaginationContent className="flex flex-wrap justify-center gap-2">
+                <PaginationItem>
+                  <PaginationPrevious 
+                    onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                    className={`${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
+                    aria-disabled={currentPage === 1}
+                  />
                 </PaginationItem>
-              ))}
-              
-              <PaginationItem>
-                <PaginationNext 
-                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                  className={`${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
-                  aria-disabled={currentPage === totalPages}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
-        
-        <div className="mt-12 text-center">
-          <Link 
-            to="/blog" 
-            className="bg-white text-gold hover:bg-gold hover:text-white border border-gold transition-colors duration-300 px-8 py-3 rounded-md font-medium inline-flex items-center gap-2"
-          >
-            Explore All Articles
-            <ArrowRight size={18} />
-          </Link>
+                
+                {isMobile
+                  ? // On mobile, show only current page with total
+                    <PaginationItem>
+                      <PaginationLink className="text-sm">
+                        {currentPage} of {totalPages}
+                      </PaginationLink>
+                    </PaginationItem>
+                  : // On desktop, show all page numbers
+                    Array.from({ length: totalPages }).map((_, index) => (
+                      <PaginationItem key={index}>
+                        <PaginationLink
+                          onClick={() => handlePageChange(index + 1)}
+                          isActive={currentPage === index + 1}
+                          className={`cursor-pointer ${currentPage === index + 1 ? 'bg-gold text-white border-gold hover:bg-gold-dark' : 'hover:text-gold'}`}
+                        >
+                          {index + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    ))
+                }
+                
+                <PaginationItem>
+                  <PaginationNext 
+                    onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                    className={`${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'} hover:text-gold`}
+                    aria-disabled={currentPage === totalPages}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Link 
+              to="/blog" 
+              className="bg-white text-gold hover:bg-gold hover:text-white border border-gold transition-colors duration-300 px-8 py-3 rounded-md font-medium inline-flex items-center gap-2"
+            >
+              Explore All Articles
+              <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
