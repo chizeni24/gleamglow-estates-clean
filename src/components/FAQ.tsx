@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import { Sparkles } from "@/components/effects/Sparkles";
 
 const FAQ = () => {
   const faqs = [
@@ -37,34 +38,39 @@ const FAQ = () => {
   ];
 
   return (
-    <section id="faq" className="section-padding bg-white">
+    <section id="faq" className="section-padding bg-white relative">
+      <Sparkles className="opacity-30" count={20} />
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">Frequently Asked Questions</h2>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-lg">
             Find answers to common questions about our premium cleaning services.
           </p>
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-6">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-200">
-                <AccordionTrigger className="text-left text-lg font-medium py-6 hover:text-gold">
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`} 
+                className="border border-gray-200 rounded-lg shadow-sm overflow-hidden"
+              >
+                <AccordionTrigger className="text-left text-lg font-medium py-6 px-6 hover:text-gold transition-all hover:bg-gray-50">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700 pb-6">
-                  {faq.answer}
+                <AccordionContent className="text-gray-700 px-6 py-4 leading-relaxed bg-gray-50 text-base">
+                  <p className="mb-2">{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
           
-          <div className="mt-12 text-center">
-            <p className="text-gray-700 mb-6">
+          <div className="mt-16 text-center">
+            <p className="text-gray-700 mb-8 text-lg">
               Have more questions? We're here to help you get the answers you need.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6">
               <Link to="/booking" className="btn-gold">
                 Book a Consultation
               </Link>
