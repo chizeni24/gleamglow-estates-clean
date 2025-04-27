@@ -1,4 +1,3 @@
-
 type ServiceCategory = 'regular' | 'special';
 
 export interface Service {
@@ -16,7 +15,7 @@ export const services: Service[] = [
   {
     title: "Glow-Standard",
     description: "Our comprehensive baseline service with whole-home coverage.",
-    rate: "$73.99 /hr – 2-hour minimum",
+    rate: "$73.99 /hr",
     category: 'regular',
     features: [
       "Whole-home coverage — bedrooms, living areas, halls",

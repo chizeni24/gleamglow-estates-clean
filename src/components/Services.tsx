@@ -63,7 +63,7 @@ const Services = () => {
         </Tabs>
 
         <p className="text-center mt-12 text-gray-700">
-          <strong>All rates include supplies and equipment.</strong>
+          <strong>All rates include supplies and equipment.</strong> Two-hour minimum applies to regular services.
         </p>
       </div>
     </section>

@@ -35,11 +35,11 @@ const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
         </div>
         <div className="text-lg font-semibold mt-2">{service.rate}</div>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col flex-grow">
         {service.prefix && (
           <p className="text-sm font-medium mb-4">{service.prefix}</p>
         )}
-        <ul className="space-y-2">
+        <ul className="space-y-2 flex-grow">
           {service.features.map((feature, index) => (
             <li key={index} className="flex items-start gap-2 text-sm">
               <span className="text-gold">✓</span>
@@ -48,7 +48,7 @@ const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
           ))}
         </ul>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="mt-auto">
         <Link 
           to={`/booking?service=${encodeURIComponent(service.title)}`}
           className="w-full text-center px-4 py-2 rounded-lg bg-gold text-white hover:bg-gold-dark transition-colors"
