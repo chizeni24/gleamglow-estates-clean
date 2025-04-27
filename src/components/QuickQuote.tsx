@@ -20,6 +20,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
   const [estimate, setEstimate] = React.useState<{
     low: number;
     high: number;
+    estimatedTime: number;
   } | null>(null);
   const [teamSize, setTeamSize] = React.useState<"1" | "2">("1");
 
@@ -69,4 +70,3 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     </Card>
   );
 };
-
