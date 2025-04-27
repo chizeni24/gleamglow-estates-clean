@@ -119,7 +119,11 @@ export default {
         'twinkle': {
           '0%, 100%': { opacity: '0', transform: 'scale(0.5)' },
           '50%': { opacity: '1', transform: 'scale(1)' },
-        }
+        },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' }
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -131,7 +135,8 @@ export default {
         'glow': 'glow 2s ease-in-out infinite',
         'float': 'float 6s ease-in-out infinite',
         'shimmer': 'shimmer 2s linear infinite',
-        'twinkle': 'twinkle 4s ease-in-out infinite'
+        'twinkle': 'twinkle 4s ease-in-out infinite',
+        'spin-slow': 'spin-slow 20s linear infinite',
       },
       blur: {
         '4xl': '100px',

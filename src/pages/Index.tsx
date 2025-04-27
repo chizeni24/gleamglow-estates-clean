@@ -1,10 +1,11 @@
-
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import ProcessTimeline from "@/components/ProcessTimeline";
+import SteamDifference from "@/components/SteamDifference";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,13 +20,10 @@ const Index = () => {
   const [activePage, setActivePage] = useState<string>("home");
   
   useEffect(() => {
-    // Handle hash links for smooth scrolling
     const hash = location.hash;
     if (hash) {
-      // Set active page based on hash
       setActivePage(hash.replace('#', ''));
       
-      // Slight delay to ensure the DOM is fully loaded
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
@@ -33,17 +31,17 @@ const Index = () => {
         }
       }, 100);
     } else {
-      // Scroll to top if no hash
       window.scrollTo(0, 0);
       setActivePage("home");
     }
   }, [location.hash]);
   
-  // Content sections with their IDs for navigation
   const sections = [
     { id: "home", component: <Hero /> },
     { id: "about", component: <About /> },
     { id: "our-story", component: <OurStory /> },
+    { id: "steam", component: <SteamDifference /> },
+    { id: "process", component: <ProcessTimeline /> },
     { id: "services", component: <Services /> },
     { id: "faq", component: <FAQ /> },
     { id: "blog", component: <Blog /> },
@@ -56,7 +54,6 @@ const Index = () => {
       <ScrollIndicator />
       <Navbar />
       
-      {/* Main content with improved spacing */}
       <div className="space-y-12 md:space-y-20">
         {sections.map((section) => (
           <div 
@@ -67,6 +64,15 @@ const Index = () => {
             {section.component}
           </div>
         ))}
+      </div>
+      
+      <div className="fixed bottom-0 inset-x-0 md:hidden p-3 bg-gold-dark/95 backdrop-blur-md z-50">
+        <button 
+          onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
+          className="w-full btn-gold"
+        >
+          Book My Weekend Clean
+        </button>
       </div>
       
       <BackToTop />
