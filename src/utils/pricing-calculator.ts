@@ -12,12 +12,13 @@ const PRICING_RATES: PricingRates = {
   "Glow-Move": { solo: 89.00, team: 124.99 },
 };
 
-const calculateBaseTime = (bedrooms: number, bathrooms: number, squareFootage?: string): number => {
+const calculateBaseTime = (bedrooms: number, bathrooms: number, kitchens: number = 1, squareFootage?: string): number => {
   const sqft = squareFootage ? parseInt(squareFootage, 10) : 0;
   return (
-    bedrooms * 0.5 +  // 0.5 hours per bedroom
-    bathrooms * 0.75 + // 0.75 hours per bathroom
-    (sqft / 1000 * 1.25) // 1.25 hours per 1000 sqft
+    bedrooms * 0.5 +      // 0.5 hours per bedroom
+    bathrooms * 0.75 +    // 0.75 hours per bathroom
+    kitchens * 0.75 +     // 0.75 hours per kitchen
+    (sqft / 1000 * 1.25)  // 1.25 hours per 1000 sqft
   );
 };
 
@@ -26,7 +27,8 @@ export const calculateEstimate = (
   bathrooms: number,
   service: string = "Glow-Standard",
   teamSize: "1" | "2" = "1",
-  squareFootage?: string
+  squareFootage?: string,
+  kitchens: number = 1,
 ) => {
   if (service === "Glow-Occasion") {
     return null;
@@ -37,7 +39,7 @@ export const calculateEstimate = (
     : PRICING_RATES[service]?.solo;
 
   // Calculate base time and apply 15% buffer
-  const baseTime = calculateBaseTime(bedrooms, bathrooms, squareFootage);
+  const baseTime = calculateBaseTime(bedrooms, bathrooms, kitchens, squareFootage);
   const totalTime = baseTime * 1.15; // Add 15% buffer
   
   // Adjust time for team size (60% of solo time if team of 2)

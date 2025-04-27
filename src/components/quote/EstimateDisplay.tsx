@@ -1,4 +1,3 @@
-
 import { Check, Sparkle } from "lucide-react";
 import { motion } from "framer-motion";
 import { GoldButton } from "@/components/ui/gold-button";
@@ -53,12 +52,9 @@ export const EstimateDisplay = ({ estimate, teamSize, onBookingClick }: Estimate
         className="space-y-4"
       >
         <div className="bg-gold/5 rounded-lg p-4">
-          <h4 className="text-gold font-medium mb-2 flex items-center justify-center gap-2">
-            <Check className="w-4 h-4" />
-            Transparent Pricing
-          </h4>
-          <p className="text-sm text-gray-600">
-            Our quotes include a 15% buffer for unexpected tasks. Final price may vary based on specific requirements and add-ons discussed during booking.
+          <p className="text-sm text-gray-600 fade-in-gentle">
+            ⚡ <strong>Please Note:</strong> This is an estimate based on the information provided. Final pricing may vary depending on the property's actual condition and needs.<br />
+            📞 <strong>For the most accurate quote, we recommend booking your service and receiving a quick confirmation call from our team.</strong>
           </p>
         </div>
 
@@ -83,4 +79,3 @@ export const EstimateDisplay = ({ estimate, teamSize, onBookingClick }: Estimate
     </motion.div>
   );
 };
-
