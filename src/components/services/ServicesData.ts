@@ -1,38 +1,56 @@
 
 export const services = [
   {
-    title: "Signature Clean",
-    description: "Our comprehensive cleaning service that covers every aspect of your home with meticulous attention to detail.",
+    title: "Glow-Standard",
+    description: "Our comprehensive baseline service with whole-home coverage.",
+    rate: "$73.99 /hr – 2-hour minimum",
     features: [
-      "Deep cleaning of all rooms",
-      "Special attention to high-touch surfaces",
-      "Premium eco-friendly products",
-      "Detailed cleaning of bathrooms and kitchen",
-      "Customized to your specific needs"
+      "Whole-home coverage — bedrooms, living areas, halls",
+      "Kitchen & bath refresh",
+      "Surface wipe + HEPA vacuum",
+      "Steam on high-touch points",
+      "Eco-forward products",
+      "Checklist tailored to your needs"
     ],
     highlight: true
   },
   {
-    title: "Move-In/Move-Out",
-    description: "Start fresh in your new home or leave your previous residence in impeccable condition.",
+    title: "Glow-Deep",
+    description: "Everything in Glow-Standard plus deep cleaning elements.",
+    rate: "$84.99 /hr",
     features: [
-      "Deep cleaning of all surfaces",
-      "Cabinet and drawer cleaning",
-      "Appliance cleaning",
-      "Window treatment cleaning",
-      "Floor polishing and treatment"
+      "Inside fridge & oven",
+      "Baseboards, blinds, vents",
+      "Full-home steam pass",
+      "Detailed grout & fixture polish"
+    ],
+    prefix: "Everything in Glow-Standard plus:",
+    highlight: false
+  },
+  {
+    title: "Glow-Move",
+    description: "Comprehensive move-in/move-out cleaning service.",
+    subtitle: "(In / Out)",
+    rate: "From $299 flat (≤ 1,000 sq ft) • +$0.22 / sq ft thereafter",
+    features: [
+      "Cabinet & drawer wipe-out",
+      "Appliance steam-clean",
+      "Floor scrub & polish",
+      "Garage / balcony sweep",
+      "Deposit-ready presentation"
     ],
     highlight: false
   },
   {
-    title: "Special Occasions",
-    description: "Prepare your home for entertaining guests with our premium pre-event cleaning service.",
+    title: "Glow-Occasion",
+    description: "Premium service for special events and occasions.",
+    rate: "$89.99 /hr",
     features: [
       "Priority scheduling",
-      "Focus on entertainment areas",
-      "Crystal and fine china cleaning",
-      "Linen preparation",
-      "Post-event cleanup available"
+      "Entertainment areas spotlight",
+      "Crystal & fine-china care",
+      "Fresh linen staging",
+      "Optional post-event steam freshen"
     ],
     highlight: false
   }

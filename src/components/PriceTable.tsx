@@ -30,7 +30,7 @@ const plans = [
   {
     name: "Glow-Move",
     subtitle: "(In / Out)",
-    rate: "From $299 flat (≤ 1 000 sq ft) • +$0.22 / sq ft thereafter",
+    rate: "From $299 flat (≤ 1,000 sq ft) • +$0.22 / sq ft thereafter",
     highlights: [
       "Cabinet & drawer wipe-out",
       "Appliance steam-clean",

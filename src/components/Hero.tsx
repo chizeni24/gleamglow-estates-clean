@@ -26,7 +26,7 @@ const Hero = () => {
               </Link>
             </div>
             <div className="inline-block px-4 py-1 bg-gold-lighter/20 backdrop-blur-sm rounded-full animate-pulse-gold">
-              <span className="text-gold-lighter text-sm font-medium">Bringing Luxury To Every Space Since 2010</span>
+              <span className="text-gold-lighter text-sm font-medium">Steam-Sanitised Luxury Cleaning • Austin, TX</span>
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-8 animate-fade-in">
