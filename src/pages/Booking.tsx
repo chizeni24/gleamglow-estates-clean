@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -6,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { QuickQuote } from "@/components/QuickQuote";
 
 type Step = {
   id: string;
@@ -40,11 +40,9 @@ const BookingPage = () => {
     specialRequirements: "",
   });
 
-  // Update the form if service param changes
   useEffect(() => {
     if (serviceParam) {
       setFormData(prev => ({ ...prev, service: serviceParam }));
-      // If we have a service param and we're on step 0, let's go to step 1
       if (currentStep === 0) {
         setCurrentStep(1);
       }
@@ -59,7 +57,6 @@ const BookingPage = () => {
   const handleServiceSelect = (service: string) => {
     setFormData((prev) => ({ ...prev, service }));
     nextStep();
-    // Update URL query parameter
     navigate(`/booking?service=${encodeURIComponent(service)}`);
   };
 
@@ -77,13 +74,11 @@ const BookingPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
     console.log("Form submitted:", formData);
     toast({
       title: "Booking Requested",
       description: "We'll contact you shortly to confirm your appointment.",
     });
-    // Reset form or redirect
     setTimeout(() => {
       window.location.href = "/";
     }, 3000);
@@ -508,7 +503,6 @@ const BookingPage = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Progress Indicator */}
           <div className="mb-12">
             <div className="flex justify-between items-center mb-4">
               {steps.map((step, index) => (
@@ -547,7 +541,6 @@ const BookingPage = () => {
             </div>
           </div>
 
-          {/* Form Step */}
           <div className="bg-white rounded-xl shadow-lg p-8 md:p-10 transition-all duration-500">
             <form onSubmit={handleSubmit}>
               <div className="mb-8">
