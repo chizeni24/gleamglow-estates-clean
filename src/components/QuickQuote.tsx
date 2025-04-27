@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
@@ -25,7 +26,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     e.stopPropagation();
     
     if (service === "Glow-Move") {
-      const baseRate = 89; // Updated to $89/hr
+      const baseRate = 89; // $89/hr rate
       const hours = Math.ceil((bedrooms + bathrooms) * 1.5); // Rough estimate
       const total = baseRate * hours;
       
