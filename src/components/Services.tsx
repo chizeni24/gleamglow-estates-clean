@@ -12,10 +12,18 @@ interface ServicesProps {
 
 const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
   const [selectedCategory, setSelectedCategory] = useState<'regular' | 'special'>('regular');
+  const [selectedService, setSelectedService] = useState<string>("");
   const isMobile = useMediaQuery("(max-width: 768px)");
   
   const regularServices = services.filter(service => service.category === 'regular');
   const specialServices = services.filter(service => service.category === 'special');
+
+  const handleServiceSelect = (service: string) => {
+    setSelectedService(service);
+    if (onServiceSelect) {
+      onServiceSelect(service);
+    }
+  };
 
   return (
     <section id="services" className="section-padding">
@@ -63,7 +71,8 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
                   service={service}
                   isMainService={true}
                   isBookingStep={isBookingStep}
-                  onServiceSelect={onServiceSelect}
+                  onServiceSelect={handleServiceSelect}
+                  isSelected={selectedService === service.title}
                 />
               ))}
             </div>
@@ -76,7 +85,8 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
                   key={service.title} 
                   service={service}
                   isBookingStep={isBookingStep}
-                  onServiceSelect={onServiceSelect}
+                  onServiceSelect={handleServiceSelect}
+                  isSelected={selectedService === service.title}
                 />
               ))}
             </div>
@@ -92,4 +102,3 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
 };
 
 export default Services;
-
