@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
+import { Sparkle } from "lucide-react";
+import { SparkleEffect } from "../effects/SparkleEffect";
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -39,28 +41,28 @@ export const MobileNav = ({
         <a 
           href={to} 
           className={cn(
-            "transition-colors relative",
-            isActive ? "text-gold-lighter" : "text-gray-800 hover:text-gold"
+            "transition-all duration-300 relative group overflow-hidden block w-full py-3",
+            isActive ? "text-gold-lighter" : "text-gold hover:text-gold-lighter"
           )}
           onClick={(e) => {
             handleSmoothScroll(e, sectionId);
             toggleMenu();
           }}
         >
-          {text}
-          {isActive && (
-            <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent"></span>
-          )}
+          <span className="relative z-10">{text}</span>
+          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+          {isActive && <SparkleEffect className="opacity-30" />}
         </a>
       );
     }
     return (
       <Link 
         to={`/${isAnchor ? sectionId : to}`} 
-        className="text-gray-800 hover:text-gold transition-colors"
+        className="text-gold hover:text-gold-lighter transition-all duration-300 relative group overflow-hidden block w-full py-3"
         onClick={toggleMenu}
       >
-        {text}
+        <span className="relative z-10">{text}</span>
+        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
       </Link>
     );
   };
@@ -68,11 +70,11 @@ export const MobileNav = ({
   return (
     <div 
       className={cn(
-        "md:hidden fixed inset-0 bg-white z-40 transition-transform duration-300 pt-16",
+        "md:hidden fixed inset-0 bg-white/95 backdrop-blur-sm z-40 transition-all duration-300",
         isOpen ? "translate-x-0" : "translate-x-full"
       )}
     >
-      <div className="flex flex-col p-6 space-y-6">
+      <div className="flex flex-col p-6 space-y-4 mt-16">
         {renderNavLink("Home", isHomePage ? "#home" : "/")}
         {renderNavLink("About", "#about")}
         {renderNavLink("Our Story", "#our-story")}
@@ -81,13 +83,17 @@ export const MobileNav = ({
         {renderNavLink("Contact", "#contact")}
         <Link 
           to="/booking" 
-          className="text-white bg-gold-lighter hover:bg-gold transition-colors px-4 py-3 rounded-md w-full text-center"
+          className="relative overflow-hidden group text-white bg-gradient-to-r from-gold to-gold-lighter hover:from-gold-lighter hover:to-gold transition-all duration-300 px-6 py-3 rounded-md transform hover:scale-105 active:scale-95 w-full text-center mt-4"
           onClick={() => {
             toggleMenu();
             handleBookNowClick();
           }}
         >
-          Book Now
+          <span className="relative z-10 flex items-center justify-center gap-2">
+            Book Now
+            <Sparkle className="w-4 h-4" />
+          </span>
+          <span className="absolute inset-0 bg-gradient-to-r from-gold-lighter to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Link>
       </div>
       
