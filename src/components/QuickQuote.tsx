@@ -2,11 +2,13 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
 import { motion } from "framer-motion";
+
 interface QuickQuoteProps {
   bedrooms: number;
   bathrooms: number;
   service?: string;
 }
+
 export const QuickQuote: React.FC<QuickQuoteProps> = ({
   bedrooms,
   bathrooms,
@@ -19,9 +21,37 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
 
   // Handle quote calculation
   const handleQuote = (e: React.MouseEvent) => {
-    // Prevent default to avoid any navigation
     e.preventDefault();
     e.stopPropagation();
+    
+    if (service === "Glow-Move") {
+      // Base pricing for Glow-Move
+      const basePriceLow = 259;
+      const basePriceHigh = 459;
+      
+      // Additional cost for larger spaces
+      const sqftRate = 0.18;
+      const baseSquareFootage = 2000;
+      
+      // Estimate square footage based on bedrooms (rough estimate)
+      const estimatedSqft = bedrooms * 400 + 800;
+      
+      if (estimatedSqft <= baseSquareFootage) {
+        setEstimate({
+          low: basePriceLow,
+          high: basePriceHigh
+        });
+      } else {
+        const additionalSqft = estimatedSqft - baseSquareFootage;
+        const additionalCost = additionalSqft * sqftRate;
+        setEstimate({
+          low: basePriceLow + additionalCost,
+          high: basePriceHigh + additionalCost
+        });
+      }
+      return;
+    }
+
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
     let baseRate = 73.99; // Default Glow-Standard rate
@@ -31,22 +61,11 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       case "Glow-Deep":
         baseRate = 84.99;
         break;
-      case "Glow-Move":
-        // For move-in/out, use flat rate based on square footage
-        const baseMoveRate = 299;
-        const low = baseMoveRate * 0.9;
-        const high = baseMoveRate * 1.1;
-        setEstimate({
-          low,
-          high
-        });
-        return;
       case "Glow-Occasion":
         baseRate = 89.99;
         break;
       default:
         baseRate = 73.99;
-      // Glow-Standard
     }
     const low = hours * baseRate * 0.9;
     const high = hours * baseRate * 1.1;
@@ -64,7 +83,9 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       bathrooms
     });
   };
-  return <Card className="bg-white border border-gold-light/50 shadow-lg">
+
+  return (
+    <Card className="bg-white border border-gold-light/50 shadow-lg">
       <CardHeader className="text-center">
         <h3 className="text-2xl font-serif">Get Your Free Quote</h3>
         <p className="text-gray-600 text-sm mt-2">
@@ -74,32 +95,38 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       </CardHeader>
 
       <CardContent className="space-y-6">
+        {service === "Glow-Move" && (
+          <p className="text-sm text-gray-600 text-center">
+            Base price includes two bathrooms and all supplies. Additional charges apply for homes over 2,000 sq ft.
+          </p>
+        )}
+
         <p className="text-gray-700 text-center">
           Click below to see your estimated price range
         </p>
 
         <div className="text-center">
-          <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button" // Explicitly set button type
-        >
+          <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button">
             Calculate My Quote
           </GoldButton>
         </div>
 
         {estimate && <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 0.5
-      }} className="text-center p-4 bg-gold-light/10 rounded-lg">
-            <p className="text-gray-600 mb-2">Estimated total:</p>
-            <p className="text-3xl font-bold text-gold mb-2">
-              ${estimate.low.toFixed(0)} – ${estimate.high.toFixed(0)}
-            </p>
-            <p className="text-sm text-gray-500">Includes all supplies and equipment</p>
-          </motion.div>}
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.5
+        }} className="text-center p-4 bg-gold-light/10 rounded-lg">
+          <p className="text-gray-600 mb-2">Estimated total:</p>
+          <p className="text-3xl font-bold text-gold mb-2">
+            ${estimate.low.toFixed(0)} – ${estimate.high.toFixed(0)}
+          </p>
+          <p className="text-sm text-gray-500">Includes all supplies and equipment</p>
+        </motion.div>}
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };

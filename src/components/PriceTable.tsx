@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -30,13 +29,16 @@ const plans = [
   {
     name: "Glow-Move",
     subtitle: "(In / Out)",
-    rate: "From $299 flat (≤ 1,000 sq ft) • +$0.22 / sq ft thereafter",
+    rate: "$259 – $459 (≤ 2,000 sq ft)\n+$0.18 / sq ft thereafter",
     highlights: [
       "Cabinet & drawer wipe-out",
       "Appliance steam-clean",
       "Floor scrub & polish",
       "Garage / balcony sweep",
-      "Deposit-ready presentation"
+      "Deposit-ready presentation",
+      "Two bathrooms included",
+      "All supplies & steam included",
+      "No surprise fees"
     ]
   },
   {

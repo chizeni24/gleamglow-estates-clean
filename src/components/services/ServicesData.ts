@@ -45,14 +45,17 @@ export const services: Service[] = [
     title: "Glow-Move",
     description: "Comprehensive move-in/move-out cleaning service.",
     subtitle: "(In / Out)",
-    rate: "From $299 flat (≤ 1,000 sq ft) • +$0.22 / sq ft thereafter",
+    rate: "$259 – $459 (≤ 2,000 sq ft) • +$0.18 / sq ft thereafter",
     category: 'special',
     features: [
       "Cabinet & drawer wipe-out",
       "Appliance steam-clean",
       "Floor scrub & polish",
       "Garage / balcony sweep",
-      "Deposit-ready presentation"
+      "Deposit-ready presentation",
+      "Two bathrooms included",
+      "All supplies & steam included",
+      "No surprise fees"
     ],
     highlight: false
   },
