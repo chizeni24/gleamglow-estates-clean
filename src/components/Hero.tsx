@@ -38,8 +38,13 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 sm:mb-0">
-            <GoldButton size="lg" showShine className="relative overflow-hidden group" onClick={() => window.location.href = '/booking'}>
-              Check Availability
+            <GoldButton 
+              size="lg" 
+              showShine 
+              className="relative overflow-hidden group" 
+              onClick={() => window.location.href = '/services'}
+            >
+              Book Your <span className="text-gold-lighter">Gleam</span>
               <div className="absolute inset-0 pointer-events-none">
                 <span className="absolute h-2 w-2 rounded-full bg-white/70 animate-twinkle" style={{
                   top: '20%',
@@ -62,10 +67,11 @@ const Hero = () => {
             <GoldButton 
               variant="outline" 
               size="lg" 
-              onClick={() => window.location.href = '/booking'} 
+              onClick={() => window.location.href = '/booking?service=Glow-Standard'} 
               className="group"
+              showShine
             >
-              Discover Our Services
+              Discover Glow-Standard
               <ArrowRight className="inline-block ml-1 group-hover:translate-x-1 transition-transform" size={18} />
             </GoldButton>
           </div>
