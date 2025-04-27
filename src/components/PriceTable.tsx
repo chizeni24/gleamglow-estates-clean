@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -43,7 +42,7 @@ const plans = [
   },
   {
     name: "Glow-Occasion",
-    description: "Bespoke service for events, commercial turnovers, or Airbnb refreshes.",
+    description: "Bespoke cleaning for events, offices, restaurants, short-term rentals, and commercial turnovers—tailored to any schedule and scope.",
     rate: "Custom quote — scope and schedule tailored on request",
     highlights: [
       "Priority scheduling",
@@ -128,4 +127,3 @@ export const PriceTable = () => {
 };
 
 export default PriceTable;
-
