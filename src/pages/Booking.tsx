@@ -130,9 +130,9 @@ const BookingPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Navbar />
 
-      <div className="container-custom py-12 md:py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Service</h1>
+      <div className="container-custom py-8 md:py-12">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Steam-sanitised care for every home and budget. Experience{' '}
             <span className="text-charcoal">the</span>{' '}
@@ -149,7 +149,7 @@ const BookingPage = () => {
             <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
           ) : (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-8 md:p-10 transition-all duration-500">
+              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 transition-all duration-500">
                 <BookingForm 
                   steps={steps}
                   currentStep={currentStep}

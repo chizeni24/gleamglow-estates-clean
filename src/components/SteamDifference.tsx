@@ -52,7 +52,7 @@ const SteamDifference = () => {
               showShine
               showGlow
             >
-              See Plans & Pricing
+              Book Now
             </GoldButton>
           </div>
         </motion.div>
