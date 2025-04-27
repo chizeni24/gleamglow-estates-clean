@@ -8,9 +8,7 @@ const About = () => {
               About <span className="text-gold-lighter">Gleam</span>Glow
             </h2>
             <div className="text-gray-700 space-y-6">
-              <p className="text-lg">
-                We don't just clean homes. We elevate them.
-              </p>
+              <p className="text-lg">At GleamGlow, we turn clean into an experience—crisp surfaces, subtle eucalyptus steam, and details that simply feel better. Our eco-smart approach elevates any space from everyday to effortlessly polished, protecting what you value most without a single hidden extra.</p>
               <p className="At **GleamGlow**, we turn clean into an experience\u2014crisp surfaces, subtle eucalyptus steam, and details that simply feel better. Our eco-smart approach elevates any space from everyday to effortlessly polished, protecting what you value most without a single hidden extra.\n\nadd that and ensure to have that gleamglow color format as well\n">
                 At <span className="text-gold-lighter font-medium">Gleam</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
               </p>
