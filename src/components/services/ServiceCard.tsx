@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,7 +11,7 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
   return (
-    <Card className={`h-full transition-all duration-300 ${
+    <Card className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
       isMainService ? 'border-gold/50' : ''
     }`}>
       <CardHeader>

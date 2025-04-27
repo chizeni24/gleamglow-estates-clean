@@ -65,7 +65,7 @@ export const services: Service[] = [
     features: [
       "Priority scheduling",
       "Entertainment areas spotlight",
-      "Crystal & fine-china care",
+      "Premium glassware & delicate item care",
       "Fresh linen staging",
       "Optional post-event steam freshen"
     ],

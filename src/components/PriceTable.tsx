@@ -98,7 +98,7 @@ export const PriceTable = () => {
       </div>
       
       <p className="text-center mt-6 text-gray-700">
-        <strong>All rates include supplies, equipment, and taxes.</strong> No booking fees. Ever.
+        <strong>All rates include supplies and equipment.</strong>
       </p>
     </div>
   );

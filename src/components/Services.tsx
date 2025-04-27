@@ -24,8 +24,18 @@ const Services = () => {
 
         <Tabs defaultValue="regular" className="w-full">
           <TabsList className="grid w-full max-w-[400px] grid-cols-2 mx-auto mb-8">
-            <TabsTrigger value="regular">Regular Services</TabsTrigger>
-            <TabsTrigger value="special">Special Services</TabsTrigger>
+            <TabsTrigger 
+              value="regular" 
+              className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold/0 hover:after:bg-gold/50 after:transition-colors"
+            >
+              Regular Services
+            </TabsTrigger>
+            <TabsTrigger 
+              value="special"
+              className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gold/0 hover:after:bg-gold/50 after:transition-colors"
+            >
+              Special Services
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="regular">
@@ -53,7 +63,7 @@ const Services = () => {
         </Tabs>
 
         <p className="text-center mt-12 text-gray-700">
-          <strong>All rates include supplies, equipment, and taxes.</strong> No booking fees. Ever.
+          <strong>All rates include supplies and equipment.</strong>
         </p>
       </div>
     </section>
