@@ -1,9 +1,9 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
 import { motion } from "framer-motion";
-import { Check, Sparkle } from "lucide-react";
+import { Check, Sparkle, Users } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface QuickQuoteProps {
   bedrooms: number;
@@ -20,6 +20,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     low: number;
     high: number;
   } | null>(null);
+  const [teamSize, setTeamSize] = React.useState<1 | 2>(1);
 
   // Handle quote calculation
   const handleQuote = (e: React.MouseEvent) => {
@@ -28,8 +29,8 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     
     // For Glow-Move
     if (service === "Glow-Move") {
-      const baseRate = 89; // $89/hr rate
-      const hours = Math.ceil((bedrooms + bathrooms) * 1.5); // Rough estimate
+      const baseRate = teamSize === 1 ? 89 : 139; // Adjusted rate based on team size
+      const hours = 3 + Math.max(bedrooms + bathrooms - 2, 0) * 0.75; // Updated hours calculation
       const total = baseRate * hours;
       
       setEstimate({
@@ -48,11 +49,11 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     // For standard services
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
-    let baseRate = 73.99; // Default Glow-Standard rate
+    let baseRate = teamSize === 1 ? 73.99 : 115.99; // Adjusted rate for team size
 
     // Adjust rate based on service type
     if (service === "Glow-Deep") {
-      baseRate = 84.99;
+      baseRate = teamSize === 1 ? 84.99 : 132.99;
     }
 
     const low = hours * baseRate * 0.9;
@@ -75,9 +76,40 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
 
       <CardContent className="space-y-6">
         {service === "Glow-Move" && (
-          <p className="text-sm text-gray-600 text-center">
-            Base rate of $89/hr includes supplies and equipment. Additional charges may apply for homes over 2,000 sq ft.
-          </p>
+          <>
+            <p className="text-sm text-gray-600 text-center">
+              Base rate starts at $89/hr for standard team (1 cleaner) or $139/hr for express team (2 cleaners). Includes supplies and equipment.
+            </p>
+            
+            <div className="bg-gold/5 rounded-lg p-4">
+              <RadioGroup
+                defaultValue="1"
+                className="flex flex-wrap justify-center gap-4"
+                onValueChange={(value) => setTeamSize(Number(value) as 1 | 2)}
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="1" id="standard" />
+                  <label
+                    htmlFor="standard"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
+                  >
+                    <Users className="h-4 w-4" />
+                    Standard (1 cleaner)
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="2" id="express" />
+                  <label
+                    htmlFor="express"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
+                  >
+                    <Users className="h-4 w-4" />
+                    Express (2 cleaners)
+                  </label>
+                </div>
+              </RadioGroup>
+            </div>
+          </>
         )}
 
         {service === "Glow-Occasion" ? (
@@ -125,7 +157,10 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
               <p className="text-3xl font-bold text-gold mb-2">
                 ${estimate.low.toFixed(0)} – ${estimate.high.toFixed(0)}
               </p>
-              <p className="text-sm text-gray-500">Includes all supplies and equipment</p>
+              <p className="text-sm text-gray-500">
+                Includes all supplies and equipment
+                {teamSize === 2 && " • Express service with 2 cleaners"}
+              </p>
             </div>
 
             <motion.div
