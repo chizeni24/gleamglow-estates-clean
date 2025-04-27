@@ -1,5 +1,5 @@
 
-import { Users } from "lucide-react";
+import { User } from "lucide-react";
 import { motion } from "framer-motion";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -23,7 +23,7 @@ export const TeamSizeSelector = ({ value, onValueChange }: TeamSizeSelectorProps
           value="1"
           className="flex items-center gap-2 data-[state=on]:bg-gold data-[state=on]:text-white px-4 py-3 rounded-lg border border-gold/20 hover:bg-gold/10 transition-colors"
         >
-          <Users className="h-4 w-4" />
+          <User className="h-4 w-4" />
           <div className="text-left">
             <div className="font-medium">Standard Service</div>
             <div className="text-xs opacity-90">Single Professional Cleaner</div>
@@ -34,7 +34,10 @@ export const TeamSizeSelector = ({ value, onValueChange }: TeamSizeSelectorProps
           value="2"
           className="flex items-center gap-2 data-[state=on]:bg-gold data-[state=on]:text-white px-4 py-3 rounded-lg border border-gold/20 hover:bg-gold/10 transition-colors"
         >
-          <Users className="h-4 w-4" />
+          <div className="relative">
+            <User className="h-4 w-4" />
+            <User className="h-4 w-4 absolute -right-2 top-0" />
+          </div>
           <div className="text-left">
             <div className="font-medium">Fast Track Service</div>
             <div className="text-xs opacity-90">Two Professional Cleaners</div>
@@ -48,7 +51,7 @@ export const TeamSizeSelector = ({ value, onValueChange }: TeamSizeSelectorProps
           animate={{ opacity: 1, y: 0 }}
           className="text-xs text-gold text-center mt-4"
         >
-          <strong>Fast Track Advantage:</strong> Finish 40% faster with two professionals!
+          🏃 Finish 40% faster with two professionals at a slight additional cost!
         </motion.p>
       )}
     </div>

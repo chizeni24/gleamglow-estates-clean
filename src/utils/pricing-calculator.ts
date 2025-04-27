@@ -12,11 +12,21 @@ const PRICING_RATES: PricingRates = {
   "Glow-Move": { solo: 89.00, team: 124.99 },
 };
 
+const calculateBaseTime = (bedrooms: number, bathrooms: number, squareFootage?: string): number => {
+  const sqft = squareFootage ? parseInt(squareFootage, 10) : 0;
+  return (
+    bedrooms * 0.5 +  // 0.5 hours per bedroom
+    bathrooms * 0.75 + // 0.75 hours per bathroom
+    (sqft / 1000 * 1.25) // 1.25 hours per 1000 sqft
+  );
+};
+
 export const calculateEstimate = (
   bedrooms: number,
   bathrooms: number,
   service: string = "Glow-Standard",
-  teamSize: "1" | "2" = "1"
+  teamSize: "1" | "2" = "1",
+  squareFootage?: string
 ) => {
   if (service === "Glow-Occasion") {
     return null;
@@ -26,17 +36,20 @@ export const calculateEstimate = (
     ? PRICING_RATES[service]?.team 
     : PRICING_RATES[service]?.solo;
 
-  const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
-  const soloHours = service === "Glow-Move" 
-    ? 3 + extraRooms * 0.75 
-    : 2 + extraRooms * 0.5;
+  // Calculate base time and apply 15% buffer
+  const baseTime = calculateBaseTime(bedrooms, bathrooms, squareFootage);
+  const totalTime = baseTime * 1.15; // Add 15% buffer
   
-  const totalHours = teamSize === "2" ? soloHours * 0.6 : soloHours;
-  const total = baseRate * totalHours;
+  // Adjust time for team size (60% of solo time if team of 2)
+  const adjustedTime = teamSize === "2" ? totalTime * 0.6 : totalTime;
+  
+  // Calculate final price
+  const total = baseRate * adjustedTime;
   
   return {
-    low: total * 0.9,
-    high: total * 1.1
+    low: Math.round(total * 0.9),
+    high: Math.round(total * 1.1),
+    estimatedTime: adjustedTime
   };
 };
 
