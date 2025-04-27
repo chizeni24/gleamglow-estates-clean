@@ -24,7 +24,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     e.preventDefault();
     e.stopPropagation();
     
-    if (service === "Glow-Occasion") {
+    if (service === "Glow-Move") {
       const baseRate = 89; // $89/hr rate
       const hours = Math.ceil((bedrooms + bathrooms) * 1.5); // Rough estimate
       const total = baseRate * hours;
@@ -45,7 +45,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       case "Glow-Deep":
         baseRate = 84.99;
         break;
-      case "Glow-Move":
+      case "Glow-Occasion":
         baseRate = 0; // Custom quote only
         break;
       default:

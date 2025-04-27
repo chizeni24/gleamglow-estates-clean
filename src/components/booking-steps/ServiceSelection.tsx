@@ -1,4 +1,3 @@
-
 import React from "react";
 import { GoldButton } from "@/components/ui/gold-button";
 
@@ -52,7 +51,7 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
       title: "Glow-Move",
       subtitle: "(In / Out)",
       description: "Comprehensive move-in / move-out cleaning service.",
-      rate: "Custom quote — scope and schedule tailored on request",
+      rate: "$89 / hr — supplies, steam, and two bathrooms included (no surprise fees)",
       features: [
         "Cabinet & drawer wipe-out",
         "Appliance steam-clean",
@@ -65,7 +64,7 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
     {
       title: "Glow-Occasion",
       description: "Bespoke cleaning for events, offices, restaurants, short-term rentals, and commercial turnovers.",
-      rate: "$89 / hr — supplies, steam, and two bathrooms included (no surprise fees)",
+      rate: "Custom quote — scope and schedule tailored on request",
       features: [
         "Priority scheduling",
         "Entertainment / guest areas spotlight",
