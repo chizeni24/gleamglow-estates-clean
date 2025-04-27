@@ -8,20 +8,20 @@ import { ArrowRight } from "lucide-react";
 const steps = [
   { 
     step: '1', 
-    title: 'Consultation & Setup', 
-    text: 'We evaluate your space and prepare our hospital-grade steam equipment for optimal sanitization.',
+    title: 'Declutter & Dust', 
+    text: 'Surfaces cleared, high-dust vents & corners.',
     delay: 0 
   },
   { 
     step: '2', 
-    title: 'Steam Sanitization', 
-    text: 'Our 99.9% effective steam process eliminates germs and refreshes surfaces throughout your home.',
+    title: 'Deep Clean & Steam', 
+    text: 'Dry steam sanitises handles, switches, and appliances.',
     delay: 0.2 
   },
   { 
     step: '3', 
-    title: 'Quality Inspection', 
-    text: 'Final detailing with eco-friendly products and a thorough check to ensure the Glow Standard is met.',
+    title: 'Final Polish & Walk-Through', 
+    text: 'Hotel-fold linens, scent mist, client sign-off.',
     delay: 0.4 
   },
 ];
@@ -36,8 +36,7 @@ const ProcessTimeline = () => {
           The <span className="text-gold">Glow Standard</span>
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Every visit includes our signature steam sanitization process, ensuring your home 
-          isn't just clean—it's hospital-grade sanitized.
+          Our proven three-step process ensures consistent, exceptional results.
         </p>
       </div>
       
@@ -63,7 +62,7 @@ const ProcessTimeline = () => {
           onClick={() => navigate('/booking')}
           className="bg-gold hover:bg-gold-dark text-white font-serif group"
         >
-          Schedule Your Steam Clean <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform" />
+          Book Your Steam Clean <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform" />
         </Button>
       </div>
     </section>

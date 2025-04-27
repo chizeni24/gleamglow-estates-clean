@@ -4,17 +4,16 @@ import { motion } from "framer-motion";
 import { GoldButton } from "./ui/gold-button";
 import { useNavigate } from "react-router-dom";
 
+const features = [
+  { text: "Eliminates 99.9 % of germs & allergens" },
+  { text: "Reaches grout & fabric fibres wipes miss" },
+  { text: "Leaves zero residue—just a whisper of eucalyptus" },
+  { text: "Safe for kids, pets, and fine finishes" }
+];
+
 const SteamDifference = () => {
   const navigate = useNavigate();
-  
-  const features = [
-    { text: "Bonded & Insured for Your Peace of Mind" },
-    { text: "99.9% Steam Sanitisation on Every Surface" },
-    { text: "5-Star Google Rated Service" },
-    { text: "Premium Eco-Friendly Products" },
-    { text: "Convenient Doorstep Waste Pickup Available" }
-  ];
-  
+
   return (
     <section id="steam" className="py-20 bg-gold-light/20">
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center px-6">
@@ -30,11 +29,7 @@ const SteamDifference = () => {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <h2 className="text-3xl font-serif mb-4">The Steam Edge</h2>
-          <p className="text-gray-700">
-            Every GleamGlow service is powered by our advanced steam technology - the superior 
-            way to clean and sanitize your home to hospital-grade standards.
-          </p>
+          <h2 className="text-3xl font-serif mb-4">Steam Goes Deeper Than Chemicals</h2>
           
           <div className="space-y-4">
             {features.map((feature, index) => (
@@ -53,11 +48,11 @@ const SteamDifference = () => {
           
           <div className="pt-4">
             <GoldButton 
-              onClick={() => navigate('/booking')}
+              onClick={() => navigate('#pricing')}
               showShine
               showGlow
             >
-              Book Your Steam Clean
+              See Plans & Pricing
             </GoldButton>
           </div>
         </motion.div>
