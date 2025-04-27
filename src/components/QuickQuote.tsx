@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
@@ -29,9 +30,16 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     
     // For Glow-Move
     if (service === "Glow-Move") {
-      const baseRate = teamSize === 1 ? 89 : 139; // Adjusted rate based on team size
-      const hours = 3 + Math.max(bedrooms + bathrooms - 2, 0) * 0.75; // Updated hours calculation
-      const total = baseRate * hours;
+      // Base rates based on team size
+      const baseRate = teamSize === 1 ? 89.00 : 124.99;
+      
+      // Calculate estimated hours for 1 cleaner
+      const soloHours = 3 + Math.max(bedrooms + bathrooms - 2, 0) * 0.75;
+      
+      // Apply time reduction factor for 2 cleaners
+      const totalHours = teamSize === 1 ? soloHours : soloHours * 0.6;
+      
+      const total = baseRate * totalHours;
       
       setEstimate({
         low: total * 0.9,
@@ -48,16 +56,23 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
 
     // For standard services
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
-    const hours = 2 + extraRooms * 0.5;
-    let baseRate = teamSize === 1 ? 73.99 : 115.99; // Adjusted rate for team size
-
-    // Adjust rate based on service type
+    const soloHours = 2 + extraRooms * 0.5;
+    
+    // Apply time reduction factor for 2 cleaners
+    const totalHours = teamSize === 1 ? soloHours : soloHours * 0.6;
+    
+    // Set base rate based on service type and team size
+    let baseRate;
     if (service === "Glow-Deep") {
-      baseRate = teamSize === 1 ? 84.99 : 132.99;
+      baseRate = teamSize === 1 ? 84.99 : 118.99;
+    } else {
+      // Glow-Standard
+      baseRate = teamSize === 1 ? 73.99 : 103.99;
     }
 
-    const low = hours * baseRate * 0.9;
-    const high = hours * baseRate * 1.1;
+    const low = totalHours * baseRate * 0.9;
+    const high = totalHours * baseRate * 1.1;
+    
     setEstimate({
       low,
       high
@@ -75,42 +90,40 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       </CardHeader>
 
       <CardContent className="space-y-6">
-        {service === "Glow-Move" && (
-          <>
-            <p className="text-sm text-gray-600 text-center">
-              Base rate starts at $89/hr for standard team (1 cleaner) or $139/hr for express team (2 cleaners). Includes supplies and equipment.
-            </p>
-            
-            <div className="bg-gold/5 rounded-lg p-4">
-              <RadioGroup
-                defaultValue="1"
-                className="flex flex-wrap justify-center gap-4"
-                onValueChange={(value) => setTeamSize(Number(value) as 1 | 2)}
+        <div className="bg-gold/5 rounded-lg p-4">
+          <RadioGroup
+            defaultValue="1"
+            className="flex flex-wrap justify-center gap-4"
+            onValueChange={(value) => setTeamSize(Number(value) as 1 | 2)}
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="1" id="standard" />
+              <label
+                htmlFor="standard"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
               >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="1" id="standard" />
-                  <label
-                    htmlFor="standard"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
-                  >
-                    <Users className="h-4 w-4" />
-                    Standard (1 cleaner)
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="2" id="express" />
-                  <label
-                    htmlFor="express"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
-                  >
-                    <Users className="h-4 w-4" />
-                    Express (2 cleaners)
-                  </label>
-                </div>
-              </RadioGroup>
+                <Users className="h-4 w-4" />
+                Standard (1 cleaner)
+              </label>
             </div>
-          </>
-        )}
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="2" id="express" />
+              <label
+                htmlFor="express"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
+              >
+                <Users className="h-4 w-4" />
+                Fast Track (2 cleaners)
+              </label>
+            </div>
+          </RadioGroup>
+          
+          {teamSize === 2 && (
+            <p className="text-xs text-gold text-center mt-3">
+              <strong>Fast Track Option:</strong> Finish 40% faster with two professionals at a slight additional cost!
+            </p>
+          )}
+        </div>
 
         {service === "Glow-Occasion" ? (
           <>
@@ -159,7 +172,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
               </p>
               <p className="text-sm text-gray-500">
                 Includes all supplies and equipment
-                {teamSize === 2 && " • Express service with 2 cleaners"}
+                {teamSize === 2 && " • Fast Track service (40% faster)"}
               </p>
             </div>
 
