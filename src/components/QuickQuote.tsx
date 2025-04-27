@@ -13,9 +13,11 @@ interface QuickQuoteProps {
 export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, service = "Glow-Standard" }) => {
   const [estimate, setEstimate] = React.useState<{low: number; high: number} | null>(null);
 
+  // Handle quote calculation
   const handleQuote = (e: React.MouseEvent) => {
     // Prevent default to avoid any navigation
     e.preventDefault();
+    e.stopPropagation();
     
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
@@ -44,6 +46,9 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, ser
     const low = hours * baseRate * 0.9;
     const high = hours * baseRate * 1.1;
     setEstimate({ low, high });
+    
+    // Log the estimate for debugging
+    console.log("Quote calculated:", { low, high, service, bedrooms, bathrooms });
   };
 
   return (
@@ -66,6 +71,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, ser
             onClick={handleQuote}
             showShine
             className="w-full md:w-auto"
+            type="button" // Explicitly set button type
           >
             Calculate My Quote
           </GoldButton>
@@ -75,6 +81,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, ser
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="text-center p-4 bg-gold-light/10 rounded-lg"
           >
             <p className="text-gray-600 mb-2">Estimated total:</p>

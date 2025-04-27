@@ -19,8 +19,14 @@ export const BookingForm = ({
   onNextStep, 
   onSubmit 
 }: BookingFormProps) => {
+  // Prevent default form submission which might cause page refresh
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(e);
+  };
+  
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleFormSubmit} id="booking-form">
       <div className="mb-8">
         <h2 className="text-2xl md:text-3xl font-bold">{steps[currentStep].title}</h2>
         <p className="text-gray-600 mt-2">{steps[currentStep].description}</p>
@@ -34,7 +40,10 @@ export const BookingForm = ({
         {currentStep > 0 ? (
           <button
             type="button"
-            onClick={onPrevStep}
+            onClick={(e) => {
+              e.preventDefault();
+              onPrevStep();
+            }}
             className="flex items-center text-gray-600 hover:text-gray-900"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -47,7 +56,10 @@ export const BookingForm = ({
         {currentStep < steps.length - 1 ? (
           <button
             type="button"
-            onClick={onNextStep}
+            onClick={(e) => {
+              e.preventDefault();
+              onNextStep();
+            }}
             disabled={
               (currentStep === 0 && !formData.service) ||
               (currentStep === 1 && (!formData.date || !formData.time)) ||

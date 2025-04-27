@@ -57,18 +57,23 @@ const BookingPage = () => {
   const handleServiceSelect = (service: string) => {
     setFormData((prev) => ({ ...prev, service }));
     nextStep();
-    navigate(`/booking?service=${encodeURIComponent(service)}`);
+    // Use navigate instead of directly changing window.location to avoid full page reload
+    navigate(`/booking?service=${encodeURIComponent(service)}`, { replace: true });
   };
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
+      // Scroll to top when changing steps
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const prevStep = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
+      // Scroll to top when changing steps
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -79,8 +84,9 @@ const BookingPage = () => {
       title: "Booking Requested",
       description: "We'll contact you shortly to confirm your appointment.",
     });
+    // Use navigate instead of directly changing window.location to avoid full page reload
     setTimeout(() => {
-      window.location.href = "/";
+      navigate("/", { replace: true });
     }, 3000);
   };
 
@@ -129,9 +135,9 @@ const BookingPage = () => {
 
       <div className="container-custom py-12 md:py-20">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Luxury Clean</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Cleaning Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Schedule your premium cleaning service in a few simple steps
+            Schedule your professional cleaning service in a few simple steps
           </p>
         </div>
 
