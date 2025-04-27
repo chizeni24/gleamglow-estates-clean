@@ -21,17 +21,17 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
 
   const services: Service[] = [
     {
-      title: "Signature Clean",
+      title: "Glow-Standard",
       description: "Our comprehensive cleaning service that covers every aspect of your home with meticulous attention to detail.",
       highlight: true
     },
     {
-      title: "Move-In/Move-Out",
+      title: "Glow-Move",
       description: "Start fresh in your new home or leave your previous residence in impeccable condition.",
       highlight: false
     },
     {
-      title: "Special Occasions",
+      title: "Glow-Occasion",
       description: "Prepare your home for entertaining guests with our premium pre-event cleaning service.",
       highlight: false
     }
