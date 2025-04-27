@@ -12,6 +12,7 @@ import { ServiceAddress } from "@/components/booking-steps/ServiceAddress";
 import { BookingSummary } from "@/components/booking-steps/BookingSummary";
 import { StepIndicator } from "./booking/StepIndicator";
 import { BookingForm } from "./booking/BookingForm";
+import { QuickQuote } from "@/components/QuickQuote";
 import type { Step, BookingFormData } from "./booking/types";
 
 const BookingPage = () => {
@@ -130,9 +131,9 @@ const BookingPage = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Navbar />
 
-      <div className="container-custom py-8 md:py-12">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Book Your Service</h1>
+      <div className="container-custom py-8">
+        <div className="text-center mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Steam-sanitised care for every home and budget. Experience{' '}
             <span className="text-charcoal">the</span>{' '}
@@ -146,10 +147,17 @@ const BookingPage = () => {
           <StepIndicator steps={steps} currentStep={currentStep} />
           
           {currentStep === 0 ? (
-            <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="md:col-span-2">
+                <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
+              </div>
+              <div className="md:col-span-1">
+                <QuickQuote bedrooms={2} bathrooms={2} />
+              </div>
+            </div>
           ) : (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 transition-all duration-500">
+              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
                 <BookingForm 
                   steps={steps}
                   currentStep={currentStep}

@@ -26,35 +26,6 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
     const sectionId = isAnchor ? to.substring(1) : to;
     const isActive = activeSection === sectionId && isHomePage;
 
-    if (text === "Services") {
-      if (isHomePage) {
-        return (
-          <a 
-            href="#services" 
-            className={cn(
-              "transition-colors relative",
-              isActive ? "text-gold-lighter" : "text-gray-800 hover:text-gold"
-            )}
-            onClick={(e) => handleSmoothScroll(e, "services")}
-          >
-            {text}
-            {isActive && (
-              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent"></span>
-            )}
-          </a>
-        );
-      } else {
-        return (
-          <Link 
-            to="/services" 
-            className="text-gray-800 hover:text-gold transition-colors"
-          >
-            {text}
-          </Link>
-        );
-      }
-    }
-
     if (isHomePage && isAnchor) {
       return (
         <a 
@@ -87,7 +58,6 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
       {renderNavLink("Home", isHomePage ? "#home" : "/")}
       {renderNavLink("About", "#about")}
       {renderNavLink("Our Story", "#our-story")}
-      {renderNavLink("Services", "#services")}
       {renderNavLink("FAQ", "#faq")}
       {renderNavLink("Testimonials", "#testimonials")}
       {renderNavLink("Contact", "#contact")}
