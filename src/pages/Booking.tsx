@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -133,7 +134,7 @@ const BookingPage = () => {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Select your preferred service and schedule a time that works for you
+            Steam-sanitised care for every home and budget. Experience the gleam, breathe the glow.
           </p>
         </div>
 
