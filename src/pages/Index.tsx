@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -18,6 +18,7 @@ import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [activePage, setActivePage] = useState<string>("home");
   
   useEffect(() => {
@@ -69,10 +70,10 @@ const Index = () => {
       
       <div className="fixed bottom-0 inset-x-0 md:hidden p-3 bg-gold-dark/95 backdrop-blur-md z-50">
         <button 
-          onClick={() => window.location.href = '/booking'}
+          onClick={() => navigate('/booking')}
           className="w-full btn-gold"
         >
-          Book My Weekend Clean
+          Book My Steam Clean
         </button>
       </div>
       
