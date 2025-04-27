@@ -1,11 +1,13 @@
+
 import React from "react";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const plans = [
   {
     name: "Glow-Standard",
-    rate: "$73.99 /hr – 2-hour minimum",
+    rate: "$73.99 /hr",
     highlights: [
       "Whole-home coverage — bedrooms, living areas, halls",
       "Kitchen & bath refresh",
@@ -29,32 +31,36 @@ const plans = [
   {
     name: "Glow-Move",
     subtitle: "(In / Out)",
-    rate: "$259 – $459 (≤ 2,000 sq ft)\n+$0.18 / sq ft thereafter",
+    description: "Comprehensive move-in / move-out cleaning service.",
+    rate: "$89 /hr (supplies, steam & two bathrooms included)",
     highlights: [
       "Cabinet & drawer wipe-out",
       "Appliance steam-clean",
       "Floor scrub & polish",
       "Garage / balcony sweep",
-      "Deposit-ready presentation",
-      "Two bathrooms included",
-      "All supplies & steam included",
-      "No surprise fees"
+      "Deposit-ready presentation"
     ]
   },
   {
     name: "Glow-Occasion",
-    rate: "$89.99 /hr",
+    description: "Bespoke service for events, commercial turnovers, or Airbnb refreshes.",
+    rate: "Custom quote — scope and schedule tailored on request",
     highlights: [
       "Priority scheduling",
-      "Entertainment areas spotlight",
-      "Crystal & fine-china care",
+      "Entertainment / guest areas spotlight",
       "Fresh linen staging",
-      "Optional post-event steam freshen"
+      "Optional next-day steam refresh"
     ]
   }
 ];
 
 export const PriceTable = () => {
+  const navigate = useNavigate();
+
+  const handleSelect = (planName: string) => {
+    navigate(`/booking?service=${encodeURIComponent(planName)}`);
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
       <div className="overflow-x-auto">
@@ -63,7 +69,8 @@ export const PriceTable = () => {
             <TableRow>
               <TableCell className="font-serif text-xl">Plan</TableCell>
               <TableCell className="font-serif text-xl">Rate</TableCell>
-              <TableCell className="font-serif text-xl">Highlights (✓ = included)</TableCell>
+              <TableCell className="font-serif text-xl">Highlights</TableCell>
+              <TableCell className="font-serif text-xl"></TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -74,6 +81,11 @@ export const PriceTable = () => {
                   {plan.subtitle && (
                     <span className="text-gray-600 italic block text-sm">
                       {plan.subtitle}
+                    </span>
+                  )}
+                  {plan.description && (
+                    <span className="text-gray-600 text-sm block mt-1">
+                      {plan.description}
                     </span>
                   )}
                 </TableCell>
@@ -93,6 +105,15 @@ export const PriceTable = () => {
                     ))}
                   </ul>
                 </TableCell>
+                <TableCell className="align-top">
+                  <Button
+                    onClick={() => handleSelect(plan.name)}
+                    variant="outline"
+                    className="whitespace-nowrap hover:bg-gold hover:text-white border-gold text-gold"
+                  >
+                    {plan.name === "Glow-Occasion" ? "Request Quote" : "Select Service"}
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -100,10 +121,11 @@ export const PriceTable = () => {
       </div>
       
       <p className="text-center mt-6 text-gray-700">
-        <strong>All rates include supplies and equipment.</strong>
+        <strong>All rates include supplies, steam equipment. No hidden fees.</strong>
       </p>
     </div>
   );
 };
 
 export default PriceTable;
+
