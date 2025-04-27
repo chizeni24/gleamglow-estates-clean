@@ -50,7 +50,7 @@ const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
       </CardContent>
       <CardFooter className="mt-auto">
         <Link 
-          to={`/booking?service=${encodeURIComponent(service.title)}`}
+          to={`/booking?service=${encodeURIComponent(service.title)}&step=1`}
           className="w-full text-center px-4 py-2 rounded-lg bg-gold text-white hover:bg-gold-dark transition-colors"
         >
           Book Now

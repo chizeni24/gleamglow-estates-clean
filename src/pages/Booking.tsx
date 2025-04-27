@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -19,8 +18,9 @@ const BookingPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const serviceParam = searchParams.get('service');
+  const stepParam = searchParams.get('step');
   
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(stepParam ? parseInt(stepParam) : 0);
   const [formData, setFormData] = useState<BookingFormData>({
     service: serviceParam || "",
     date: "",
@@ -43,11 +43,11 @@ const BookingPage = () => {
   useEffect(() => {
     if (serviceParam) {
       setFormData(prev => ({ ...prev, service: serviceParam }));
-      if (currentStep === 0) {
+      if (currentStep === 0 && !stepParam) {
         setCurrentStep(1);
       }
     }
-  }, [serviceParam, currentStep]);
+  }, [serviceParam, currentStep, stepParam]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -57,14 +57,12 @@ const BookingPage = () => {
   const handleServiceSelect = (service: string) => {
     setFormData((prev) => ({ ...prev, service }));
     nextStep();
-    // Use navigate instead of directly changing window.location to avoid full page reload
     navigate(`/booking?service=${encodeURIComponent(service)}`, { replace: true });
   };
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep((prev) => prev + 1);
-      // Scroll to top when changing steps
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -72,7 +70,6 @@ const BookingPage = () => {
   const prevStep = () => {
     if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1);
-      // Scroll to top when changing steps
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -84,7 +81,6 @@ const BookingPage = () => {
       title: "Booking Requested",
       description: "We'll contact you shortly to confirm your appointment.",
     });
-    // Use navigate instead of directly changing window.location to avoid full page reload
     setTimeout(() => {
       navigate("/", { replace: true });
     }, 3000);

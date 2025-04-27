@@ -1,4 +1,3 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -37,7 +36,7 @@ const Hero = () => {
             At <span className="font-medium text-gold-dark">GleamGlow</span>, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 sm:mb-0">
-            <GoldButton size="lg" showShine className="relative overflow-hidden group" onClick={() => window.location.href = '/booking'}>
+            <GoldButton size="lg" showShine className="relative overflow-hidden group" onClick={() => window.location.href = '/services'}>
               Check Availability
               <div className="absolute inset-0 pointer-events-none">
                 <span className="absolute h-2 w-2 rounded-full bg-white/70 animate-twinkle" style={{
@@ -77,11 +76,9 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gold-lighter/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold-lighter/5 rounded-full blur-3xl"></div>
       
-      {/* Sparkle animation elements */}
       <div className="sparkles-container absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({
         length: 15
