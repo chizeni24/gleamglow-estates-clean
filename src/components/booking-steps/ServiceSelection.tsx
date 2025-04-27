@@ -26,13 +26,18 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
       highlight: true
     },
     {
+      title: "Glow-Deep",
+      description: "Everything in Glow-Standard plus extra attention to detail including inside appliances and full-home steam treatment.",
+      highlight: false
+    },
+    {
       title: "Glow-Move",
-      description: "Start fresh in your new home or leave your previous residence in impeccable condition.",
+      description: "Comprehensive move-in / move-out cleaning service.",
       highlight: false
     },
     {
       title: "Glow-Occasion",
-      description: "Prepare your home for entertaining guests with our premium pre-event cleaning service.",
+      description: "Bespoke cleaning for events, offices, restaurants, short-term rentals, and commercial turnovers—tailored to any schedule and scope.",
       highlight: false
     }
   ];
