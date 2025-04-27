@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
@@ -25,7 +24,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     e.preventDefault();
     e.stopPropagation();
     
-    if (service === "Glow-Move") {
+    if (service === "Glow-Occasion") {
       const baseRate = 89; // $89/hr rate
       const hours = Math.ceil((bedrooms + bathrooms) * 1.5); // Rough estimate
       const total = baseRate * hours;
@@ -46,12 +45,18 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       case "Glow-Deep":
         baseRate = 84.99;
         break;
-      case "Glow-Occasion":
-        baseRate = 89.99;
+      case "Glow-Move":
+        baseRate = 0; // Custom quote only
         break;
       default:
         baseRate = 73.99;
     }
+    
+    if (baseRate === 0) {
+      setEstimate(null);
+      return;
+    }
+
     const low = hours * baseRate * 0.9;
     const high = hours * baseRate * 1.1;
     setEstimate({
