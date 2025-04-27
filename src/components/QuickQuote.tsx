@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
@@ -36,6 +37,12 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       return;
     }
 
+    // For Glow-Occasion, return null (custom quote only)
+    if (service === "Glow-Occasion") {
+      setEstimate(null);
+      return;
+    }
+
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
     let baseRate = 73.99; // Default Glow-Standard rate
@@ -45,16 +52,8 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       case "Glow-Deep":
         baseRate = 84.99;
         break;
-      case "Glow-Occasion":
-        baseRate = 0; // Custom quote only
-        break;
       default:
         baseRate = 73.99;
-    }
-    
-    if (baseRate === 0) {
-      setEstimate(null);
-      return;
     }
 
     const low = hours * baseRate * 0.9;
@@ -91,14 +90,26 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
           </p>
         )}
 
-        <p className="text-gray-700 text-center">
-          Click below to see your estimated price range
-        </p>
+        {service === "Glow-Occasion" ? (
+          <p className="text-center text-gray-700">
+            Please contact us for a custom quote tailored to your specific needs.
+          </p>
+        ) : (
+          <p className="text-gray-700 text-center">
+            Click below to see your estimated price range
+          </p>
+        )}
 
         <div className="text-center">
-          <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button">
-            Calculate My Quote
-          </GoldButton>
+          {service === "Glow-Occasion" ? (
+            <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button">
+              Request Custom Quote
+            </GoldButton>
+          ) : (
+            <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button">
+              Calculate My Quote
+            </GoldButton>
+          )}
         </div>
 
         {estimate && <motion.div initial={{

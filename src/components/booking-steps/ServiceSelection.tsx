@@ -50,8 +50,8 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
     {
       title: "Glow-Move",
       subtitle: "(In / Out)",
-      description: "Comprehensive move-in / move-out cleaning service.",
-      rate: "$89 / hr — supplies, steam, and two bathrooms included (no surprise fees)",
+      description: "Comprehensive move-in/move-out cleaning service.",
+      rate: "$89 /hr — supplies, steam, and two bathrooms included (no surprise fees)",
       features: [
         "Cabinet & drawer wipe-out",
         "Appliance steam-clean",
@@ -67,7 +67,7 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
       rate: "Custom quote — scope and schedule tailored on request",
       features: [
         "Priority scheduling",
-        "Entertainment / guest areas spotlight",
+        "Entertainment areas spotlight",
         "Fresh linen staging",
         "Optional next-day steam refresh"
       ],
