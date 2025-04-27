@@ -12,28 +12,30 @@ import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-// Create the query client instance outside the component
-const queryClient = new QueryClient();
-
 const App = () => {
+  // Create a client
+  const queryClient = new QueryClient();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/blog" element={<BlogListing />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/blog" element={<BlogListing />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
   );
 };
 
