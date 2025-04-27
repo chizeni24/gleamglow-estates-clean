@@ -1,6 +1,4 @@
-
 import React from "react";
-import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { ArrowDown } from "lucide-react";
@@ -36,7 +34,7 @@ const Hero = () => {
             Where <span className="text-gold-lighter">Excellence Meets Elegance</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-12 max-w-2xl mx-auto">
-            At <span className="font-medium text-gold-dark">GleamGlow</span>, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.
+            At <span className="font-medium text-gold-dark">Gleam</span><span className="font-medium text-gold-lighter">Glow</span>, we define luxury through our meticulous cleaning services. We transform every environment with our unparalleled attention to detail.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-16 sm:mb-0">
