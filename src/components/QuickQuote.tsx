@@ -25,30 +25,14 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     e.stopPropagation();
     
     if (service === "Glow-Move") {
-      // Base pricing for Glow-Move
-      const basePriceLow = 259;
-      const basePriceHigh = 459;
+      const baseRate = 89; // Updated to $89/hr
+      const hours = Math.ceil((bedrooms + bathrooms) * 1.5); // Rough estimate
+      const total = baseRate * hours;
       
-      // Additional cost for larger spaces
-      const sqftRate = 0.18;
-      const baseSquareFootage = 2000;
-      
-      // Estimate square footage based on bedrooms (rough estimate)
-      const estimatedSqft = bedrooms * 400 + 800;
-      
-      if (estimatedSqft <= baseSquareFootage) {
-        setEstimate({
-          low: basePriceLow,
-          high: basePriceHigh
-        });
-      } else {
-        const additionalSqft = estimatedSqft - baseSquareFootage;
-        const additionalCost = additionalSqft * sqftRate;
-        setEstimate({
-          low: basePriceLow + additionalCost,
-          high: basePriceHigh + additionalCost
-        });
-      }
+      setEstimate({
+        low: total * 0.9,
+        high: total * 1.1
+      });
       return;
     }
 

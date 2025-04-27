@@ -1,4 +1,3 @@
-
 import React from "react";
 import { GoldButton } from "@/components/ui/gold-button";
 
@@ -51,30 +50,26 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
     {
       title: "Glow-Move",
       subtitle: "(In / Out)",
-      description: "Comprehensive move-in/move-out cleaning service.",
-      rate: "$259 – $459 (≤ 2,000 sq ft) • +$0.18 / sq ft thereafter",
+      description: "Comprehensive move-in / move-out cleaning service.",
+      rate: "$89 / hr — supplies, steam, and two bathrooms included (no surprise fees)",
       features: [
         "Cabinet & drawer wipe-out",
         "Appliance steam-clean",
         "Floor scrub & polish",
         "Garage / balcony sweep",
-        "Deposit-ready presentation",
-        "Two bathrooms included",
-        "All supplies & steam included",
-        "No surprise fees"
+        "Deposit-ready presentation"
       ],
       highlight: false
     },
     {
       title: "Glow-Occasion",
-      description: "Premium service for special events and occasions.",
-      rate: "$89.99 /hr",
+      description: "Bespoke cleaning for events, offices, restaurants, short-term rentals, and commercial turnovers.",
+      rate: "Custom quote — scope and schedule tailored on request",
       features: [
         "Priority scheduling",
-        "Entertainment areas spotlight",
-        "Premium glassware & delicate item care",
+        "Entertainment / guest areas spotlight",
         "Fresh linen staging",
-        "Optional post-event steam freshen"
+        "Optional next-day steam refresh"
       ],
       highlight: false,
       customButton: "Request Quote"
