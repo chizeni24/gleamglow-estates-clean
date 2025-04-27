@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -15,7 +14,6 @@ import Services from "./pages/Services";
 import Pricing from "./pages/Pricing";
 
 const App = () => {
-  // Create a client
   const queryClient = new QueryClient();
 
   return (
@@ -33,7 +31,6 @@ const App = () => {
               <Route path="/blog" element={<BlogListing />} />
               <Route path="/services" element={<Services />} />
               <Route path="/pricing" element={<Pricing />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </TooltipProvider>

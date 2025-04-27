@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 
@@ -20,6 +19,7 @@ export const MobileNav = ({
   activeSection
 }: MobileNavProps) => {
   const { toast } = useToast();
+  const location = useLocation();
 
   const handleBookNowClick = () => {
     toast({
@@ -34,6 +34,39 @@ export const MobileNav = ({
     const sectionId = isAnchor ? to.substring(1) : to;
     const isActive = activeSection === sectionId && isHomePage;
 
+    if (text === "Services") {
+      if (isHomePage) {
+        return (
+          <a 
+            href="#services" 
+            className={cn(
+              "transition-colors relative",
+              isActive ? "text-gold-lighter" : "text-gray-800 hover:text-gold"
+            )}
+            onClick={(e) => {
+              handleSmoothScroll(e, "services");
+              toggleMenu();
+            }}
+          >
+            {text}
+            {isActive && (
+              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent"></span>
+            )}
+          </a>
+        );
+      } else {
+        return (
+          <Link 
+            to="/services" 
+            className="text-gray-800 hover:text-gold transition-colors"
+            onClick={toggleMenu}
+          >
+            {text}
+          </Link>
+        );
+      }
+    }
+
     if (isHomePage && isAnchor) {
       return (
         <a 
@@ -42,7 +75,10 @@ export const MobileNav = ({
             "transition-colors relative",
             isActive ? "text-gold-lighter" : "text-gray-800 hover:text-gold"
           )}
-          onClick={(e) => handleSmoothScroll(e, sectionId)}
+          onClick={(e) => {
+            handleSmoothScroll(e, sectionId);
+            toggleMenu();
+          }}
         >
           {text}
           {isActive && (
