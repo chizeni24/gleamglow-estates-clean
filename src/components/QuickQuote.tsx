@@ -98,7 +98,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
             <p className="text-3xl font-bold text-gold mb-2">
               ${estimate.low.toFixed(0)} – ${estimate.high.toFixed(0)}
             </p>
-            <p className="text-sm text-gray-500">Includes all supplies, equipment</p>
+            <p className="text-sm text-gray-500">Includes all supplies and equipment</p>
           </motion.div>}
       </CardContent>
     </Card>;
