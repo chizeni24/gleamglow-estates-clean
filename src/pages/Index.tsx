@@ -1,10 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Services from "@/components/Services";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import SteamDifference from "@/components/SteamDifference";
 import Testimonials from "@/components/Testimonials";
@@ -44,7 +42,6 @@ const Index = () => {
     { id: "our-story", component: <OurStory /> },
     { id: "steam", component: <SteamDifference /> },
     { id: "process", component: <ProcessTimeline /> },
-    { id: "services", component: <Services /> },
     { id: "faq", component: <FAQ /> },
     { id: "blog", component: <Blog /> },
     { id: "testimonials", component: <Testimonials /> },
