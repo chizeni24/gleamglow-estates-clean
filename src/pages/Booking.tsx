@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -12,7 +11,6 @@ import { ServiceAddress } from "@/components/booking-steps/ServiceAddress";
 import { BookingSummary } from "@/components/booking-steps/BookingSummary";
 import { StepIndicator } from "./booking/StepIndicator";
 import { BookingForm } from "./booking/BookingForm";
-import { QuickQuote } from "@/components/QuickQuote";
 import type { Step, BookingFormData } from "./booking/types";
 
 const BookingPage = () => {
@@ -147,13 +145,8 @@ const BookingPage = () => {
           <StepIndicator steps={steps} currentStep={currentStep} />
           
           {currentStep === 0 ? (
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="md:col-span-2">
-                <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
-              </div>
-              <div className="md:col-span-1">
-                <QuickQuote bedrooms={2} bathrooms={2} />
-              </div>
+            <div>
+              <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
             </div>
           ) : (
             <div className="max-w-4xl mx-auto">
