@@ -1,11 +1,12 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { GoldButton } from "./ui/gold-button";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const handleScrollToAbout = (e: React.MouseEvent) => {
     e.preventDefault();
     const aboutSection = document.getElementById("about");
@@ -42,7 +43,7 @@ const Hero = () => {
               size="lg" 
               showShine 
               className="relative overflow-hidden group" 
-              onClick={() => window.location.href = '/services'}
+              onClick={() => navigate('/services')}
             >
               Book Your <span className="text-gold-lighter">Gleam</span>
               <div className="absolute inset-0 pointer-events-none">
@@ -67,7 +68,7 @@ const Hero = () => {
             <GoldButton 
               variant="outline" 
               size="lg" 
-              onClick={() => window.location.href = '/pricing'} 
+              onClick={() => navigate('/pricing')} 
               className="group"
               showShine
             >
