@@ -1,9 +1,23 @@
 
-export const services = [
+type ServiceCategory = 'regular' | 'special';
+
+export interface Service {
+  title: string;
+  description: string;
+  rate: string;
+  category: ServiceCategory;
+  features: string[];
+  highlight: boolean;
+  prefix?: string;
+  subtitle?: string;
+}
+
+export const services: Service[] = [
   {
     title: "Glow-Standard",
     description: "Our comprehensive baseline service with whole-home coverage.",
     rate: "$73.99 /hr – 2-hour minimum",
+    category: 'regular',
     features: [
       "Whole-home coverage — bedrooms, living areas, halls",
       "Kitchen & bath refresh",
@@ -18,6 +32,7 @@ export const services = [
     title: "Glow-Deep",
     description: "Everything in Glow-Standard plus deep cleaning elements.",
     rate: "$84.99 /hr",
+    category: 'regular',
     features: [
       "Inside fridge & oven",
       "Baseboards, blinds, vents",
@@ -32,6 +47,7 @@ export const services = [
     description: "Comprehensive move-in/move-out cleaning service.",
     subtitle: "(In / Out)",
     rate: "From $299 flat (≤ 1,000 sq ft) • +$0.22 / sq ft thereafter",
+    category: 'special',
     features: [
       "Cabinet & drawer wipe-out",
       "Appliance steam-clean",
@@ -45,6 +61,7 @@ export const services = [
     title: "Glow-Occasion",
     description: "Premium service for special events and occasions.",
     rate: "$89.99 /hr",
+    category: 'special',
     features: [
       "Priority scheduling",
       "Entertainment areas spotlight",
