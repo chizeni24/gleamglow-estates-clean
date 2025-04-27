@@ -1,16 +1,22 @@
+
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import { ArrowDown } from "lucide-react";
 import { GoldButton } from "./ui/gold-button";
+
 const Hero = () => {
   const handleScrollToServices = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById("services")?.scrollIntoView({
-      behavior: 'smooth'
-    });
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      servicesSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
   };
+
   return <section id="home" className="relative min-h-screen flex items-center justify-center bg-white pt-16 md:pt-24">
       <div className="container-custom relative z-10 text-center pb-20">
         <div className="max-w-3xl mx-auto">
@@ -88,4 +94,5 @@ const Hero = () => {
       </div>
     </section>;
 };
+
 export default Hero;

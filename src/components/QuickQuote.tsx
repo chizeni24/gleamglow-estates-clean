@@ -13,7 +13,10 @@ interface QuickQuoteProps {
 export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, service = "Glow-Standard" }) => {
   const [estimate, setEstimate] = React.useState<{low: number; high: number} | null>(null);
 
-  const handleQuote = () => {
+  const handleQuote = (e: React.MouseEvent) => {
+    // Prevent default to avoid any navigation
+    e.preventDefault();
+    
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
     
@@ -87,4 +90,3 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, ser
     </Card>
   );
 };
-

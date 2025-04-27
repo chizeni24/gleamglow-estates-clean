@@ -11,6 +11,7 @@ import BlogListing from "./pages/BlogListing";
 import Booking from "./pages/Booking";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Services from "./pages/Services";
 
 const App = () => {
   // Create a client
@@ -29,6 +30,7 @@ const App = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog/:id" element={<BlogPost />} />
               <Route path="/blog" element={<BlogListing />} />
+              <Route path="/services" element={<Services />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
