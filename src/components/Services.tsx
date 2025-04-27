@@ -31,8 +31,28 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
 
         <Tabs defaultValue="regular" className="w-full">
           <TabsList className="grid w-full max-w-[400px] grid-cols-2 mx-auto mb-8">
-            <TabsTrigger value="regular">Regular Services</TabsTrigger>
-            <TabsTrigger value="special">Special Services</TabsTrigger>
+            <TabsTrigger 
+              value="regular" 
+              className="group relative hover:text-gold transition-all duration-300 
+                         hover:after:scale-x-100 after:origin-left 
+                         after:absolute after:bottom-0 after:left-0 after:w-full 
+                         after:h-[2px] after:bg-gold 
+                         after:scale-x-0 after:transition-transform
+                         hover:scale-105 hover:shadow-[0_4px_6px_rgba(203,163,95,0.2)]"
+            >
+              Regular Services
+            </TabsTrigger>
+            <TabsTrigger 
+              value="special" 
+              className="group relative hover:text-gold transition-all duration-300 
+                         hover:after:scale-x-100 after:origin-left 
+                         after:absolute after:bottom-0 after:left-0 after:w-full 
+                         after:h-[2px] after:bg-gold 
+                         after:scale-x-0 after:transition-transform
+                         hover:scale-105 hover:shadow-[0_4px_6px_rgba(203,163,95,0.2)]"
+            >
+              Special Services
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="regular">
@@ -72,3 +92,4 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
 };
 
 export default Services;
+
