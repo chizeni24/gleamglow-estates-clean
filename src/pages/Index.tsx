@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -68,7 +69,7 @@ const Index = () => {
       
       <div className="fixed bottom-0 inset-x-0 md:hidden p-3 bg-gold-dark/95 backdrop-blur-md z-50">
         <button 
-          onClick={() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => window.location.href = '/booking'}
           className="w-full btn-gold"
         >
           Book My Weekend Clean

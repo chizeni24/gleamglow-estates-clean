@@ -23,12 +23,16 @@ const SteamDifference = () => {
             <li><b>99.9% germ kill</b> without harsh chemicals</li>
             <li>Reaches grout & upholstery fibres ordinary wipes can't</li>
             <li>Leaves <em>zero</em> residue—just a subtle eucalyptus glow</li>
+            <li>Hospital-grade sanitization for your peace of mind</li>
+            <li>Safe for all surfaces including marble & hardwood</li>
           </ul>
           <GoldButton 
             className="mt-6"
-            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => window.location.href = '/booking'}
+            showShine
+            showGlow
           >
-            See Plans
+            Book Steam Cleaning
           </GoldButton>
         </motion.div>
       </div>
