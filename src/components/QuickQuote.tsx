@@ -1,10 +1,9 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { GoldButton } from "@/components/ui/gold-button";
 import { motion } from "framer-motion";
 import { Check, Sparkle, Users } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface QuickQuoteProps {
   bedrooms: number;
@@ -21,63 +20,39 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
     low: number;
     high: number;
   } | null>(null);
-  const [teamSize, setTeamSize] = React.useState<1 | 2>(1);
+  const [teamSize, setTeamSize] = React.useState<"1" | "2">("1");
 
-  // Handle quote calculation
-  const handleQuote = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    // For Glow-Move
-    if (service === "Glow-Move") {
-      // Base rates based on team size
-      const baseRate = teamSize === 1 ? 89.00 : 124.99;
-      
-      // Calculate estimated hours for 1 cleaner
-      const soloHours = 3 + Math.max(bedrooms + bathrooms - 2, 0) * 0.75;
-      
-      // Apply time reduction factor for 2 cleaners
-      const totalHours = teamSize === 1 ? soloHours : soloHours * 0.6;
-      
-      const total = baseRate * totalHours;
-      
-      setEstimate({
-        low: total * 0.9,
-        high: total * 1.1
-      });
-      return;
-    }
-
-    // For Glow-Occasion, return null (custom quote only)
+  React.useEffect(() => {
     if (service === "Glow-Occasion") {
       setEstimate(null);
       return;
     }
 
-    // For standard services
-    const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
-    const soloHours = 2 + extraRooms * 0.5;
-    
-    // Apply time reduction factor for 2 cleaners
-    const totalHours = teamSize === 1 ? soloHours : soloHours * 0.6;
-    
-    // Set base rate based on service type and team size
     let baseRate;
-    if (service === "Glow-Deep") {
-      baseRate = teamSize === 1 ? 84.99 : 118.99;
+    const isTeamOfTwo = teamSize === "2";
+    
+    if (service === "Glow-Move") {
+      baseRate = isTeamOfTwo ? 124.99 : 89.00;
+    } else if (service === "Glow-Deep") {
+      baseRate = isTeamOfTwo ? 118.99 : 84.99;
     } else {
-      // Glow-Standard
-      baseRate = teamSize === 1 ? 73.99 : 103.99;
+      baseRate = isTeamOfTwo ? 103.99 : 73.99;
     }
-
-    const low = totalHours * baseRate * 0.9;
-    const high = totalHours * baseRate * 1.1;
+    
+    const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
+    const soloHours = service === "Glow-Move" 
+      ? 3 + extraRooms * 0.75 
+      : 2 + extraRooms * 0.5;
+    
+    const totalHours = isTeamOfTwo ? soloHours * 0.6 : soloHours;
+    
+    const total = baseRate * totalHours;
     
     setEstimate({
-      low,
-      high
+      low: total * 0.9,
+      high: total * 1.1
     });
-  };
+  }, [teamSize, bedrooms, bathrooms, service]);
 
   return (
     <Card className="bg-white border border-gold-light/50 shadow-lg">
@@ -90,38 +65,46 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       </CardHeader>
 
       <CardContent className="space-y-6">
-        <div className="bg-gold/5 rounded-lg p-4">
-          <RadioGroup
-            defaultValue="1"
-            className="flex flex-wrap justify-center gap-4"
-            onValueChange={(value) => setTeamSize(Number(value) as 1 | 2)}
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="1" id="standard" />
-              <label
-                htmlFor="standard"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
-              >
-                <Users className="h-4 w-4" />
-                Standard (1 cleaner)
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="2" id="express" />
-              <label
-                htmlFor="express"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2"
-              >
-                <Users className="h-4 w-4" />
-                Fast Track (2 cleaners)
-              </label>
-            </div>
-          </RadioGroup>
+        <div className="bg-gold/5 rounded-lg p-6">
+          <p className="text-center mb-4 text-gray-600 font-medium">Choose Your Team Size:</p>
           
-          {teamSize === 2 && (
-            <p className="text-xs text-gold text-center mt-3">
-              <strong>Fast Track Option:</strong> Finish 40% faster with two professionals at a slight additional cost!
-            </p>
+          <ToggleGroup
+            type="single"
+            value={teamSize}
+            onValueChange={(value) => value && setTeamSize(value as "1" | "2")}
+            className="flex flex-col sm:flex-row justify-center gap-4"
+          >
+            <ToggleGroupItem 
+              value="1"
+              className="flex items-center gap-2 data-[state=on]:bg-gold data-[state=on]:text-white px-4 py-3 rounded-lg border border-gold/20 hover:bg-gold/10 transition-colors"
+            >
+              <Users className="h-4 w-4" />
+              <div className="text-left">
+                <div className="font-medium">Standard Service</div>
+                <div className="text-xs opacity-90">Single Professional Cleaner</div>
+              </div>
+            </ToggleGroupItem>
+            
+            <ToggleGroupItem 
+              value="2"
+              className="flex items-center gap-2 data-[state=on]:bg-gold data-[state=on]:text-white px-4 py-3 rounded-lg border border-gold/20 hover:bg-gold/10 transition-colors"
+            >
+              <Users className="h-4 w-4" />
+              <div className="text-left">
+                <div className="font-medium">Fast Track Service</div>
+                <div className="text-xs opacity-90">Two Professional Cleaners</div>
+              </div>
+            </ToggleGroupItem>
+          </ToggleGroup>
+          
+          {teamSize === "2" && (
+            <motion.p 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-xs text-gold text-center mt-4"
+            >
+              <strong>Fast Track Advantage:</strong> Finish 40% faster with two professionals!
+            </motion.p>
           )}
         </div>
 
@@ -134,31 +117,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
               Request Custom Quote
             </GoldButton>
           </>
-        ) : (
-          <>
-            <p className="text-gray-700 text-center">
-              Click below to see your estimated price range
-            </p>
-            <GoldButton onClick={handleQuote} showShine className="w-full md:w-auto" type="button">
-              Calculate My Quote
-            </GoldButton>
-          </>
-        )}
-
-        {estimate && !estimate.low && !estimate.high && service === "Glow-Occasion" && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center p-4 bg-gold-light/10 rounded-lg"
-          >
-            <p className="text-gray-700">
-              Thank you for your interest! We'll contact you shortly with a customized quote for your occasion.
-            </p>
-          </motion.div>
-        )}
-
-        {estimate && estimate.low && estimate.high && (
+        ) : estimate ? (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -172,7 +131,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
               </p>
               <p className="text-sm text-gray-500">
                 Includes all supplies and equipment
-                {teamSize === 2 && " • Fast Track service (40% faster)"}
+                {teamSize === "2" && " • Fast Track service (40% faster)"}
               </p>
             </div>
 
@@ -211,7 +170,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
               </motion.div>
             </motion.div>
           </motion.div>
-        )}
+        ) : null}
       </CardContent>
     </Card>
   );
