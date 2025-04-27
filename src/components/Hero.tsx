@@ -1,9 +1,9 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { GoldButton } from "./ui/gold-button";
-import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const handleScrollToAbout = (e: React.MouseEvent) => {
@@ -67,11 +67,11 @@ const Hero = () => {
             <GoldButton 
               variant="outline" 
               size="lg" 
-              onClick={() => window.location.href = '/booking?service=Glow-Standard'} 
+              onClick={() => window.location.href = '/pricing'} 
               className="group"
               showShine
             >
-              Discover Glow-Standard
+              See Plans & Prices
               <ArrowRight className="inline-block ml-1 group-hover:translate-x-1 transition-transform" size={18} />
             </GoldButton>
           </div>
