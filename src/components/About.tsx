@@ -1,3 +1,4 @@
+
 import React from "react";
 const About = () => {
   return <section id="about" className="section-padding bg-gray-50">
@@ -5,7 +6,7 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 title-underline">
-              About <span className="text-gold-lighter">Gleam</span>Glow
+              About <span className="text-gold-lighter">Gleam</span><span className="text-gold-lighter">Glow</span>
             </h2>
             <div className="text-gray-700 space-y-6">
               <p className="text-lg">At GleamGlow, we turn clean into an experience—crisp surfaces, subtle eucalyptus steam, and details that simply feel better. Our eco-smart approach elevates any space from everyday to effortlessly polished, protecting what you value most without a single hidden extra.</p>
