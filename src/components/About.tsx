@@ -1,9 +1,6 @@
-
 import React from "react";
-
 const About = () => {
-  return (
-    <section id="about" className="section-padding bg-gray-50">
+  return <section id="about" className="section-padding bg-gray-50">
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
@@ -15,7 +12,7 @@ const About = () => {
                 We don't just clean homes. We elevate them.
               </p>
               <p>
-                At <span className="text-gold-lighter font-medium">GleamGlow</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
+                At <span className="text-gold-lighter font-medium">Gleam</span>, we redefine luxury with every sweep, polish, and shine. Your space becomes a sanctuary — radiant, refined, and undeniably yours. Our expert team transforms the everyday into the extraordinary, using only the finest eco-conscious products to protect what you value most.
               </p>
               <p className="font-medium">
                 Because your home deserves more than clean.
@@ -36,11 +33,7 @@ const About = () => {
           </div>
           <div className="order-1 md:order-2">
             <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1524230572899-a752b3835840?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
-                alt="Premium home interior" 
-                className="rounded-lg shadow-lg w-full h-[500px] object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1524230572899-a752b3835840?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Premium home interior" className="rounded-lg shadow-lg w-full h-[500px] object-cover" />
               <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg hidden md:block">
                 <p className="text-gray-800 font-playfair italic">"Excellence is in the details."</p>
               </div>
@@ -48,8 +41,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
