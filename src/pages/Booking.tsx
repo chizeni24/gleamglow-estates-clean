@@ -134,7 +134,9 @@ const BookingPage = () => {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Steam-sanitised care for every home and budget. Experience the gleam, breathe the glow.
+            Steam-sanitised care for every home and budget. Experience{' '}
+            <span className="text-gold">the gleam</span>, breathe{' '}
+            <span className="text-gold-lighter">the glow</span>.
           </p>
         </div>
 
