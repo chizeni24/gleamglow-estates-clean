@@ -46,7 +46,9 @@ const ServiceCard = ({ service, isMainService, isBookingStep, onServiceSelect }:
           )}
         </div>
         <div className="text-lg font-semibold mt-2">
-          {service.title === "Glow-Move" ? "$89.99/hr" : service.rate}
+          {service.title === "Glow-Move" ? "$89.99/hr" : 
+           service.title === "Glow-Occasion" ? "Custom quote — scope and schedule tailored on request" : 
+           service.rate}
         </div>
       </CardHeader>
       <CardContent className="flex flex-col flex-grow">
