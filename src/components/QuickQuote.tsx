@@ -1,22 +1,43 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { GoldButton } from "@/components/ui/gold-button";
 import { motion } from "framer-motion";
 
 interface QuickQuoteProps {
   bedrooms: number;
   bathrooms: number;
+  service?: string;
 }
 
-export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms }) => {
+export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms, service = "Glow-Standard" }) => {
   const [estimate, setEstimate] = React.useState<{low: number; high: number} | null>(null);
 
   const handleQuote = () => {
     const extraRooms = Math.max(bedrooms + bathrooms - 2, 0);
     const hours = 2 + extraRooms * 0.5;
-    const baseRate = 73.99;
+    
+    let baseRate = 73.99; // Default Glow-Standard rate
+    
+    // Adjust rate based on service type
+    switch (service) {
+      case "Glow-Deep":
+        baseRate = 84.99;
+        break;
+      case "Glow-Move":
+        // For move-in/out, use flat rate based on square footage
+        const baseMoveRate = 299;
+        const low = baseMoveRate * 0.9;
+        const high = baseMoveRate * 1.1;
+        setEstimate({ low, high });
+        return;
+      case "Glow-Occasion":
+        baseRate = 89.99;
+        break;
+      default:
+        baseRate = 73.99; // Glow-Standard
+    }
+
     const low = hours * baseRate * 0.9;
     const high = hours * baseRate * 1.1;
     setEstimate({ low, high });
@@ -28,12 +49,13 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms }) =
         <h3 className="text-2xl font-serif">Get Your Free Quote</h3>
         <p className="text-gray-600 text-sm mt-2">
           Based on {bedrooms} bedroom{bedrooms !== 1 ? 's' : ''} and {bathrooms} bathroom{bathrooms !== 1 ? 's' : ''}
+          {service && <span className="block mt-1">Service: {service}</span>}
         </p>
       </CardHeader>
 
       <CardContent className="space-y-6">
         <p className="text-gray-700 text-center">
-          Click below to see your estimated price range for our Glow-Standard service
+          Click below to see your estimated price range
         </p>
 
         <div className="text-center">
@@ -65,3 +87,4 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({ bedrooms, bathrooms }) =
     </Card>
   );
 };
+

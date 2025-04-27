@@ -82,9 +82,11 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({ formData }) => {
       <div className="mt-8">
         <QuickQuote 
           bedrooms={Number(formData.bedrooms)} 
-          bathrooms={Number(formData.bathrooms)} 
+          bathrooms={Number(formData.bathrooms)}
+          service={formData.service}
         />
       </div>
     </div>
   );
 };
+
