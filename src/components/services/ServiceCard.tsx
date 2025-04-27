@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,13 +6,26 @@ import type { Service } from "./ServicesData";
 interface ServiceCardProps {
   service: Service;
   isMainService?: boolean;
+  isBookingStep?: boolean;
+  onServiceSelect?: (service: string) => void;
 }
 
-const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
+const ServiceCard = ({ service, isMainService, isBookingStep, onServiceSelect }: ServiceCardProps) => {
+  const handleClick = () => {
+    if (isBookingStep && onServiceSelect) {
+      onServiceSelect(service.title);
+    }
+  };
+
   return (
-    <Card className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
-      isMainService ? 'border-gold/50' : ''
-    }`}>
+    <Card 
+      className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 ${
+        isMainService ? 'border-gold/50' : ''
+      }`}
+      onClick={handleClick}
+      role={isBookingStep ? "button" : undefined}
+      style={isBookingStep ? { cursor: 'pointer' } : undefined}
+    >
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
@@ -49,12 +61,26 @@ const ServiceCard = ({ service, isMainService }: ServiceCardProps) => {
         </ul>
       </CardContent>
       <CardFooter className="mt-auto">
-        <Link 
-          to={`/booking?service=${encodeURIComponent(service.title)}&step=1`}
-          className="w-full text-center px-4 py-2 rounded-lg bg-gold text-white hover:bg-gold-dark transition-colors"
-        >
-          Book Now
-        </Link>
+        {isBookingStep ? (
+          <button 
+            className="w-full text-center px-4 py-2 rounded-lg bg-gold text-white hover:bg-gold-dark transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              if (onServiceSelect) {
+                onServiceSelect(service.title);
+              }
+            }}
+          >
+            Select Service
+          </button>
+        ) : (
+          <Link 
+            to={`/booking?service=${encodeURIComponent(service.title)}&step=1`}
+            className="w-full text-center px-4 py-2 rounded-lg bg-gold text-white hover:bg-gold-dark transition-colors"
+          >
+            Book Now
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );

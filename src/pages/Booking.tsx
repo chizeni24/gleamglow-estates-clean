@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ServiceSelection } from "@/components/booking-steps/ServiceSelection";
+import Services from "@/components/Services";
 import { DateTimeSelection } from "@/components/booking-steps/DateTimeSelection";
 import { PropertyDetails } from "@/components/booking-steps/PropertyDetails";
 import { ContactInfo } from "@/components/booking-steps/ContactInfo";
@@ -91,7 +91,7 @@ const BookingPage = () => {
       id: "service",
       title: "Select Service",
       description: "Choose the service that best fits your needs",
-      component: <ServiceSelection formData={formData} onServiceSelect={handleServiceSelect} />
+      component: <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
     },
     {
       id: "datetime",
@@ -131,25 +131,31 @@ const BookingPage = () => {
 
       <div className="container-custom py-12 md:py-20">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Cleaning Service</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Schedule your professional cleaning service in a few simple steps
+            Select your preferred service and schedule a time that works for you
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <StepIndicator steps={steps} currentStep={currentStep} />
           
-          <div className="bg-white rounded-xl shadow-lg p-8 md:p-10 transition-all duration-500">
-            <BookingForm 
-              steps={steps}
-              currentStep={currentStep}
-              formData={formData}
-              onPrevStep={prevStep}
-              onNextStep={nextStep}
-              onSubmit={handleSubmit}
-            />
-          </div>
+          {currentStep === 0 ? (
+            <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
+          ) : (
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-xl shadow-lg p-8 md:p-10 transition-all duration-500">
+                <BookingForm 
+                  steps={steps}
+                  currentStep={currentStep}
+                  formData={formData}
+                  onPrevStep={prevStep}
+                  onNextStep={nextStep}
+                  onSubmit={handleSubmit}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
