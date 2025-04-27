@@ -48,7 +48,7 @@ const SteamDifference = () => {
           
           <div className="pt-4">
             <GoldButton 
-              onClick={() => navigate('#pricing')}
+              onClick={() => navigate('/booking')}
               showShine
               showGlow
             >
