@@ -13,6 +13,7 @@ interface DesktopNavProps {
 export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: DesktopNavProps) => {
   const { toast } = useToast();
   const location = useLocation();
+  const isBookingPage = location.pathname === '/booking';
 
   const handleBookNowClick = () => {
     toast({
@@ -61,13 +62,15 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
       {renderNavLink("FAQ", "#faq")}
       {renderNavLink("Testimonials", "#testimonials")}
       {renderNavLink("Contact", "#contact")}
-      <Link 
-        to="/booking" 
-        className="text-white bg-gold-lighter hover:bg-gold transition-colors px-4 py-2 rounded-md"
-        onClick={handleBookNowClick}
-      >
-        Book Now
-      </Link>
+      {!isBookingPage && (
+        <Link 
+          to="/booking" 
+          className="text-white bg-gold-lighter hover:bg-gold transition-colors px-4 py-2 rounded-md"
+          onClick={handleBookNowClick}
+        >
+          Book Now
+        </Link>
+      )}
     </div>
   );
 };
