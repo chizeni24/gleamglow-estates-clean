@@ -51,26 +51,30 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
     {
       title: "Glow-Move",
       subtitle: "(In / Out)",
-      description: "Comprehensive move-in / move-out cleaning service.",
-      rate: "$89 /hr (supplies, steam & two bathrooms included)",
+      description: "Comprehensive move-in/move-out cleaning service.",
+      rate: "$259 – $459 (≤ 2,000 sq ft) • +$0.18 / sq ft thereafter",
       features: [
         "Cabinet & drawer wipe-out",
         "Appliance steam-clean",
         "Floor scrub & polish",
         "Garage / balcony sweep",
-        "Deposit-ready presentation"
+        "Deposit-ready presentation",
+        "Two bathrooms included",
+        "All supplies & steam included",
+        "No surprise fees"
       ],
       highlight: false
     },
     {
       title: "Glow-Occasion",
-      description: "Bespoke service for events, commercial turnovers, or Airbnb refreshes.",
-      rate: "Custom quote — scope and schedule tailored on request",
+      description: "Premium service for special events and occasions.",
+      rate: "$89.99 /hr",
       features: [
         "Priority scheduling",
-        "Entertainment / guest areas spotlight",
+        "Entertainment areas spotlight",
+        "Premium glassware & delicate item care",
         "Fresh linen staging",
-        "Optional next-day steam refresh"
+        "Optional post-event steam freshen"
       ],
       highlight: false,
       customButton: "Request Quote"
