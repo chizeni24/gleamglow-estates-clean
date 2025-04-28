@@ -19,10 +19,34 @@ export const BookingForm = ({
   onNextStep, 
   onSubmit 
 }: BookingFormProps) => {
-  // Prevent default form submission which might cause page refresh
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(e);
+  };
+
+  const isStepValid = () => {
+    switch(currentStep) {
+      case 0: // Service
+        return !!formData.service;
+      case 1: // Property Details
+        return !!formData.bedrooms && 
+               !!formData.bathrooms && 
+               !!formData.kitchens && 
+               !!formData.livingAreas && 
+               !!formData.cleaningFrequency;
+      case 2: // Date & Time
+        return !!formData.date && !!formData.time;
+      case 3: // Contact Info
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^[0-9-+\s()]{10,}$/;
+        return !!formData.name && 
+               emailRegex.test(formData.email) && 
+               phoneRegex.test(formData.phone);
+      case 4: // Address
+        return !!formData.address;
+      default:
+        return true;
+    }
   };
   
   return (
@@ -58,15 +82,11 @@ export const BookingForm = ({
             type="button"
             onClick={(e) => {
               e.preventDefault();
-              onNextStep();
+              if (isStepValid()) {
+                onNextStep();
+              }
             }}
-            disabled={
-              (currentStep === 0 && !formData.service) ||
-              (currentStep === 1 && (!formData.date || !formData.time)) ||
-              (currentStep === 2 && !formData.bedrooms) ||
-              (currentStep === 3 && (!formData.name || !formData.email || !formData.phone)) ||
-              (currentStep === 4 && !formData.address)
-            }
+            disabled={!isStepValid()}
             className="flex items-center bg-gold text-white px-6 py-3 rounded-md hover:bg-gold-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Continue

@@ -29,6 +29,7 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           required
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           placeholder="Your full name"
+          minLength={2}
         />
       </div>
       <div>
@@ -43,9 +44,10 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           onChange={handleInputChange}
           required
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          placeholder="example@mail.com"
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          placeholder="example@mail.com"
         />
+        <p className="text-sm text-gray-500 mt-1">We'll send your booking confirmation here</p>
       </div>
       <div>
         <label htmlFor="phone" className="block text-lg font-medium text-gray-700 mb-2">
@@ -59,9 +61,11 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           onChange={handleInputChange}
           required
           pattern="[0-9-+\s()]+"
-          placeholder="Your phone number"
+          minLength={10}
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          placeholder="Your phone number"
         />
+        <p className="text-sm text-gray-500 mt-1">For booking confirmation and service updates</p>
       </div>
     </div>
   );

@@ -94,12 +94,6 @@ const BookingPage = () => {
       component: <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
     },
     {
-      id: "contact",
-      title: "Your Information",
-      description: "Please provide your contact details",
-      component: <ContactInfo formData={formData} handleInputChange={handleInputChange} />
-    },
-    {
       id: "propertyDetails",
       title: "Property Details",
       description: "Tell us about your property",
@@ -110,6 +104,12 @@ const BookingPage = () => {
       title: "Select Date & Time",
       description: "Choose your preferred date and time for the service",
       component: <DateTimeSelection formData={formData} handleInputChange={handleInputChange} />
+    },
+    {
+      id: "contact",
+      title: "Your Information",
+      description: "Please provide your contact details",
+      component: <ContactInfo formData={formData} handleInputChange={handleInputChange} />
     },
     {
       id: "address",
