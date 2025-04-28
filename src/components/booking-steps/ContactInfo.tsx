@@ -28,6 +28,7 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           onChange={handleInputChange}
           required
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          placeholder="Your full name"
         />
       </div>
       <div>
@@ -41,6 +42,8 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           value={formData.email}
           onChange={handleInputChange}
           required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          placeholder="example@mail.com"
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         />
       </div>
@@ -55,6 +58,8 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
           value={formData.phone}
           onChange={handleInputChange}
           required
+          pattern="[0-9-+\s()]+"
+          placeholder="Your phone number"
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         />
       </div>

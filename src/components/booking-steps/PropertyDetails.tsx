@@ -1,5 +1,5 @@
-
 import React from "react";
+import { Select } from "@/components/ui/select";
 
 interface PropertyDetailsProps {
   formData: {
@@ -10,6 +10,7 @@ interface PropertyDetailsProps {
     squareFootage: string;
     cleaningFrequency: string;
     pets: string;
+    specialRequirements: string;
   };
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
@@ -23,97 +24,82 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="bedrooms" className="block text-lg font-medium text-gray-700 mb-2">
-            Bedrooms
+            Number of Bedrooms
           </label>
-          <select
+          <input
+            type="number"
             id="bedrooms"
             name="bedrooms"
+            min="0"
+            required
             value={formData.bedrooms}
             onChange={handleInputChange}
-            required
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
-          >
-            <option value="1">1 Bedroom</option>
-            <option value="2">2 Bedrooms</option>
-            <option value="3">3 Bedrooms</option>
-            <option value="4">4 Bedrooms</option>
-            <option value="5">5+ Bedrooms</option>
-          </select>
+          />
         </div>
         <div>
           <label htmlFor="bathrooms" className="block text-lg font-medium text-gray-700 mb-2">
-            Bathrooms
+            Number of Bathrooms
           </label>
-          <select
+          <input
+            type="number"
             id="bathrooms"
             name="bathrooms"
+            min="0"
+            required
             value={formData.bathrooms}
             onChange={handleInputChange}
-            required
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
-          >
-            <option value="1">1 Bathroom</option>
-            <option value="2">2 Bathrooms</option>
-            <option value="3">3 Bathrooms</option>
-            <option value="4">4 Bathrooms</option>
-            <option value="5">5+ Bathrooms</option>
-          </select>
+          />
         </div>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="kitchens" className="block text-lg font-medium text-gray-700 mb-2">
-            Kitchens
+            Number of Kitchens
           </label>
-          <select
+          <input
+            type="number"
             id="kitchens"
             name="kitchens"
+            min="1"
+            required
             value={formData.kitchens}
             onChange={handleInputChange}
-            required
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
-          >
-            <option value="1">1 Kitchen</option>
-            <option value="2">2 Kitchens</option>
-            <option value="3">3+ Kitchens</option>
-          </select>
+          />
         </div>
         <div>
           <label htmlFor="livingAreas" className="block text-lg font-medium text-gray-700 mb-2">
-            Living Areas
+            Number of Living Areas
           </label>
-          <select
+          <input
+            type="number"
             id="livingAreas"
             name="livingAreas"
+            min="0"
+            required
             value={formData.livingAreas}
             onChange={handleInputChange}
-            required
             className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
-          >
-            <option value="1">1 Living Area</option>
-            <option value="2">2 Living Areas</option>
-            <option value="3">3 Living Areas</option>
-            <option value="4">4+ Living Areas</option>
-          </select>
+          />
         </div>
       </div>
-      
+
       <div>
         <label htmlFor="squareFootage" className="block text-lg font-medium text-gray-700 mb-2">
-          Approximate Square Footage
+          Square Footage (optional)
         </label>
         <input
-          type="text"
+          type="number"
           id="squareFootage"
           name="squareFootage"
+          min="0"
           value={formData.squareFootage}
           onChange={handleInputChange}
-          placeholder="e.g., 1500"
           className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          placeholder="Enter square footage (optional)"
         />
       </div>
-      
+
       <div>
         <label htmlFor="cleaningFrequency" className="block text-lg font-medium text-gray-700 mb-2">
           Cleaning Frequency
@@ -132,7 +118,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           <option value="monthly">Monthly</option>
         </select>
       </div>
-      
+
       <div>
         <label htmlFor="pets" className="block text-lg font-medium text-gray-700 mb-2">
           Do you have pets?
@@ -151,6 +137,21 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           <option value="both">Both Dogs and Cats</option>
           <option value="other">Other Pets</option>
         </select>
+      </div>
+
+      <div>
+        <label htmlFor="specialRequirements" className="block text-lg font-medium text-gray-700 mb-2">
+          Special Requirements
+        </label>
+        <input
+          type="text"
+          id="specialRequirements"
+          name="specialRequirements"
+          value={formData.specialRequirements}
+          onChange={handleInputChange}
+          placeholder="Enter any special requirements"
+          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+        />
       </div>
     </div>
   );
