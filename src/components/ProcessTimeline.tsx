@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GoldButton } from "./ui/gold-button";
 import { SparkleEffect } from "./effects/SparkleEffect";
 import { Sparkles } from "./effects/Sparkles";
-import { Star, ArrowRight, Check } from "lucide-react";
+import { Star, ArrowRight, Check, CheckCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 const steps = [
@@ -14,35 +14,40 @@ const steps = [
     title: 'Gather & Declutter', 
     text: 'We start by clearing surfaces and preparing your space for the full GleamGlow experience.',
     color: 'bg-gold-light',
-    icon: Star
+    icon: Star,
+    tip: "Start fresh by removing all small items from surfaces for a thorough clean."
   },
   { 
     step: '2', 
     title: 'Lift & Dust', 
     text: 'Our top-down dusting approach ensures no surface is left untouched or unloved.',
     color: 'bg-gold-lighter/30',
-    icon: Star
+    icon: Star,
+    tip: "Always dust from top to bottom to avoid re-soiling cleaned areas."
   },
   { 
     step: '3', 
     title: 'Prep & Steam', 
     text: 'We apply our signature eco-friendly solutions and prepare our premium steamers.',
     color: 'bg-gold/20',
-    icon: Star
+    icon: Star,
+    tip: "Our eco-friendly solutions are safe for all surfaces and leave no harmful residues."
   },
   { 
     step: '4', 
     title: 'Steam-Sanitise', 
     text: 'Our advanced steam technology eliminates 99.9% of germs and bacteria without harsh chemicals.',
     color: 'bg-gold-lighter/40',
-    icon: Star
+    icon: Star,
+    tip: "Steam cleaning sanitizes without chemicals, making it perfect for homes with kids and pets."
   },
   { 
     step: '5', 
     title: 'Polish & Glow', 
     text: 'The final touch - we add our signature streak-free shine and perfect every detail.',
     color: 'bg-gold-light/50',
-    icon: Star
+    icon: Star,
+    tip: "Our signature polishing cloth is made from ultra-microfiber for a streak-free finish."
   },
 ];
 
@@ -142,9 +147,11 @@ const ProcessTimeline = () => {
               </div>
               
               {steps.map((step) => (
-                <TabsContent key={step.step} value={step.step} className="focus:outline-none">
+                <TabsContent key={step.step} value={step.step} className="mt-2 focus:outline-none">
                   <motion.div
                     variants={fadeVariants}
+                    initial="hidden"
+                    animate="visible"
                     className="bg-white rounded-2xl p-8 shadow-lg border border-gold/10 transition-all h-full"
                   >
                     <div className="flex flex-col md:flex-row items-start gap-8">
@@ -186,13 +193,7 @@ const ProcessTimeline = () => {
                             </div>
                             <div>
                               <h4 className="font-medium text-charcoal mb-1">Gleam Tip</h4>
-                              <p className="text-sm text-gray-600">
-                                {step.step === "1" && "Start fresh by removing all small items from surfaces for a thorough clean."}
-                                {step.step === "2" && "Always dust from top to bottom to avoid re-soiling cleaned areas."}
-                                {step.step === "3" && "Our eco-friendly solutions are safe for all surfaces and leave no harmful residues."}
-                                {step.step === "4" && "Steam cleaning sanitizes without chemicals, making it perfect for homes with kids and pets."}
-                                {step.step === "5" && "Our signature polishing cloth is made from ultra-microfiber for a streak-free finish."}
-                              </p>
+                              <p className="text-sm text-gray-600">{step.tip}</p>
                             </div>
                           </div>
                         </motion.div>
