@@ -14,8 +14,8 @@
 
 @layer components {
   .btn-gold {
-    @apply inline-block px-6 py-3 rounded-xl bg-gold text-white font-semibold shadow-md
-           hover:bg-gold-dark transition duration-200;
+    @apply inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-lighter text-white font-semibold shadow-md
+           hover:bg-gold-dark transition duration-200 hover:shadow-lg hover:-translate-y-0.5;
   }
   
   .title-underline {
@@ -31,6 +31,14 @@
     transform: translateY(10px);
     animation: fadeInGentle 1.5s ease-out forwards;
   }
+  
+  .gleam-text {
+    @apply bg-gradient-to-r from-gold-lighter to-gold bg-clip-text text-transparent;
+  }
+  
+  .glow-text {
+    @apply bg-gradient-to-r from-gold to-gold-lighter bg-clip-text text-transparent;
+  }
 }
 
 @keyframes fadeInGentle {
@@ -43,3 +51,22 @@
     transform: translateY(0px);
   }
 }
+
+@keyframes float-sparkle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes gold-shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+

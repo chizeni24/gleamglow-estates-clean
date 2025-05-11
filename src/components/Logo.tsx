@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { SparkleEffect } from "./effects/SparkleEffect";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";
@@ -21,11 +22,11 @@ const Logo = ({
   const logoContent = (
     <div className="relative group">
       <h1 className={cn("font-playfair font-bold flex items-center", fontSizes[size])}>
-        <span className="relative group-hover:scale-105 transition-transform duration-300">
-          <span className="relative z-10 text-gold">Gleam</span>
+        <span className="relative z-20 group-hover:scale-105 transition-transform duration-300">
+          <span className="relative z-10 text-gold bg-gradient-to-r from-gold-lighter to-gold bg-clip-text text-transparent">Gleam</span>
         </span>
-        <span className="text-gray-800 relative group-hover:scale-105 transition-transform duration-300 delay-75">
-          <span className="relative z-10 text-gold-lighter">Glow</span>
+        <span className="text-gray-800 relative z-20 group-hover:scale-105 transition-transform duration-300 delay-75">
+          <span className="relative z-10 text-gold-lighter bg-gradient-to-r from-gold to-gold-lighter bg-clip-text text-transparent">Glow</span>
         </span>
       </h1>
       <div className={cn(
@@ -36,6 +37,9 @@ const Logo = ({
           "h-[3px]": size === "large"
         }
       )}></div>
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <SparkleEffect count={6} minSize={3} maxSize={6} />
+      </div>
     </div>
   );
 
