@@ -7,7 +7,7 @@ interface PricingRates {
 }
 
 const PRICING_RATES: PricingRates = {
-  "Glow-Standard": { solo: 73.99, team: 103.99 },
+  "Glow-Standard": { solo: 77.99, team: 103.99 },
   "Glow-Deep": { solo: 84.99, team: 118.99 },
   "Glow-Move": { solo: 89.00, team: 124.99 },
 };

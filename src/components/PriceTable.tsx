@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const plans = [
   {
     name: "Glow-Standard",
-    rate: "$73.99 /hr",
+    rate: "$77.99 /hr",
     highlights: [
       "Whole-home coverage — bedrooms, living areas, halls",
       "Kitchen & bath refresh",

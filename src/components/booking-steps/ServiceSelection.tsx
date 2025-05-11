@@ -1,3 +1,4 @@
+
 import React from "react";
 import { GoldButton } from "@/components/ui/gold-button";
 
@@ -26,7 +27,7 @@ export const ServiceSelection: React.FC<ServiceSelectionProps> = ({
     {
       title: "Glow-Standard",
       description: "Our comprehensive cleaning service that covers every aspect of your home with meticulous attention to detail.",
-      rate: "$73.99 /hr",
+      rate: "$77.99 /hr",
       features: [
         "Whole-home coverage — bedrooms, living areas, halls",
         "Kitchen & bath refresh",
