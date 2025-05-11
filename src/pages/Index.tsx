@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -49,7 +50,7 @@ const Index = () => {
   ];
   
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#FFF8E9]">
       <ScrollIndicator />
       <Navbar />
       

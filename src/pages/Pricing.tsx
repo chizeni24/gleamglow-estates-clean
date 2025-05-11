@@ -10,7 +10,7 @@ const Pricing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-[#FFF8E9]">
       <Navbar />
       <div className="container-custom py-12 md:py-20">
         <div className="text-center mb-10">
