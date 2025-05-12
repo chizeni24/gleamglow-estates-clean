@@ -53,7 +53,7 @@ const Contact = () => {
                 <MapPin className="text-gold mr-4 flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Our Location</h4>
-                  <p className="text-gray-600">1234 Premium Lane, Austin, TX 78701</p>
+                  <p className="text-gray-600">8103 South Congress Avenue, Austin, TX 78745</p>
                 </div>
               </div>
               
@@ -61,7 +61,7 @@ const Contact = () => {
                 <Phone className="text-gold mr-4 flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
-                  <p className="text-gray-600">(512) 555-0123</p>
+                  <p className="text-gray-600">(210) 844-0190</p>
                 </div>
               </div>
               
@@ -69,7 +69,7 @@ const Contact = () => {
                 <Mail className="text-gold mr-4 flex-shrink-0 mt-1" size={20} />
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Email</h4>
-                  <p className="text-gray-600">contact@gleamglow.com</p>
+                  <p className="text-gray-600">admin@gleamglowtx.com</p>
                 </div>
               </div>
               
