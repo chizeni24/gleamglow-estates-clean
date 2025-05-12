@@ -10,7 +10,7 @@ interface StepsTabsProps {
 const StepsTabs: React.FC<StepsTabsProps> = ({ activeTab }) => {
   return (
     <div className="flex flex-col items-center">
-      <TabsList className="grid grid-cols-5 bg-gold-lighter/10 p-1 rounded-xl mb-8 w-full max-w-4xl">
+      <TabsList className="grid grid-cols-5 bg-gold-light/10 p-1 rounded-xl mb-8 w-full max-w-4xl">
         {steps.map((step) => (
           <TabsTrigger
             key={step.step}

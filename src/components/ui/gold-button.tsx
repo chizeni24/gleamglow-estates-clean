@@ -42,8 +42,8 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
         ref={ref}
         className={cn(
           "relative overflow-hidden font-medium rounded-md transition-all",
-          variant === "solid" && "bg-gradient-to-r from-gold to-gold-lighter text-white hover:bg-gold-dark",
-          variant === "outline" && "border-2 border-gold-lighter text-gold-lighter hover:bg-gold-lighter/10",
+          variant === "solid" && "bg-gold text-white hover:bg-gold-dark",
+          variant === "outline" && "border-2 border-gold text-gold hover:bg-gold/10",
           size === "sm" && "px-4 py-2 text-sm",
           size === "md" && "px-6 py-3",
           size === "lg" && "px-8 py-4 text-lg",
@@ -73,7 +73,7 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
         )}
         
         {showGlow && (
-          <span className="absolute inset-0 -z-10 bg-gold-lighter/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          <span className="absolute inset-0 -z-10 bg-gold-light/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity"></span>
         )}
         
         <span 
@@ -86,7 +86,7 @@ const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
         {variant === "outline" && (
           <span 
             className={cn(
-              "absolute inset-0 border-2 border-gold-lighter rounded-md opacity-0",
+              "absolute inset-0 border-2 border-gold rounded-md opacity-0",
               isHovered ? "animate-pulse-gold opacity-100" : ""
             )}
           ></span>

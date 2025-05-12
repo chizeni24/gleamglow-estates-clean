@@ -4,11 +4,16 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-[#FFF8E9] text-charcoal font-sans;
+  :root {
+    --radius: 0.5rem;
   }
-  h1, h2, h3, h4 {
-    @apply font-serif text-charcoal;
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair text-charcoal;
   }
 }
 
@@ -23,7 +28,7 @@
   }
   
   .section-padding {
-    @apply py-20 px-6 md:px-12 lg:px-24;
+    @apply py-16 md:py-24 px-6 md:px-12 lg:px-24;
   }
   
   .fade-in-gentle {
@@ -62,10 +67,10 @@
 }
 
 @keyframes gold-shimmer {
-  from {
+  0% {
     background-position: 0% 50%;
   }
-  to {
+  100% {
     background-position: 100% 50%;
   }
 }
@@ -84,4 +89,90 @@
   .animate-bounce-sm {
     animation: bounce 1s ease-in-out;
   }
+  
+  .gold-gradient {
+    background: linear-gradient(90deg, #F5EDD1 0%, #D4AF37 50%, #F5EDD1 100%);
+    background-size: 200% auto;
+  }
+  
+  .nav-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-0 after:left-0 after:bg-gold after:origin-bottom-right after:transition-transform after:duration-300 after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+}
+
+/* Better vertical spacing on mobile */
+@media (max-width: 767px) {
+  section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  h1 {
+    font-size: 2.25rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.875rem !important;
+  }
+  
+  .container-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Fix spacing issues on mobile */
+  .space-y-12 {
+    margin-bottom: 2rem;
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Improved responsive text scaling */
+@media (min-width: 1400px) {
+  html {
+    font-size: 16px; /* Base font size for large screens */
+  }
+  
+  .container-custom {
+    max-width: 1320px;
+  }
+  
+  h1 {
+    font-size: clamp(2.5rem, 2.8vw, 2.875rem);
+  }
+  
+  h2 {
+    font-size: clamp(2rem, 2.3vw, 2.25rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.5rem, 1.6vw, 1.75rem);
+  }
+  
+  p, li, a {
+    font-size: clamp(1rem, 1vw, 1.125rem);
+    line-height: 1.6;
+  }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus states for accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
 }

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -41,8 +42,8 @@ export const MobileNav = ({
         <a 
           href={to} 
           className={cn(
-            "transition-all duration-300 relative group overflow-hidden block w-full py-3",
-            isActive ? "text-gold-lighter" : "text-gold hover:text-gold-lighter"
+            "transition-all duration-300 nav-link block w-full py-3",
+            isActive ? "text-gold-dark after:scale-x-100" : "text-charcoal hover:text-gold"
           )}
           onClick={(e) => {
             handleSmoothScroll(e, sectionId);
@@ -50,7 +51,6 @@ export const MobileNav = ({
           }}
         >
           <span className="relative z-10">{text}</span>
-          <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
           {isActive && <SparkleEffect className="opacity-30" />}
         </a>
       );
@@ -58,11 +58,10 @@ export const MobileNav = ({
     return (
       <Link 
         to={`/${isAnchor ? sectionId : to}`} 
-        className="text-gold hover:text-gold-lighter transition-all duration-300 relative group overflow-hidden block w-full py-3"
+        className="text-charcoal hover:text-gold transition-all duration-300 nav-link block w-full py-3"
         onClick={toggleMenu}
       >
         <span className="relative z-10">{text}</span>
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-lighter to-transparent transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
       </Link>
     );
   };
@@ -83,7 +82,7 @@ export const MobileNav = ({
         {renderNavLink("Contact", "#contact")}
         <Link 
           to="/booking" 
-          className="relative overflow-hidden group text-white bg-gradient-to-r from-gold to-gold-lighter hover:from-gold-lighter hover:to-gold transition-all duration-300 px-6 py-3 rounded-md transform hover:scale-105 active:scale-95 w-full text-center mt-4"
+          className="relative overflow-hidden group text-white bg-gold hover:bg-gold-dark transition-all duration-300 px-6 py-3 rounded-md transform hover:scale-105 active:scale-95 w-full text-center mt-4"
           onClick={() => {
             toggleMenu();
             handleBookNowClick();
@@ -93,7 +92,6 @@ export const MobileNav = ({
             Book Now
             <Sparkle className="w-4 h-4" />
           </span>
-          <span className="absolute inset-0 bg-gradient-to-r from-gold-lighter to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Link>
       </div>
       
