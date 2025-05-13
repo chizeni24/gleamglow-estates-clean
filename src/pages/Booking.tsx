@@ -20,6 +20,8 @@ const BookingPage = () => {
     toast,
     navigate
   } = useBookingForm();
+  
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const steps = createBookingSteps({
     formData,
@@ -31,15 +33,26 @@ const BookingPage = () => {
     e.preventDefault();
     console.log("Form submitted in Booking.tsx:", formData);
     
+    if (isSubmitting) {
+      console.log("Submission already in progress, skipping");
+      return;
+    }
+    
     try {
+      setIsSubmitting(true);
+      
       // Show loading toast
-      toast({
+      const loadingToast = toast({
         title: "Submitting",
         description: "Please wait while we process your booking...",
       });
       
+      console.log("Calling submitBookingForm...");
       const response = await submitBookingForm(formData);
-      console.log("Submission response:", response);
+      console.log("Submission response received:", response);
+      
+      const responseData = await response.json();
+      console.log("Response data:", responseData);
       
       // Show success toast
       toast({
@@ -57,6 +70,8 @@ const BookingPage = () => {
         description: "There was an issue submitting the form. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
