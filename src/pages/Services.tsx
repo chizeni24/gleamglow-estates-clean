@@ -8,13 +8,7 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-[#FFF8E9]">
       <Navbar />
-      <div className="container-custom py-12 md:py-20">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">Our Cleaning Services</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Professional cleaning services for every home and budget, delivering quality results you can see and feel.
-          </p>
-        </div>
+      <div className="container-custom py-12 md:py-20 flex justify-center">
         <Services />
       </div>
       <Footer />

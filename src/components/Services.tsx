@@ -26,7 +26,7 @@ const Services = ({ isBookingStep, onServiceSelect }: ServicesProps) => {
   };
 
   return (
-    <section id="services" className="section-padding">
+    <section id="services" className="section-padding w-full max-w-7xl mx-auto">
       <div className="container-custom">
         {!isBookingStep && (
           <div className="text-center max-w-3xl mx-auto mb-16">
