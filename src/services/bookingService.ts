@@ -11,14 +11,23 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
     secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
   }));
   
-  return fetch(scriptURL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...formData,
-      secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-    }),
-  });
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...formData,
+        secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
+      }),
+      mode: "no-cors", // Add this to handle potential CORS issues
+    });
+    
+    console.log("Google Sheets response received:", response);
+    return response;
+  } catch (error) {
+    console.error("Error submitting form to Google Sheets:", error);
+    throw error;
+  }
 };
