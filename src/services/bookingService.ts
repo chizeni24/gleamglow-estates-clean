@@ -1,11 +1,29 @@
 
 import { BookingFormData } from "@/pages/booking/types";
 import { supabase } from "@/integrations/supabase/client";
+import { calculateEstimate } from "@/utils/pricing-calculator";
 
 export const submitBookingForm = async (formData: BookingFormData): Promise<Response> => {
   console.log("Submitting booking form:", formData);
   
   try {
+    console.log("Calculating price estimates");
+    
+    // Calculate pricing estimates
+    const priceEstimate = calculateEstimate(
+      parseInt(formData.bedrooms), 
+      parseInt(formData.bathrooms),
+      formData.service,
+      formData.teamSize || "1",
+      formData.squareFootage,
+      parseInt(formData.kitchens)
+    );
+    
+    const lowPrice = priceEstimate?.low || null;
+    const highPrice = priceEstimate?.high || null;
+    const estimatedTime = priceEstimate?.estimatedTime || null;
+    
+    console.log("Price estimates:", { lowPrice, highPrice, estimatedTime });
     console.log("Saving to Supabase");
     
     const { data: bookingData, error: bookingError } = await supabase
@@ -26,7 +44,11 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
         square_footage: formData.squareFootage,
         cleaning_frequency: formData.cleaningFrequency,
         pets: formData.pets,
-        special_requirements: formData.specialRequirements
+        special_requirements: formData.specialRequirements,
+        price_low: lowPrice,
+        price_high: highPrice,
+        estimated_time: estimatedTime,
+        team_size: formData.teamSize || "1"
       });
       
     if (bookingError) {

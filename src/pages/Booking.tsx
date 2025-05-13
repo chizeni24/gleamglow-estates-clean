@@ -82,12 +82,10 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF8E9]">
-      <div className="pt-24">
-        <Navbar />
-      </div>
-
-      <div className="container-custom py-8">
+    <div className="flex flex-col min-h-screen bg-[#FFF8E9]">
+      <Navbar />
+      
+      <main className="flex-grow container-custom pt-24 pb-16">
         <div className="text-center mb-6">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Book Your Service</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -121,7 +119,7 @@ const BookingPage = () => {
             </div>
           )}
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>

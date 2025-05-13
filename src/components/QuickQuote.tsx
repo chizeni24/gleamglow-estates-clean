@@ -10,24 +10,35 @@ interface QuickQuoteProps {
   bedrooms: number;
   bathrooms: number;
   service?: string;
+  initialTeamSize?: "1" | "2";
+  onTeamSizeChange?: (teamSize: "1" | "2") => void;
 }
 
 export const QuickQuote: React.FC<QuickQuoteProps> = ({
   bedrooms,
   bathrooms,
-  service = "Glow-Standard"
+  service = "Glow-Standard",
+  initialTeamSize = "1",
+  onTeamSizeChange
 }) => {
   const [estimate, setEstimate] = React.useState<{
     low: number;
     high: number;
     estimatedTime: number;
   } | null>(null);
-  const [teamSize, setTeamSize] = React.useState<"1" | "2">("1");
+  const [teamSize, setTeamSize] = React.useState<"1" | "2">(initialTeamSize);
 
   React.useEffect(() => {
     const newEstimate = calculateEstimate(bedrooms, bathrooms, service, teamSize);
     setEstimate(newEstimate);
   }, [teamSize, bedrooms, bathrooms, service]);
+
+  const handleTeamSizeChange = (value: "1" | "2") => {
+    setTeamSize(value);
+    if (onTeamSizeChange) {
+      onTeamSizeChange(value);
+    }
+  };
 
   return (
     <Card className="bg-white border border-gold-light/50 shadow-lg">
@@ -42,7 +53,7 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
       <CardContent className="space-y-6">
         <TeamSizeSelector 
           value={teamSize} 
-          onValueChange={setTeamSize} 
+          onValueChange={handleTeamSizeChange} 
         />
 
         {service === "Glow-Occasion" ? (

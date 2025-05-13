@@ -25,4 +25,5 @@ export interface BookingFormData {
   cleaningFrequency: string;
   pets: string;
   specialRequirements: string;
+  teamSize?: "1" | "2";
 }

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { BookingFormData } from "@/pages/booking/types";
 
 export const useBookingForm = () => {
@@ -29,6 +29,7 @@ export const useBookingForm = () => {
     cleaningFrequency: "one-time",
     pets: "no",
     specialRequirements: "",
+    teamSize: "1",
   });
 
   useEffect(() => {
@@ -39,6 +40,20 @@ export const useBookingForm = () => {
       }
     }
   }, [serviceParam, currentStep, stepParam]);
+
+  // Listen for team size changes from the BookingSummary component
+  useEffect(() => {
+    const handleTeamSizeChange = (e: CustomEvent) => {
+      const { teamSize } = e.detail;
+      setFormData(prev => ({ ...prev, teamSize }));
+    };
+
+    document.addEventListener('teamSizeChanged', handleTeamSizeChange as EventListener);
+    
+    return () => {
+      document.removeEventListener('teamSizeChanged', handleTeamSizeChange as EventListener);
+    };
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

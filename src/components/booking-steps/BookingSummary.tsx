@@ -16,10 +16,23 @@ interface BookingSummaryProps {
     cleaningFrequency: string;
     notes?: string;
     specialRequirements?: string;
+    teamSize?: "1" | "2";
   };
 }
 
 export const BookingSummary: React.FC<BookingSummaryProps> = ({ formData }) => {
+  const [teamSize, setTeamSize] = React.useState<"1" | "2">(formData.teamSize || "1");
+
+  // Update parent form data when team size changes
+  React.useEffect(() => {
+    if (formData.teamSize !== teamSize) {
+      const event = new CustomEvent('teamSizeChanged', { 
+        detail: { teamSize } 
+      });
+      document.dispatchEvent(event);
+    }
+  }, [teamSize, formData.teamSize]);
+
   return (
     <div className="space-y-6 mt-6">
       <div className="bg-gray-50 p-6 rounded-lg">
@@ -84,6 +97,8 @@ export const BookingSummary: React.FC<BookingSummaryProps> = ({ formData }) => {
           bedrooms={Number(formData.bedrooms)} 
           bathrooms={Number(formData.bathrooms)}
           service={formData.service}
+          onTeamSizeChange={setTeamSize}
+          initialTeamSize={teamSize}
         />
       </div>
     </div>
