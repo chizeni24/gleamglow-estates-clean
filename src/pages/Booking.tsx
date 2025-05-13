@@ -42,7 +42,7 @@ const BookingPage = () => {
       setIsSubmitting(true);
       
       // Show loading toast
-      const loadingToast = toast({
+      toast({
         title: "Submitting",
         description: "Please wait while we process your booking...",
       });
@@ -54,15 +54,19 @@ const BookingPage = () => {
       const responseData = await response.json();
       console.log("Response data:", responseData);
       
-      // Show success toast
-      toast({
-        title: "Booking Confirmed",
-        description: "We've received your booking request. Thank you!",
-      });
+      if (responseData.success) {
+        // Show success toast
+        toast({
+          title: "Booking Confirmed",
+          description: "We've received your booking request. Thank you!",
+        });
 
-      setTimeout(() => {
-        navigate("/", { replace: true });
-      }, 3000);
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 3000);
+      } else {
+        throw new Error(responseData.message || "Unknown error occurred");
+      }
     } catch (error) {
       console.error("Booking error:", error);
       toast({
