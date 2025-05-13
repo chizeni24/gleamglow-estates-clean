@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -38,11 +37,9 @@ const BookingPage = () => {
         description: "Please wait while we process your booking...",
       });
       
-      const response = await submitBookingForm(formData);
-      console.log("Response received:", response);
+      await submitBookingForm(formData);
       
-      // With no-cors mode, we won't get a proper status code
-      // So we'll just assume success if no error was thrown
+      // Show success toast
       toast({
         title: "Booking Confirmed",
         description: "We've received your booking request. Thank you!",

@@ -1,17 +1,34 @@
 
 import { BookingFormData } from "@/pages/booking/types";
+import { supabase } from "@/integrations/supabase/client";
 
 export const submitBookingForm = async (formData: BookingFormData): Promise<Response> => {
   console.log("Submitting booking form:", formData);
   
   const scriptURL = "https://script.google.com/macros/s/AKfycbyO59rqvkF7AldaM6TuswARY_HnPsqIVpDKRerNXyyNRmv8ut05GEHA4P0a3bL0i79e/exec";
   
-  console.log("Sending data to Google Sheets:", JSON.stringify({
-    ...formData,
-    secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-  }));
-  
   try {
+    // First, save to Supabase
+    const { data: bookingData, error: bookingError } = await supabase
+      .from('bookings')
+      .insert({
+        ...formData
+      })
+      .select();
+      
+    if (bookingError) {
+      console.error("Error saving booking to Supabase:", bookingError);
+      throw bookingError;
+    }
+    
+    console.log("Booking saved to Supabase:", bookingData);
+    
+    // Then, send to Google Sheets as backup
+    console.log("Sending data to Google Sheets:", JSON.stringify({
+      ...formData,
+      secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
+    }));
+    
     const response = await fetch(scriptURL, {
       method: "POST",
       headers: {
@@ -27,7 +44,7 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
     console.log("Google Sheets response received:", response);
     return response;
   } catch (error) {
-    console.error("Error submitting form to Google Sheets:", error);
+    console.error("Error in booking submission:", error);
     throw error;
   }
 };
