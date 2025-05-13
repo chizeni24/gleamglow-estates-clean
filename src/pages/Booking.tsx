@@ -1,102 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { useToast } from "@/components/ui/use-toast";
+
+import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Services from "@/components/Services";
-import { DateTimeSelection } from "@/components/booking-steps/DateTimeSelection";
-import { PropertyDetails } from "@/components/booking-steps/PropertyDetails";
-import { ContactInfo } from "@/components/booking-steps/ContactInfo";
-import { ServiceAddress } from "@/components/booking-steps/ServiceAddress";
-import { BookingSummary } from "@/components/booking-steps/BookingSummary";
 import { StepIndicator } from "./booking/StepIndicator";
 import { BookingForm } from "./booking/BookingForm";
-import type { Step, BookingFormData } from "./booking/types";
+import { useBookingForm } from "@/hooks/useBookingForm";
+import { submitBookingForm } from "@/services/bookingService";
+import { createBookingSteps } from "@/components/booking-steps/BookingSteps";
 
 const BookingPage = () => {
-  const { toast } = useToast();
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const serviceParam = searchParams.get('service');
-  const stepParam = searchParams.get('step');
-  
-  const [currentStep, setCurrentStep] = useState(stepParam ? parseInt(stepParam) : 0);
-  const [formData, setFormData] = useState<BookingFormData>({
-    service: serviceParam || "",
-    date: "",
-    time: "",
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    notes: "",
-    bedrooms: "1",
-    bathrooms: "1",
-    kitchens: "1",
-    livingAreas: "1",
-    squareFootage: "",
-    cleaningFrequency: "one-time",
-    pets: "no",
-    specialRequirements: "",
+  const {
+    formData,
+    currentStep,
+    handleInputChange,
+    handleServiceSelect,
+    nextStep,
+    prevStep,
+    toast,
+    navigate
+  } = useBookingForm();
+
+  const steps = createBookingSteps({
+    formData,
+    handleInputChange,
+    handleServiceSelect,
   });
-
-  useEffect(() => {
-    if (serviceParam) {
-      setFormData(prev => ({ ...prev, service: serviceParam }));
-      if (currentStep === 0 && !stepParam) {
-        setCurrentStep(1);
-      }
-    }
-  }, [serviceParam, currentStep, stepParam]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleServiceSelect = (service: string) => {
-    setFormData((prev) => ({ ...prev, service }));
-    nextStep();
-    navigate(`/booking?service=${encodeURIComponent(service)}`, { replace: true });
-  };
-
-  const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep((prev) => prev + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep((prev) => prev - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted in Booking.tsx:", formData);
     
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxr1HmvBXJaJkeE_A3mlI2-kxcaKsFshEuCjYEEO6vzVSkJKGKeUX7ebVXZH4oZyYQY/exec";
-
     try {
-      console.log("Sending data to Google Sheets:", JSON.stringify({
-        ...formData,
-        secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-      }));
-      
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-        }),
-      });
-
+      const response = await submitBookingForm(formData);
       console.log("Response status:", response.status);
       
       if (!response.ok) {
@@ -120,45 +56,6 @@ const BookingPage = () => {
       });
     }
   };
-
-  const steps: Step[] = [
-    {
-      id: "service",
-      title: "Select Service",
-      description: "Choose the service that best fits your needs",
-      component: <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
-    },
-    {
-      id: "propertyDetails",
-      title: "Property Details",
-      description: "Tell us about your property",
-      component: <PropertyDetails formData={formData} handleInputChange={handleInputChange} />
-    },
-    {
-      id: "datetime",
-      title: "Select Date & Time",
-      description: "Choose your preferred date and time for the service",
-      component: <DateTimeSelection formData={formData} handleInputChange={handleInputChange} />
-    },
-    {
-      id: "contact",
-      title: "Your Information",
-      description: "Please provide your contact details",
-      component: <ContactInfo formData={formData} handleInputChange={handleInputChange} />
-    },
-    {
-      id: "address",
-      title: "Service Address",
-      description: "Where would you like us to provide the service?",
-      component: <ServiceAddress formData={formData} handleInputChange={handleInputChange} />
-    },
-    {
-      id: "confirm",
-      title: "Confirm Your Booking",
-      description: "Please review your information before submitting",
-      component: <BookingSummary formData={formData} />
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-[#FFF8E9]">
