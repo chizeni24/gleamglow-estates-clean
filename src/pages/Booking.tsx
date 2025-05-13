@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -37,7 +38,8 @@ const BookingPage = () => {
         description: "Please wait while we process your booking...",
       });
       
-      await submitBookingForm(formData);
+      const response = await submitBookingForm(formData);
+      console.log("Submission response:", response);
       
       // Show success toast
       toast({

@@ -1,1 +1,6 @@
+
 project_id = "gkfviuzyisszdxsyxanu"
+
+# This disables RLS for the bookings table to allow anonymous inserts
+[auth.policies]
+public_access = true

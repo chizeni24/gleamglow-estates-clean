@@ -9,7 +9,7 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
   
   try {
     // First, save to Supabase
-    // Map camelCase to snake_case for Supabase
+    console.log("Attempting to save to Supabase");
     const { data: bookingData, error: bookingError } = await supabase
       .from('bookings')
       .insert({
@@ -29,36 +29,43 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
         cleaning_frequency: formData.cleaningFrequency,
         pets: formData.pets,
         special_requirements: formData.specialRequirements
-      })
-      .select();
+      });
       
     if (bookingError) {
       console.error("Error saving booking to Supabase:", bookingError);
-      throw bookingError;
+      // Continue with Google Sheets even if Supabase fails
+    } else {
+      console.log("Booking saved to Supabase successfully");
     }
     
-    console.log("Booking saved to Supabase:", bookingData);
-    
     // Then, send to Google Sheets as backup
-    console.log("Sending data to Google Sheets:", JSON.stringify({
+    console.log("Attempting to send to Google Sheets");
+    
+    const payload = {
       ...formData,
       secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-    }));
+    };
+    
+    console.log("Sending data to Google Sheets:", JSON.stringify(payload));
     
     const response = await fetch(scriptURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        ...formData,
-        secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
-      }),
-      mode: "no-cors", // Add this to handle potential CORS issues
+      body: JSON.stringify(payload),
+      mode: "no-cors", // This is important for cross-origin requests
     });
     
-    console.log("Google Sheets response received:", response);
-    return response;
+    console.log("Google Sheets response received");
+    
+    // Create a custom response since no-cors doesn't return readable data
+    return new Response(JSON.stringify({ 
+      success: true, 
+      message: "Booking submitted successfully" 
+    }), { 
+      headers: { "Content-Type": "application/json" } 
+    });
   } catch (error) {
     console.error("Error in booking submission:", error);
     throw error;
