@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -79,7 +78,7 @@ const BookingPage = () => {
     e.preventDefault();
     console.log("Form submitted in Booking.tsx:", formData);
     
-    const scriptURL = "https://script.google.com/a/macros/gleamglowtx.com/s/AKfycbzucvDIqcZe59oZP45EPVMfP_Ni3vr4IBL06J9LTd36SgVRTGZ0gjIZO7OFFxxaOscAgg/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxr1HmvBXJaJkeE_A3mlI2-kxcaKsFshEuCjYEEO6vzVSkJKGKeUX7ebVXZH4oZyYQY/exec";
 
     try {
       console.log("Sending data to Google Sheets:", JSON.stringify({
