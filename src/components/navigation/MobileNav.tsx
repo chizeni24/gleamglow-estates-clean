@@ -23,13 +23,17 @@ export const MobileNav = ({
 }: MobileNavProps) => {
   const { toast } = useToast();
   const location = useLocation();
+  const isBookingPage = location.pathname.includes('/booking');
+  const isThankYouPage = location.pathname.includes('/thank-you');
 
   const handleBookNowClick = () => {
-    toast({
-      title: "Booking Request Received",
-      description: "We'll contact you shortly to schedule your appointment!",
-      duration: 5000,
-    });
+    if (!isBookingPage && !isThankYouPage) {
+      toast({
+        title: "Booking Request",
+        description: "Taking you to our booking page",
+        duration: 3000,
+      });
+    }
     toggleMenu();
   };
 
@@ -57,7 +61,7 @@ export const MobileNav = ({
     }
     return (
       <Link 
-        to={`/${isAnchor ? sectionId : to}`} 
+        to={`/${isAnchor ? '' : to}`} 
         className="text-charcoal hover:text-gold transition-all duration-300 nav-link block w-full py-3"
         onClick={toggleMenu}
       >
@@ -74,25 +78,28 @@ export const MobileNav = ({
       )}
     >
       <div className="flex flex-col p-6 space-y-4 mt-16">
-        {renderNavLink("Home", isHomePage ? "#home" : "/")}
+        {renderNavLink("Home", isHomePage ? "#home" : "/", false)}
         {renderNavLink("About", "#about")}
         {renderNavLink("Our Story", "#our-story")}
+        {renderNavLink("Services", "services", false)}
         {renderNavLink("FAQ", "#faq")}
         {renderNavLink("Testimonials", "#testimonials")}
         {renderNavLink("Contact", "#contact")}
-        <Link 
-          to="/booking" 
-          className="relative overflow-hidden group text-white bg-gold hover:bg-gold-dark transition-all duration-300 px-6 py-3 rounded-md transform hover:scale-105 active:scale-95 w-full text-center mt-4"
-          onClick={() => {
-            toggleMenu();
-            handleBookNowClick();
-          }}
-        >
-          <span className="relative z-10 flex items-center justify-center gap-2">
-            Book Now
-            <Sparkle className="w-4 h-4" />
-          </span>
-        </Link>
+        {!isBookingPage && !isThankYouPage && (
+          <Link 
+            to="/booking" 
+            className="relative overflow-hidden group text-white bg-gold hover:bg-gold-dark transition-all duration-300 px-6 py-3 rounded-md transform hover:scale-105 active:scale-95 w-full text-center mt-4"
+            onClick={() => {
+              toggleMenu();
+              handleBookNowClick();
+            }}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              Book Now
+              <Sparkle className="w-4 h-4" />
+            </span>
+          </Link>
+        )}
       </div>
       
       <div className="absolute bottom-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>

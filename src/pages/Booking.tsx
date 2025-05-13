@@ -61,9 +61,11 @@ const BookingPage = () => {
           description: "We've received your booking request. Thank you!",
         });
 
-        setTimeout(() => {
-          navigate("/", { replace: true });
-        }, 3000);
+        // Navigate to thank you page with booking data
+        navigate("/thank-you", { 
+          replace: true,
+          state: { bookingData: formData } 
+        });
       } else {
         throw new Error(responseData.message || "Unknown error occurred");
       }
@@ -81,7 +83,9 @@ const BookingPage = () => {
 
   return (
     <div className="min-h-screen bg-[#FFF8E9]">
-      <Navbar />
+      <div className="pt-24">
+        <Navbar />
+      </div>
 
       <div className="container-custom py-8">
         <div className="text-center mb-6">

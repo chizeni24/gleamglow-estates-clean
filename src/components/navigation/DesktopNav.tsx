@@ -15,14 +15,17 @@ interface DesktopNavProps {
 export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: DesktopNavProps) => {
   const { toast } = useToast();
   const location = useLocation();
-  const isBookingPage = location.pathname === '/booking';
+  const isBookingPage = location.pathname.includes('/booking');
+  const isThankYouPage = location.pathname.includes('/thank-you');
 
   const handleBookNowClick = () => {
-    toast({
-      title: "Booking Request Received",
-      description: "We'll contact you shortly to schedule your appointment!",
-      duration: 5000,
-    });
+    if (!isBookingPage && !isThankYouPage) {
+      toast({
+        title: "Booking Request",
+        description: "Taking you to our booking page",
+        duration: 3000,
+      });
+    }
   };
 
   const renderNavLink = (text: string, to: string, isAnchor: boolean = true) => {
@@ -46,7 +49,7 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
     }
     return (
       <Link 
-        to={`/${isAnchor ? sectionId : to}`} 
+        to={`/${isAnchor ? '' : to}`} 
         className="text-charcoal hover:text-gold transition-all duration-300 nav-link"
       >
         {text}
@@ -56,13 +59,14 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
 
   return (
     <div className="hidden md:flex space-x-8 items-center">
-      {renderNavLink("Home", isHomePage ? "#home" : "/")}
+      {renderNavLink("Home", isHomePage ? "#home" : "/", false)}
       {renderNavLink("About", "#about")}
       {renderNavLink("Our Story", "#our-story")}
+      {renderNavLink("Services", "services", false)}
       {renderNavLink("FAQ", "#faq")}
       {renderNavLink("Testimonials", "#testimonials")}
       {renderNavLink("Contact", "#contact")}
-      {!isBookingPage && (
+      {!isBookingPage && !isThankYouPage && (
         <Link 
           to="/booking" 
           className="relative overflow-hidden group text-white bg-gold hover:bg-gold-dark transition-all duration-300 px-6 py-2.5 rounded-md transform hover:scale-105 active:scale-95"
