@@ -21,6 +21,7 @@ export const BookingForm = ({
 }: BookingFormProps) => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submission triggered");
     onSubmit(e);
   };
 

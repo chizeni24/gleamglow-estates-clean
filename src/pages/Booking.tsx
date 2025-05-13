@@ -77,11 +77,12 @@ const BookingPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted:", formData);
     
     const scriptURL = "https://script.google.com/a/macros/gleamglowtx.com/s/AKfycbzucvDIqcZe59oZP45EPVMfP_Ni3vr4IBL06J9LTd36SgVRTGZ0gjIZO7OFFxxaOscAgg/exec";
 
     try {
-      const res = await fetch(scriptURL, {
+      const response = await fetch(scriptURL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +93,11 @@ const BookingPage = () => {
         }),
       });
 
-      if (!res.ok) throw new Error("Form failed");
+      console.log("Response status:", response.status);
+      
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
 
       toast({
         title: "Booking Confirmed",
@@ -106,7 +111,8 @@ const BookingPage = () => {
       console.error("Booking error:", error);
       toast({
         title: "Error",
-        description: "There was an issue submitting the form.",
+        description: "There was an issue submitting the form. Please try again.",
+        variant: "destructive",
       });
     }
   };
