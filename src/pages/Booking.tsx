@@ -77,11 +77,16 @@ const BookingPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    console.log("Form submitted in Booking.tsx:", formData);
     
     const scriptURL = "https://script.google.com/a/macros/gleamglowtx.com/s/AKfycbzucvDIqcZe59oZP45EPVMfP_Ni3vr4IBL06J9LTd36SgVRTGZ0gjIZO7OFFxxaOscAgg/exec";
 
     try {
+      console.log("Sending data to Google Sheets:", JSON.stringify({
+        ...formData,
+        secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
+      }));
+      
       const response = await fetch(scriptURL, {
         method: "POST",
         headers: {

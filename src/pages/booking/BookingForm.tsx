@@ -1,4 +1,3 @@
-
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { BookingFormData, Step } from "./types";
 
@@ -96,6 +95,10 @@ export const BookingForm = ({
         ) : (
           <button
             type="submit"
+            onClick={(e) => {
+              console.log("Submit button clicked");
+              handleFormSubmit(e);
+            }}
             className="flex items-center bg-gold text-white px-6 py-3 rounded-md hover:bg-gold-dark transition-colors duration-300"
           >
             Confirm Booking
