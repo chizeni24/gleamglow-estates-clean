@@ -75,16 +75,40 @@ const BookingPage = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Booking Requested",
-      description: "We'll contact you shortly to confirm your appointment.",
-    });
-    setTimeout(() => {
-      navigate("/", { replace: true });
-    }, 3000);
+    
+    const scriptURL = "https://script.google.com/a/macros/gleamglowtx.com/s/AKfycbzucvDIqcZe59oZP45EPVMfP_Ni3vr4IBL06J9LTd36SgVRTGZ0gjIZO7OFFxxaOscAgg/exec";
+
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          secret: "GLEAM-KEY-92fjw28u3dh4n38s03a",
+        }),
+      });
+
+      if (!res.ok) throw new Error("Form failed");
+
+      toast({
+        title: "Booking Confirmed",
+        description: "We've received your request. Thank you!",
+      });
+
+      setTimeout(() => {
+        navigate("/", { replace: true });
+      }, 3000);
+    } catch (error) {
+      console.error("Booking error:", error);
+      toast({
+        title: "Error",
+        description: "There was an issue submitting the form.",
+      });
+    }
   };
 
   const steps: Step[] = [
