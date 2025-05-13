@@ -9,10 +9,26 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
   
   try {
     // First, save to Supabase
+    // Map camelCase to snake_case for Supabase
     const { data: bookingData, error: bookingError } = await supabase
       .from('bookings')
       .insert({
-        ...formData
+        service: formData.service,
+        date: formData.date,
+        time: formData.time,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        notes: formData.notes,
+        bedrooms: formData.bedrooms,
+        bathrooms: formData.bathrooms,
+        kitchens: formData.kitchens,
+        living_areas: formData.livingAreas,
+        square_footage: formData.squareFootage,
+        cleaning_frequency: formData.cleaningFrequency,
+        pets: formData.pets,
+        special_requirements: formData.specialRequirements
       })
       .select();
       
