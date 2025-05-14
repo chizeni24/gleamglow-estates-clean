@@ -19,12 +19,15 @@ export const submitBookingForm = async (formData: BookingFormData): Promise<Resp
       parseInt(formData.kitchens)
     );
     
-    const lowPrice = priceEstimate?.low || null;
-    const highPrice = priceEstimate?.high || null;
-    const estimatedTime = priceEstimate?.estimatedTime || null;
+    console.log("Raw price estimates:", priceEstimate);
     
-    console.log("Price estimates:", { lowPrice, highPrice, estimatedTime });
-    console.log("Saving to Supabase");
+    // Make sure we have numeric values for the database
+    const lowPrice = priceEstimate?.low ? Number(priceEstimate.low) : null;
+    const highPrice = priceEstimate?.high ? Number(priceEstimate.high) : null;
+    const estimatedTime = priceEstimate?.estimatedTime ? Number(priceEstimate.estimatedTime) : null;
+    
+    console.log("Formatted price estimates:", { lowPrice, highPrice, estimatedTime });
+    console.log("Saving to Supabase with team size:", formData.teamSize || "1");
     
     const { data: bookingData, error: bookingError } = await supabase
       .from('bookings')

@@ -34,9 +34,11 @@ export const calculateEstimate = (
     return null;
   }
 
+  // Default to Glow-Standard if service is not in our pricing rates
+  const serviceRates = PRICING_RATES[service] || PRICING_RATES["Glow-Standard"];
   const baseRate = teamSize === "2" 
-    ? PRICING_RATES[service]?.team 
-    : PRICING_RATES[service]?.solo;
+    ? serviceRates.team 
+    : serviceRates.solo;
 
   // Calculate base time and apply 15% buffer
   const baseTime = calculateBaseTime(bedrooms, bathrooms, kitchens, squareFootage);
@@ -48,9 +50,10 @@ export const calculateEstimate = (
   // Calculate final price
   const total = baseRate * adjustedTime;
   
+  // Ensure we return numeric values
   return {
     low: Math.round(total * 0.9),
     high: Math.round(total * 1.1),
-    estimatedTime: adjustedTime
+    estimatedTime: parseFloat(adjustedTime.toFixed(2))
   };
 };
