@@ -126,7 +126,8 @@ const Carousel = React.forwardRef<
       if (!api) return;
       
       // Disable dragging for the booking form carousel
-      api.on('pointerDown', () => {
+      // Fix: Pass both parameters to the pointerDown event handler
+      api.on('pointerDown', (_: any, event: MouseEvent | TouchEvent) => {
         return false; // Preventing the default embla behavior
       });
       
