@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,15 +20,21 @@ export default {
     extend: {
       colors: {
         border: 'hsl(45 30% 75%)',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        input: 'hsl(45 30% 90%)',
+        ring: 'hsl(45 40% 50%)',
         background: 'hsl(0 0% 100%)',
         foreground: 'hsl(222.2 84% 4.9%)',
         gold: { 
           light: '#F5EDD1', 
           DEFAULT: '#D4AF37', 
           dark: '#9C7C38',
-          lighter: '#F5EDD1'
+          lighter: '#F5EDD1',
+          accent: '#F0E6C0'
+        },
+        cream: {
+          light: '#FFF8E9',
+          DEFAULT: '#F9F3E3',
+          dark: '#EFE9D9'
         },
         offWhite: '#FFFFFF',
         charcoal: '#1A1A1A',
@@ -38,28 +43,28 @@ export default {
           foreground: 'hsl(0 0% 100%)'
         },
         secondary: {
-          DEFAULT: 'hsl(45 45% 85%)',
+          DEFAULT: 'hsl(45 45% 92%)',
           foreground: 'hsl(222.2 47.4% 11.2%)'
         },
         destructive: {
           DEFAULT: 'hsl(0 84.2% 60.2%)',
-          foreground: 'hsl(var(--destructive-foreground))'
+          foreground: 'hsl(0 0% 98%)'
         },
         muted: {
-          DEFAULT: 'hsl(210 40% 96.1%)',
-          foreground: 'hsl(var(--muted-foreground))'
+          DEFAULT: 'hsl(45 30% 96%)',
+          foreground: 'hsl(45 10% 40%)'
         },
         accent: {
           DEFAULT: 'hsl(45 45% 85%)',
-          foreground: 'hsl(var(--accent-foreground))'
+          foreground: 'hsl(45 30% 20%)'
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
+          DEFAULT: 'hsl(0 0% 100%)',
+          foreground: 'hsl(222.2 84% 4.9%)'
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
+          DEFAULT: 'hsl(0 0% 100%)',
+          foreground: 'hsl(222.2 84% 4.9%)'
         },
         sidebar: {
           DEFAULT: 'hsl(0 0% 98%)',
@@ -68,8 +73,8 @@ export default {
           'primary-foreground': 'hsl(0 0% 98%)',
           accent: 'hsl(240 4.8% 95.9%)',
           'accent-foreground': 'hsl(240 5.9% 10%)',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))'
+          border: 'hsl(45 30% 75%)',
+          ring: 'hsl(45 40% 50%)'
         }
       },
       fontFamily: {
@@ -125,6 +130,11 @@ export default {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' }
         },
+        'gold-shine': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' }
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -138,6 +148,7 @@ export default {
         'shimmer': 'shimmer 2s linear infinite',
         'twinkle': 'twinkle 4s ease-in-out infinite',
         'spin-slow': 'spin-slow 20s linear infinite',
+        'gold-shine': 'gold-shine 3s ease infinite',
       },
       blur: {
         '4xl': '100px',

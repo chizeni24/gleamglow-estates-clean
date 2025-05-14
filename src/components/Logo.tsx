@@ -23,10 +23,10 @@ const Logo = ({
     <div className="relative group">
       <h1 className={cn("font-playfair font-bold flex items-center", fontSizes[size])}>
         <span className="relative z-20 group-hover:scale-105 transition-transform duration-300">
-          <span className="relative z-10 text-gold bg-gradient-to-r from-gold-light to-gold bg-clip-text text-transparent">Gleam</span>
+          <span className="relative z-10 bg-gradient-to-r from-gold-light to-gold bg-clip-text text-transparent">Gleam</span>
         </span>
         <span className="text-gray-800 relative z-20 group-hover:scale-105 transition-transform duration-300 delay-75">
-          <span className="relative z-10 text-gold-dark bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent">Glow</span>
+          <span className="relative z-10 bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent">Glow</span>
         </span>
       </h1>
       <div className={cn(

@@ -13,10 +13,10 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #D4AF37aa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #D4AF37aa);
 }
 
 .card {
@@ -115,7 +115,7 @@
 
 /* Focus states for accessibility */
 a:focus, button:focus, input:focus, textarea:focus, select:focus {
-  outline: 2px solid #EBD27D;
+  outline: 2px solid #D4AF37;
   outline-offset: 2px;
 }
 

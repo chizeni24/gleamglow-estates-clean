@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +9,7 @@
   }
   
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-cream-light text-foreground font-sans;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -18,12 +19,12 @@
 
 @layer components {
   .btn-gold {
-    @apply inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-lighter text-white font-semibold shadow-md
-           hover:bg-gold-dark transition duration-200 hover:shadow-lg hover:-translate-y-0.5;
+    @apply inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-gold to-gold-dark text-white font-semibold shadow-md
+           hover:bg-gold-dark transition duration-300 hover:shadow-lg hover:-translate-y-0.5;
   }
   
   .title-underline {
-    @apply relative pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-gradient-to-r after:from-gold-lighter after:via-gold after:to-transparent;
+    @apply relative pb-3 after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:bg-gradient-to-r after:from-gold after:via-gold after:to-gold-light;
   }
   
   .section-padding {
@@ -37,11 +38,11 @@
   }
   
   .gleam-text {
-    @apply bg-gradient-to-r from-gold-lighter to-gold bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-gold-light to-gold bg-clip-text text-transparent;
   }
   
   .glow-text {
-    @apply bg-gradient-to-r from-gold to-gold-lighter bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-gold to-gold-dark bg-clip-text text-transparent;
   }
   
   .container-custom {

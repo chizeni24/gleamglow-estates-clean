@@ -38,7 +38,7 @@ export const DesktopNav = ({ isHomePage, handleSmoothScroll, activeSection }: De
           href={to} 
           className={cn(
             "transition-all duration-300 nav-link",
-            isActive ? "text-gold-dark after:scale-x-100" : "text-charcoal hover:text-gold"
+            isActive ? "text-gold after:scale-x-100" : "text-charcoal hover:text-gold"
           )}
           onClick={(e) => handleSmoothScroll(e, sectionId)}
         >
