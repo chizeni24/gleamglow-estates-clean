@@ -11,7 +11,7 @@ export const useBookingForm = () => {
   const serviceParam = searchParams.get('service');
   const stepParam = searchParams.get('step');
   
-  const [currentStep, setCurrentStep] = useState(stepParam ? parseInt(stepParam) : 0);
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<BookingFormData>({
     service: serviceParam || "",
     date: "",
@@ -35,11 +35,9 @@ export const useBookingForm = () => {
   useEffect(() => {
     if (serviceParam) {
       setFormData(prev => ({ ...prev, service: serviceParam }));
-      if (currentStep === 0 && !stepParam) {
-        setCurrentStep(1);
-      }
+      // We no longer skip to step 1, to allow users to choose the service properly
     }
-  }, [serviceParam, currentStep, stepParam]);
+  }, [serviceParam]);
 
   // Listen for team size changes from the BookingSummary component
   useEffect(() => {
@@ -63,7 +61,7 @@ export const useBookingForm = () => {
   const handleServiceSelect = (service: string) => {
     setFormData((prev) => ({ ...prev, service }));
     nextStep();
-    navigate(`/booking?service=${encodeURIComponent(service)}`, { replace: true });
+    navigate(`/booking`, { replace: true });
   };
 
   const nextStep = () => {
