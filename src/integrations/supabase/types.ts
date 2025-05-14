@@ -18,6 +18,7 @@ export type Database = {
           created_at: string
           date: string
           email: string
+          estimated_time: number | null
           id: string
           kitchens: string
           living_areas: string
@@ -25,9 +26,12 @@ export type Database = {
           notes: string | null
           pets: string
           phone: string
+          price_high: number | null
+          price_low: number | null
           service: string
           special_requirements: string | null
           square_footage: string | null
+          team_size: string | null
           time: string
         }
         Insert: {
@@ -38,6 +42,7 @@ export type Database = {
           created_at?: string
           date: string
           email: string
+          estimated_time?: number | null
           id?: string
           kitchens: string
           living_areas: string
@@ -45,9 +50,12 @@ export type Database = {
           notes?: string | null
           pets: string
           phone: string
+          price_high?: number | null
+          price_low?: number | null
           service: string
           special_requirements?: string | null
           square_footage?: string | null
+          team_size?: string | null
           time: string
         }
         Update: {
@@ -58,6 +66,7 @@ export type Database = {
           created_at?: string
           date?: string
           email?: string
+          estimated_time?: number | null
           id?: string
           kitchens?: string
           living_areas?: string
@@ -65,9 +74,12 @@ export type Database = {
           notes?: string | null
           pets?: string
           phone?: string
+          price_high?: number | null
+          price_low?: number | null
           service?: string
           special_requirements?: string | null
           square_footage?: string | null
+          team_size?: string | null
           time?: string
         }
         Relationships: []
