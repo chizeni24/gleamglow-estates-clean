@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -126,8 +125,7 @@ const Carousel = React.forwardRef<
       if (!api) return;
       
       // Disable dragging for the booking form carousel
-      // Fix: Pass both parameters to the pointerDown event handler
-      api.on('pointerDown', (_: any, event: MouseEvent | TouchEvent) => {
+      api.on('pointerDown', () => {
         return false; // Preventing the default embla behavior
       });
       

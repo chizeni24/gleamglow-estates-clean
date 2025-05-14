@@ -11,7 +11,10 @@ export const useBookingForm = () => {
   const serviceParam = searchParams.get('service');
   const stepParam = searchParams.get('step');
   
-  const [currentStep, setCurrentStep] = useState(0);
+  // Set initial step based on URL parameter
+  const initialStep = stepParam ? parseInt(stepParam, 10) : 0;
+  const [currentStep, setCurrentStep] = useState(initialStep);
+  
   const [formData, setFormData] = useState<BookingFormData>({
     service: serviceParam || "",
     date: "",
@@ -35,9 +38,15 @@ export const useBookingForm = () => {
   useEffect(() => {
     if (serviceParam) {
       setFormData(prev => ({ ...prev, service: serviceParam }));
-      // We no longer skip to step 1, to allow users to choose the service properly
     }
-  }, [serviceParam]);
+    
+    if (stepParam) {
+      const step = parseInt(stepParam, 10);
+      if (!isNaN(step) && step >= 0 && step <= 5) {
+        setCurrentStep(step);
+      }
+    }
+  }, [serviceParam, stepParam]);
 
   // Listen for team size changes from the BookingSummary component
   useEffect(() => {
@@ -65,7 +74,7 @@ export const useBookingForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 5) { // Using a hardcoded value since we don't have steps here
+    if (currentStep < 5) { 
       setCurrentStep((prev) => prev + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
