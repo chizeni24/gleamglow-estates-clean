@@ -54,17 +54,19 @@ export const BookingForm = ({
   };
 
   return (
-    <form onSubmit={handleFormSubmit} id="booking-form">
-      <div className="mb-6">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">
+    <form onSubmit={handleFormSubmit} id="booking-form" className="relative">
+      <div className="mb-4">
+        <h2 className="text-xl md:text-2xl font-bold">
           {steps[currentStep].title}
         </h2>
-        <p className="text-gray-600 mt-2 text-sm md:text-base">{steps[currentStep].description}</p>
+        <p className="text-gray-600 mt-1 text-sm md:text-base">{steps[currentStep].description}</p>
       </div>
 
-      <div className="min-h-[300px]">{steps[currentStep].component}</div>
+      <div className="min-h-[280px] max-h-[70vh] overflow-y-auto pr-2 pl-1 pb-4 scrollbar-thin">
+        {steps[currentStep].component}
+      </div>
 
-      <div className="flex justify-between mt-8 pt-6 border-t border-gray-100">
+      <div className="flex justify-between mt-6 pt-4 border-t border-gray-100">
         {currentStep > 0 ? (
           <button
             type="button"

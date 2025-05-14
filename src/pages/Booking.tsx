@@ -8,6 +8,8 @@ import { BookingForm } from "./booking/BookingForm";
 import { useBookingForm } from "@/hooks/useBookingForm";
 import { submitBookingForm } from "@/services/bookingService";
 import { createBookingSteps } from "@/components/booking-steps/BookingSteps";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const BookingPage = () => {
   const {
@@ -22,12 +24,19 @@ const BookingPage = () => {
   } = useBookingForm();
   
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [emblaRef, setEmblaRef] = React.useState<any>(null);
 
   const steps = createBookingSteps({
     formData,
     handleInputChange,
     handleServiceSelect,
   });
+
+  React.useEffect(() => {
+    if (emblaRef) {
+      emblaRef.scrollTo(currentStep, true);
+    }
+  }, [currentStep, emblaRef]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,19 +90,14 @@ const BookingPage = () => {
     }
   };
 
-  React.useEffect(() => {
-    // Prevent auto-scrolling to bottom when the page loads
-    window.scrollTo(0, 0);
-  }, [currentStep]);
-
   return (
     <div className="flex flex-col min-h-screen bg-[#FFF8E9]">
       <Navbar />
       
-      <main className="flex-grow pt-16 md:pt-24 pb-12 md:pb-16 px-4 md:px-6 lg:px-12">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3">Book Your Service</h1>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-2">
+      <main className="flex-grow pt-10 md:pt-16 pb-8 md:pb-12 px-4 md:px-6 lg:px-12">
+        <div className="text-center mb-4 md:mb-6">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Book Your Service</h1>
+          <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto px-2">
             Steam-sanitised care for every home and budget. Experience{' '}
             <span className="text-charcoal">the</span>{' '}
             <span className="text-gold">Gleam</span>, breathe{' '}
@@ -105,24 +109,43 @@ const BookingPage = () => {
         <div className="max-w-7xl mx-auto">
           <StepIndicator steps={steps} currentStep={currentStep} />
           
-          {currentStep === 0 ? (
-            <div className="flex justify-center w-full">
-              <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
-            </div>
-          ) : (
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-8">
-                <BookingForm 
-                  steps={steps}
-                  currentStep={currentStep}
-                  formData={formData}
-                  onPrevStep={prevStep}
-                  onNextStep={nextStep}
-                  onSubmit={handleSubmit}
-                />
-              </div>
-            </div>
-          )}
+          <div className="relative overflow-hidden">
+            <Carousel 
+              opts={{ 
+                align: 'start',
+                loop: false,
+                dragFree: false,
+                skipSnaps: false,
+              }}
+              className="w-full"
+              setApi={setEmblaRef}
+            >
+              <CarouselContent className="cursor-default">
+                {steps.map((step, index) => (
+                  <CarouselItem key={step.id} className="w-full pl-0">
+                    <div className={`w-full ${index === 0 ? 'flex justify-center' : ''}`}>
+                      {index === 0 ? (
+                        <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
+                      ) : (
+                        <div className="max-w-4xl mx-auto w-full">
+                          <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-8">
+                            <BookingForm 
+                              steps={steps}
+                              currentStep={currentStep}
+                              formData={formData}
+                              onPrevStep={prevStep}
+                              onNextStep={nextStep}
+                              onSubmit={handleSubmit}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
         </div>
       </main>
 

@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -96,6 +97,7 @@ const Carousel = React.forwardRef<
       [scrollPrev, scrollNext]
     )
 
+    // Make sure we set the API so we can control the carousel from outside
     React.useEffect(() => {
       if (!api || !setApi) {
         return
@@ -104,6 +106,7 @@ const Carousel = React.forwardRef<
       setApi(api)
     }, [api, setApi])
 
+    // Update controls whenever the carousel position changes
     React.useEffect(() => {
       if (!api) {
         return
@@ -117,6 +120,21 @@ const Carousel = React.forwardRef<
         api?.off("select", onSelect)
       }
     }, [api, onSelect])
+
+    // Disable dragging in the carousel as we want to control it with buttons only
+    React.useEffect(() => {
+      if (!api) return;
+      
+      // Disable dragging for the booking form carousel
+      api.on('pointerDown', () => {
+        return false; // Preventing the default embla behavior
+      });
+      
+      return () => {
+        if (!api) return;
+        api.off('pointerDown');
+      };
+    }, [api]);
 
     return (
       <CarouselContext.Provider
