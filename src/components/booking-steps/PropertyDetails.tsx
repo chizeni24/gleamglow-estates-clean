@@ -1,5 +1,5 @@
+
 import React from "react";
-import { Select } from "@/components/ui/select";
 
 interface PropertyDetailsProps {
   formData: {
@@ -20,11 +20,11 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
   handleInputChange,
 }) => {
   return (
-    <div className="space-y-6 mt-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="space-y-4 md:space-y-6 mt-4 md:mt-6">
+      <div className="grid grid-cols-2 gap-3 md:gap-6">
         <div>
-          <label htmlFor="bedrooms" className="block text-lg font-medium text-gray-700 mb-2">
-            Number of Bedrooms
+          <label htmlFor="bedrooms" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
+            Bedrooms
           </label>
           <input
             type="number"
@@ -34,12 +34,12 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
             required
             value={formData.bedrooms}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           />
         </div>
         <div>
-          <label htmlFor="bathrooms" className="block text-lg font-medium text-gray-700 mb-2">
-            Number of Bathrooms
+          <label htmlFor="bathrooms" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
+            Bathrooms
           </label>
           <input
             type="number"
@@ -49,12 +49,12 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
             required
             value={formData.bathrooms}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           />
         </div>
         <div>
-          <label htmlFor="kitchens" className="block text-lg font-medium text-gray-700 mb-2">
-            Number of Kitchens
+          <label htmlFor="kitchens" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
+            Kitchens
           </label>
           <input
             type="number"
@@ -64,12 +64,12 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
             required
             value={formData.kitchens}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           />
         </div>
         <div>
-          <label htmlFor="livingAreas" className="block text-lg font-medium text-gray-700 mb-2">
-            Number of Living Areas
+          <label htmlFor="livingAreas" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
+            Living Areas
           </label>
           <input
             type="number"
@@ -79,13 +79,13 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
             required
             value={formData.livingAreas}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+            className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="squareFootage" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="squareFootage" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Square Footage (optional)
         </label>
         <input
@@ -95,13 +95,13 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           min="0"
           value={formData.squareFootage}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
           placeholder="Enter square footage (optional)"
         />
       </div>
 
       <div>
-        <label htmlFor="cleaningFrequency" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="cleaningFrequency" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Cleaning Frequency
         </label>
         <select
@@ -110,7 +110,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           value={formData.cleaningFrequency}
           onChange={handleInputChange}
           required
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         >
           <option value="one-time">One-time Service</option>
           <option value="weekly">Weekly</option>
@@ -120,7 +120,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
       </div>
 
       <div>
-        <label htmlFor="pets" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="pets" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Do you have pets?
         </label>
         <select
@@ -129,7 +129,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           value={formData.pets}
           onChange={handleInputChange}
           required
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         >
           <option value="no">No</option>
           <option value="dogs">Dogs</option>
@@ -140,7 +140,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
       </div>
 
       <div>
-        <label htmlFor="specialRequirements" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="specialRequirements" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Special Requirements
         </label>
         <input
@@ -150,7 +150,7 @@ export const PropertyDetails: React.FC<PropertyDetailsProps> = ({
           value={formData.specialRequirements}
           onChange={handleInputChange}
           placeholder="Enter any special requirements"
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         />
       </div>
     </div>

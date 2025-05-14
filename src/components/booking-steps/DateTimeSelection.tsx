@@ -14,9 +14,9 @@ export const DateTimeSelection: React.FC<DateTimeSelectionProps> = ({
   handleInputChange,
 }) => {
   return (
-    <div className="space-y-6 mt-6">
+    <div className="space-y-4 md:space-y-6 mt-4 md:mt-6">
       <div>
-        <label htmlFor="date" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="date" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Date
         </label>
         <input
@@ -27,11 +27,11 @@ export const DateTimeSelection: React.FC<DateTimeSelectionProps> = ({
           onChange={handleInputChange}
           required
           min={new Date().toISOString().split('T')[0]}
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         />
       </div>
       <div>
-        <label htmlFor="time" className="block text-lg font-medium text-gray-700 mb-2">
+        <label htmlFor="time" className="block text-sm md:text-lg font-medium text-gray-700 mb-1 md:mb-2">
           Time
         </label>
         <select
@@ -40,7 +40,7 @@ export const DateTimeSelection: React.FC<DateTimeSelectionProps> = ({
           value={formData.time}
           onChange={handleInputChange}
           required
-          className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
+          className="w-full px-3 py-2 md:px-4 md:py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold"
         >
           <option value="">Select a time</option>
           <option value="9:00 AM">9:00 AM</option>

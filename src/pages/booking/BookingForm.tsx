@@ -1,3 +1,4 @@
+
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { BookingFormData, Step } from "./types";
 
@@ -54,16 +55,16 @@ export const BookingForm = ({
 
   return (
     <form onSubmit={handleFormSubmit} id="booking-form">
-      <div className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold">
+      <div className="mb-6">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold">
           {steps[currentStep].title}
         </h2>
-        <p className="text-gray-600 mt-2">{steps[currentStep].description}</p>
+        <p className="text-gray-600 mt-2 text-sm md:text-base">{steps[currentStep].description}</p>
       </div>
 
       <div className="min-h-[300px]">{steps[currentStep].component}</div>
 
-      <div className="flex justify-between mt-10 pt-6 border-t border-gray-100">
+      <div className="flex justify-between mt-8 pt-6 border-t border-gray-100">
         {currentStep > 0 ? (
           <button
             type="button"
@@ -71,10 +72,10 @@ export const BookingForm = ({
               e.preventDefault();
               onPrevStep();
             }}
-            className="flex items-center text-gray-600 hover:text-gray-900"
+            className="flex items-center text-gray-600 hover:text-gray-900 py-2 px-4"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
+            <ArrowLeft className="w-4 h-4 mr-1" />
+            <span className="text-sm md:text-base">Back</span>
           </button>
         ) : (
           <div></div>
@@ -90,18 +91,18 @@ export const BookingForm = ({
               }
             }}
             disabled={!isStepValid()}
-            className="flex items-center bg-gold text-white px-6 py-3 rounded-md hover:bg-gold-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center bg-gold text-white px-4 md:px-6 py-2 md:py-3 rounded-md hover:bg-gold-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base"
           >
-            Continue
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <span>Continue</span>
+            <ArrowRight className="w-4 h-4 ml-1" />
           </button>
         ) : (
           <button
             type="submit"
-            className="flex items-center bg-gold text-white px-6 py-3 rounded-md hover:bg-gold-dark transition-colors duration-300"
+            className="flex items-center bg-gold text-white px-4 md:px-6 py-2 md:py-3 rounded-md hover:bg-gold-dark transition-colors duration-300 text-sm md:text-base"
           >
-            Confirm Booking
-            <Check className="w-4 h-4 ml-2" />
+            <span>Confirm Booking</span>
+            <Check className="w-4 h-4 ml-1" />
           </button>
         )}
       </div>

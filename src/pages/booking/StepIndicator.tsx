@@ -10,8 +10,8 @@ interface StepIndicatorProps {
 
 export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
   return (
-    <div className="mb-12">
-      <div className="flex justify-between items-center mb-4">
+    <div className="mb-8 md:mb-12 px-2">
+      <div className="hidden md:flex justify-between items-center mb-4">
         {steps.map((step, index) => (
           <div 
             key={step.id}
@@ -36,10 +36,26 @@ export const StepIndicator = ({ steps, currentStep }: StepIndicatorProps) => {
                 <span>{index + 1}</span>
               )}
             </div>
-            <span className="text-xs mt-2 hidden md:block">{step.title}</span>
+            <span className="text-xs mt-2">{step.title}</span>
           </div>
         ))}
       </div>
+      
+      {/* Mobile indicator - shows only current step title */}
+      <div className="flex md:hidden justify-between items-center mb-4">
+        <div className="flex items-center">
+          <div 
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-gold text-white mr-2"
+          >
+            {currentStep + 1}
+          </div>
+          <span className="text-sm font-medium">
+            {steps[currentStep].title} 
+            <span className="text-gray-500 ml-1">({currentStep + 1}/{steps.length})</span>
+          </span>
+        </div>
+      </div>
+      
       <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden">
         <div 
           className="absolute h-full bg-gold transition-all duration-500"

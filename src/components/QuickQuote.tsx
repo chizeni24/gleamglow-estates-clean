@@ -42,15 +42,15 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
 
   return (
     <Card className="bg-white border border-gold-light/50 shadow-lg">
-      <CardHeader className="text-center">
-        <h3 className="text-2xl font-serif">Get Your Free Quote</h3>
-        <p className="text-gray-600 text-sm mt-2">
+      <CardHeader className="text-center p-4 md:p-6">
+        <h3 className="text-xl md:text-2xl font-serif">Get Your Free Quote</h3>
+        <p className="text-gray-600 text-xs md:text-sm mt-2">
           Based on {bedrooms} bedroom{bedrooms !== 1 ? 's' : ''} and {bathrooms} bathroom{bathrooms !== 1 ? 's' : ''}
           {service && <span className="block mt-1">Service: {service}</span>}
         </p>
       </CardHeader>
 
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
         <TeamSizeSelector 
           value={teamSize} 
           onValueChange={handleTeamSizeChange} 
@@ -58,17 +58,19 @@ export const QuickQuote: React.FC<QuickQuoteProps> = ({
 
         {service === "Glow-Occasion" ? (
           <>
-            <p className="text-center text-gray-700">
+            <p className="text-center text-gray-700 text-sm md:text-base">
               For special occasions and events, we provide custom quotes tailored to your specific needs.
             </p>
-            <GoldButton 
-              onClick={() => window.location.href = '/booking'} 
-              showShine 
-              className="w-full md:w-auto" 
-              type="button"
-            >
-              Request Custom Quote
-            </GoldButton>
+            <div className="flex justify-center">
+              <GoldButton 
+                onClick={() => window.location.href = '/booking'} 
+                showShine 
+                className="w-full md:w-auto py-2" 
+                type="button"
+              >
+                Request Custom Quote
+              </GoldButton>
+            </div>
           </>
         ) : (
           <EstimateDisplay 

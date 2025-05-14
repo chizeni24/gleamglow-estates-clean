@@ -90,10 +90,10 @@ const BookingPage = () => {
     <div className="flex flex-col min-h-screen bg-[#FFF8E9]">
       <Navbar />
       
-      <main className="flex-grow container-custom pt-24 pb-16">
+      <main className="flex-grow pt-16 md:pt-24 pb-12 md:pb-16 px-4 md:px-6 lg:px-12">
         <div className="text-center mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">Book Your Service</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3">Book Your Service</h1>
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-2">
             Steam-sanitised care for every home and budget. Experience{' '}
             <span className="text-charcoal">the</span>{' '}
             <span className="text-gold">Gleam</span>, breathe{' '}
@@ -111,7 +111,7 @@ const BookingPage = () => {
             </div>
           ) : (
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+              <div className="bg-white rounded-xl shadow-lg p-4 md:p-6 lg:p-8">
                 <BookingForm 
                   steps={steps}
                   currentStep={currentStep}
