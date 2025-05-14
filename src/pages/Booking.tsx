@@ -81,6 +81,11 @@ const BookingPage = () => {
     }
   };
 
+  React.useEffect(() => {
+    // Prevent auto-scrolling to bottom when the page loads
+    window.scrollTo(0, 0);
+  }, [currentStep]);
+
   return (
     <div className="flex flex-col min-h-screen bg-[#FFF8E9]">
       <Navbar />
@@ -101,7 +106,7 @@ const BookingPage = () => {
           <StepIndicator steps={steps} currentStep={currentStep} />
           
           {currentStep === 0 ? (
-            <div>
+            <div className="flex justify-center w-full">
               <Services isBookingStep={true} onServiceSelect={handleServiceSelect} />
             </div>
           ) : (
